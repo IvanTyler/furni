@@ -1,0 +1,29 @@
+.input {
+    display: inline-block;
+    width: 100%;
+    padding: 20px 23px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    background-color: #262830;
+    border: 2px solid #323540;
+    border-radius: 16px;
+    color: #fff;
+    transition: border .2s ease;
+    caret-color: #ED5365;
+
+    &:not(:first-child) {
+        margin-top: 20px;
+    }
+
+    &::placeholder {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #8B8B9E;
+    }
+}
+
+.input.error {
+    border: 2px solid #C40F24;
+}
