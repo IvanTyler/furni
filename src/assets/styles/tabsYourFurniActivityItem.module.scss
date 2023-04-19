@@ -1,0 +1,76 @@
+.tabsYourFurniActivityItem {
+    display: flex;
+    align-items: center;
+    padding: 6px 20px;
+    height: 52px;
+    background-color: #262830;
+    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.04);
+    font-family: 'FuturaPT';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #E0E0E0;
+    transition: background-color .2s ease;
+    cursor: pointer;
+
+    &:first-child {
+        background-color: #323540;
+        border-radius: 12px 12px 0 0;
+        font-size: 12px;
+        line-height: 15px;
+
+        div:not(:first-child) {
+            max-width: 110px;
+            width: 100%;
+            text-align: right;
+        }
+
+        div:first-child {
+            flex: 1 1 auto;
+        }
+
+        div:not(:last-child) {
+            margin-right: 33px;
+        }
+    }
+
+    &:last-child {
+        background-color: #323540;
+        border-radius: 0 0 12px 12px;
+
+        div:not(:first-child) {
+            max-width: 110px;
+            width: 100%;
+            text-align: right;
+        }
+
+        div:first-child {
+            flex: 1 1 auto;
+            margin-right: 33px;
+        }
+
+        div:not(:last-child) {
+            margin-right: 33px;
+        }
+    }
+
+    &:hover {
+        background-color: #323540;
+    }
+
+    &__name {
+        flex: 1 1 auto;
+        margin-right: 33px;
+    }
+
+    &__amount {
+        margin-right: 33px;
+    }
+
+    &__amount,
+    &__earnings {
+        max-width: 110px;
+        width: 100%;
+        text-align: right;
+    }
+}

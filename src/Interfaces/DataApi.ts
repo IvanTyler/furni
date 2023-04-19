@@ -4,12 +4,14 @@ export interface IDataApi {
 }
 
 export interface IStatsClients {
+    id: number;
     name: string;
     amount: number;
     earnings: number;
 }
 
 export interface IStatsPartners {
+    id: number;
     name: string;
     clients: number;
     amount: number;

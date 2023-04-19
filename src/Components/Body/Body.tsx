@@ -4,16 +4,16 @@ import { FormUserLogin } from '../FormUserLogin/FormUserLogin'
 import { YourFurniActivity } from '../YourFurniActivity/YourFurniActivity'
 import style from './Body.module.scss'
 
-
-
 export const Body: React.FC = () => {
 
-    const [dataAuthorization, setAuthorization] = useState()
+    const [dataAuthorization, setAuthorization] = useState(true)
 
     return (
         <div className={style.container}>
-            <FormUserLogin />
-            <YourFurniActivity />
+            {dataAuthorization ?
+                <FormUserLogin setAuthorization={setAuthorization} /> :
+                <YourFurniActivity />
+            }
         </div>
     )
 }

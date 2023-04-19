@@ -3,7 +3,11 @@ import logoFurni from '../../assets/icon/logo.svg'
 import { Input } from '../Input/Input'
 import React, { useState } from 'react'
 
-export const FormUserLogin: React.FC = () => {
+interface IFormUserLoginProps {
+    setAuthorization(item: any): void
+}
+
+export const FormUserLogin: React.FC<IFormUserLoginProps> = ({ setAuthorization }) => {
 
     const [toggleTypeInput, setToggleTypeInput] = useState(false)
 
@@ -45,6 +49,7 @@ export const FormUserLogin: React.FC = () => {
         if (inputValueLogin.trim().length >= 1 && inputValuePassword.trim().length >= 8) {
             setErrorInputLoginValue(prev => prev = false)
             setErrorInputPasswordValue(prev => prev = false)
+            setAuthorization((prev: boolean) => prev = false)
             setInputValueLogin('')
             setInputValuePassword('')
         }
