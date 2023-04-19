@@ -1,6 +1,7 @@
 @import url('../../assets/styles/fonts.scss');
 
 .formUserLogin {
+    position: relative;
     max-width: 400px;
     text-align: center;
 
@@ -30,5 +31,39 @@
         &:hover {
             background-color: #8243F0;
         }
+    }
+
+    &__inputWrapper {
+        margin-top: 20px;
+        position: relative;
+    }
+
+    &__toggleTypeInput {
+        position: absolute;
+        right: 23px;
+        top: calc(50% - 8.5px);
+        font-family: 'FuturaPT';
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    &__messageErrorEnterRequiredFields {
+        position: absolute;
+        left: calc(50% - 67.5px);
+        bottom: 0;
+        transform: translateY(129px);
+        display: inline-block;
+        height: 31px;
+        padding: 9px 20px;
+        background-color: #C40F24;
+        border-radius: 12px;
+        font-family: 'FuturaPT';
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #fff;
     }
 }

@@ -12,10 +12,6 @@
     transition: border .2s ease;
     caret-color: #ED5365;
 
-    &:not(:first-child) {
-        margin-top: 20px;
-    }
-
     &::placeholder {
         display: flex;
         align-items: center;
@@ -24,6 +20,6 @@
     }
 }
 
-.input.error {
+.error {
     border: 2px solid #C40F24;
 }
