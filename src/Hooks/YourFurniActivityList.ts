@@ -17,13 +17,17 @@ function useYourFurniActivityList() {
             setLoading(true)
 
             // const response = await axios.get<IDataApi>('')
-            setStatsClients(dataApi.stats_clients)
-            setStatsPartners(dataApi.stats_partners)
+            setTimeout(() => {
+                setLoading(false)
+            }, 3000)
 
-            setLoading(true)
+            if (!loading) {
+                setStatsClients(dataApi.stats_clients)
+                setStatsPartners(dataApi.stats_partners)
+            }
 
         } catch {
-            setLoading(true)
+            setLoading(false)
         }
     }
 
