@@ -1,0 +1,19 @@
+.tabsListItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 64px;
+    border-radius: 16px;
+    font-family: 'FuturaPT';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+}
+
+.active {
+    background-color: #ED5365;
+}

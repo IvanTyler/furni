@@ -48,7 +48,6 @@ export const FormUserLogin: React.FC = () => {
             setInputValueLogin('')
             setInputValuePassword('')
         }
-
     }
 
     return (
@@ -56,7 +55,7 @@ export const FormUserLogin: React.FC = () => {
             <img src={logoFurni} alt="logo furni" />
             <h1 className={style.formUserLogin__title}>
                 Login to your
-                partnetr’s account
+                partner’s account
             </h1>
             <Input
                 type='text'

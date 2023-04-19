@@ -1,0 +1,23 @@
+.toggleStatsClientsAgents {
+    display: inline-flex;
+    margin-top: 34px;
+    height: 32px;
+    background: #262830;
+    border-radius: 32px;
+
+    &__button {
+        height: 100%;
+        width: 64px;
+        border-radius: 16px;
+        font-family: 'FuturaPT';
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        background-color: transparent;
+        color: #fff;
+    }
+
+    &__button.active {
+        background-color: #ED5365;
+    }
+}

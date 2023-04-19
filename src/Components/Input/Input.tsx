@@ -1,4 +1,5 @@
 import style from './Input.module.scss'
+import cx from 'classnames'
 
 interface IInputProps {
     type: string;
@@ -20,7 +21,7 @@ export const Input: React.FC<IInputProps> = (
 ) => {
     return (
         <input
-            className={error ? style.input + ' ' + style.error : style.input}
+            className={error ? cx(style.input, style.error) : style.input}
             type={type}
             name={name}
             placeholder={placeholder}
