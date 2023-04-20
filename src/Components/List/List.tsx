@@ -1,13 +1,12 @@
-
 interface ListProps<T> {
     items: T[];
-    renderItem: (item: T) => React.ReactNode;
+    renderItem: (item: T, index: number) => React.ReactNode;
 }
 
 export function List<T>(props: ListProps<T>) {
     return (
         <>
-            {props.items.map(props.renderItem)}
+            {props.items.map((item, index ) => props.renderItem(item, index))}
         </>
     )
 }

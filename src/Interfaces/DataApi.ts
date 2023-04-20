@@ -1,9 +1,12 @@
 export interface IDataApi {
+    error_message: string;
     stats_clients: IStatsClients;
     stats_partners: IStatsPartners;
+    status: boolean;
 }
 
 export interface IStatsClients {
+    [x: string]: any;
     id: number;
     name: string;
     amount: number;

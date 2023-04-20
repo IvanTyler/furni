@@ -1,18 +1,20 @@
 import styleClients from '../../assets/styles/tabsYourFurniActivity.module.scss'
 import styleClientsItem from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
 
-import useYourFurniActivityList from '../../Hooks/YourFurniActivityList'
 import { IStatsClients } from '../../Interfaces/DataApi'
 import { List } from '../List/List'
 import { ClientsItem } from '../ClientsItem.module.tsx/ClientsItem'
 
 import cx from 'classnames'
 
-export const Clients: React.FC = () => {
-    const { statsClients } = useYourFurniActivityList()
+interface IClientsProps {
+    statsClients: any;
+}
 
-    const totalAmount = statsClients.reduce((acc: any, current) => acc + current.amount, 0)
-    const totalEarnings = statsClients.reduce((acc: any, current) => acc + current.earnings, 0)
+export const Clients: React.FC<IClientsProps> = ({ statsClients }) => {
+
+    const totalAmount = statsClients.reduce((acc: any, current: { amount: any }) => acc + current.amount, 0)
+    const totalEarnings = statsClients.reduce((acc: any, current: { earnings: any }) => acc + current.earnings, 0)
 
     return (
         <ul className={styleClients.tabsYourFurniActivityList}>
@@ -29,7 +31,7 @@ export const Clients: React.FC = () => {
             </li>
             <List
                 items={statsClients}
-                renderItem={(item: IStatsClients) => <ClientsItem item={item} key={item.id} />}
+                renderItem={(item: IStatsClients, index: number) => <ClientsItem item={item} key={index.toString()} />}
             />
             <li className={styleClientsItem.tabsYourFurniActivityItem}>
                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>

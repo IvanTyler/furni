@@ -2,7 +2,7 @@ import style from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
 import { IStatsClients } from '../../Interfaces/DataApi'
 
 interface IClientsProps {
-    item: IStatsClients
+    item: IStatsClients;
 }
 
 export const ClientsItem: React.FC<IClientsProps> = ({ item }) => {

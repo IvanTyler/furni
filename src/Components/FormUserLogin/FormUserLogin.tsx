@@ -2,12 +2,18 @@ import style from './FormUserLogin.module.scss'
 import logoFurni from '../../assets/icon/logo.svg'
 import { Input } from '../Input/Input'
 import React, { useState } from 'react'
+import axios from 'axios'
+import { IDataApi } from '../../Interfaces/DataApi'
 
 interface IFormUserLoginProps {
-    setAuthorization(item: any): void
+    setIsLogin(item: any): void
+    setGetData(data: IDataApi): void
+    setIsLoading(item: any): void
 }
 
-export const FormUserLogin: React.FC<IFormUserLoginProps> = ({ setAuthorization }) => {
+export const FormUserLogin: React.FC<IFormUserLoginProps> = (
+    { setIsLogin, setGetData, setIsLoading }
+) => {
 
     const [toggleTypeInput, setToggleTypeInput] = useState(false)
 
@@ -16,6 +22,16 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = ({ setAuthorization 
 
     const [inputValueLogin, setInputValueLogin] = useState('')
     const [inputValuePassword, setInputValuePassword] = useState('')
+
+    const fetchData = async () => {
+        setIsLoading(true)
+        const response = await axios.post<IDataApi>(
+            'https://partnerinfo.furni.ae/api/partner/stats',
+            { login: inputValueLogin, password: inputValuePassword })
+            .then(response => setGetData(response.data))
+            .catch(error => console.log(error))
+            .finally(() => setIsLoading(false))
+    }
 
     const toggleInputTypeFunc = () => {
         if (inputValuePassword.trim().length >= 1) setToggleTypeInput(prev => !prev)
@@ -46,10 +62,12 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = ({ setAuthorization 
             setErrorInputPasswordValue(prev => prev = false)
         }
 
+
+
         if (inputValueLogin.trim().length >= 1 && inputValuePassword.trim().length >= 8) {
             setErrorInputLoginValue(prev => prev = false)
             setErrorInputPasswordValue(prev => prev = false)
-            setAuthorization((prev: boolean) => prev = false)
+            fetchData()
             setInputValueLogin('')
             setInputValuePassword('')
         }

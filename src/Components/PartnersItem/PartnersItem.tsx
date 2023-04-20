@@ -15,16 +15,16 @@ export const PartnersItem: React.FC<IClientsProps> = ({ item }) => {
                 {item.clients}
             </div>
             <div className={style.tabsYourFurniActivityItem__item}>
-                {item.amount}
-            </div>
-            <div className={style.tabsYourFurniActivityItem__item}>
-                {item.earnings}
-            </div>
-            <div className={style.tabsYourFurniActivityItem__item}>
                 {item.clients_network}
             </div>
             <div className={style.tabsYourFurniActivityItem__item}>
                 {item.earnings_network}
+            </div>
+            <div className={style.tabsYourFurniActivityItem__item}>
+                {item.amount}
+            </div>
+            <div className={style.tabsYourFurniActivityItem__item}>
+                {item.earnings}
             </div>
         </li>
     )
