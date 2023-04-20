@@ -8,7 +8,6 @@ import style from './Body.module.scss'
 export const Body: React.FC = () => {
 
     const [dataAuthorization, setAuthorization] = useState(true)
-    console.log(dataAuthorization);
     
     return (
         <div className={style.container}>
