@@ -33,7 +33,6 @@ export const Body: React.FC = () => {
                     />
                 </>
                 : <FormUserLogin
-                    setIsLogin={setIsLogin}
                     setGetData={setGetData}
                     setIsLoading={setIsLoading}
                 />

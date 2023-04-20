@@ -6,13 +6,12 @@ import axios from 'axios'
 import { IDataApi } from '../../Interfaces/DataApi'
 
 interface IFormUserLoginProps {
-    setIsLogin(item: any): void
     setGetData(data: IDataApi): void
     setIsLoading(item: any): void
 }
 
 export const FormUserLogin: React.FC<IFormUserLoginProps> = (
-    { setIsLogin, setGetData, setIsLoading }
+    { setGetData, setIsLoading }
 ) => {
 
     const [toggleTypeInput, setToggleTypeInput] = useState(false)
