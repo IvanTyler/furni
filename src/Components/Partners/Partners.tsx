@@ -21,10 +21,19 @@ export const Partners: React.FC = () => {
                     Name
                 </div>
                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
+                    Clients amount
+                </div>
+                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                     Order amount, AED
                 </div>
                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                     Your earnings, AED
+                </div>
+                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
+                    Clients network
+                </div>
+                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
+                    Earnings network
                 </div>
             </li>
             <List

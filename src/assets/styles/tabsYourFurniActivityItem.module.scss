@@ -20,13 +20,13 @@
         line-height: 15px;
 
         div:not(:first-child) {
-            max-width: 110px;
-            width: 100%;
+            width: 110px;
             text-align: right;
         }
 
         div:first-child {
             flex: 1 1 auto;
+            min-width: 130px;
         }
 
         div:not(:last-child) {
@@ -35,12 +35,14 @@
     }
 
     &:last-child {
+        position: sticky;
+        bottom: 0;
         background-color: #323540;
         border-radius: 0 0 12px 12px;
 
+
         div:not(:first-child) {
-            max-width: 110px;
-            width: 100%;
+            width: 110px;
             text-align: right;
         }
 
@@ -60,17 +62,17 @@
 
     &__name {
         flex: 1 1 auto;
+        min-width: 130px;
         margin-right: 33px;
     }
 
-    &__amount {
-        margin-right: 33px;
-    }
-
-    &__amount,
-    &__earnings {
+    &__item {
         max-width: 110px;
         width: 100%;
         text-align: right;
+        
+        &:not(:last-child) {
+            margin-right: 33px;
+        }
     }
 }

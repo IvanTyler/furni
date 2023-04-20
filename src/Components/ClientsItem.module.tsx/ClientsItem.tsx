@@ -11,10 +11,10 @@ export const ClientsItem: React.FC<IClientsProps> = ({ item }) => {
             <div className={style.tabsYourFurniActivityItem__name}>
                 {item.name}
             </div>
-            <div className={style.tabsYourFurniActivityItem__amount}>
+            <div className={style.tabsYourFurniActivityItem__item}>
                 {item.amount}
             </div>
-            <div className={style.tabsYourFurniActivityItem__earnings}>
+            <div className={style.tabsYourFurniActivityItem__item}>
                 {item.earnings}
             </div>
         </li>

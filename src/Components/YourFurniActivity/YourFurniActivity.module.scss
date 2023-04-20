@@ -1,6 +1,4 @@
 .sectionYourFurniActivity {
-    width: 595px;
-    max-width: 100%;
 
     &__title {
         margin-top: 17px;
@@ -10,8 +8,21 @@
         line-height: 49px;
         color: #F0F0F0;
     }
+
+    &__content {
+        margin-top: 30px;
+    }
+
+    &__subTitle {
+        max-width: 595px;
+        font-family: 'FuturaPT';
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        color: #E0E0E0;
+    }
 }
 
-p {
-    color: #fff;
+.center {
+    text-align: center;
 }

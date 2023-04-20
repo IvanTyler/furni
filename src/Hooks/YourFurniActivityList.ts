@@ -35,7 +35,7 @@ function useYourFurniActivityList() {
         fetchYourFurniActivityList()
     }, [])
 
-    return { statsClients, StatsPartners, loading }
+    return { statsClients, StatsPartners, loading, setLoading }
 }
 
 export default useYourFurniActivityList
