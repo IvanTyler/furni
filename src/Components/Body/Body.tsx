@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { IDataApi } from '../../Interfaces/DataApi'
 import { FormUserLogin } from '../FormUserLogin/FormUserLogin'
 import { Header } from '../Header/Header'
 import { Preloader } from '../Preloader/Preloader'
@@ -10,7 +11,7 @@ export const Body: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     const [isLogin, setIsLogin] = useState(false)
-    const [getData, setGetData] = useState<any>()
+    const [getData, setGetData] = useState<IDataApi | any>()
 
     useEffect(() => {
         if (getData?.status) setIsLogin(true)

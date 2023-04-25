@@ -37,7 +37,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     }
 
     const inputChangeLoginValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value.length > 20) event.target.value = event.target.value.slice(0, 20);
+        if (event.target.value.length > 30) event.target.value = event.target.value.slice(0, 30);
         setInputValueLogin(event.target.value)
     }
 
@@ -45,11 +45,17 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
         if (event.target.value.length > 30) event.target.value = event.target.value.slice(0, 30);
         setInputValuePassword(event.target.value)
     }
+console.log(inputValueLogin.toLowerCase());
 
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         if (inputValueLogin.trim().length === 0) {
+            setErrorInputLoginValue(prev => prev = true)
+        } else {
+            setErrorInputLoginValue(prev => prev = false)
+        }
+        if (inputValueLogin.toLowerCase() !== 'demo') {
             setErrorInputLoginValue(prev => prev = true)
         } else {
             setErrorInputLoginValue(prev => prev = false)
@@ -60,10 +66,17 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
         } else {
             setErrorInputPasswordValue(prev => prev = false)
         }
+        if (inputValuePassword.toLowerCase() !== 'demodemo') {
+            setErrorInputPasswordValue(prev => prev = true)
+        } else {
+            setErrorInputPasswordValue(prev => prev = false)
+        }
 
-
-
-        if (inputValueLogin.trim().length >= 1 && inputValuePassword.trim().length >= 8) {
+        if (inputValueLogin.trim().length >= 1
+            && inputValuePassword.trim().length >= 8
+            && inputValueLogin.toLowerCase() === 'demo'
+            && inputValuePassword.toLowerCase() === 'demodemo'
+        ) {
             setErrorInputLoginValue(prev => prev = false)
             setErrorInputPasswordValue(prev => prev = false)
             fetchData()

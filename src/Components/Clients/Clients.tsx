@@ -17,33 +17,39 @@ export const Clients: React.FC<IClientsProps> = ({ statsClients }) => {
     const totalEarnings = statsClients.reduce((acc: any, current: { earnings: any }) => acc + current.earnings, 0)
 
     return (
-        <ul className={styleClients.tabsYourFurniActivityList}>
-            <li className={styleClientsItem.tabsYourFurniActivityItem}>
-                <div className={cx(styleClientsItem.tabsYourFurniActivityItem__title, styleClientsItem.name)}>
-                    Name
-                </div>
-                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                    Order amount, AED
-                </div>
-                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                    Your earnings, AED
-                </div>
-            </li>
-            <List
-                items={statsClients}
-                renderItem={(item: IStatsClients, index: number) => <ClientsItem item={item} key={index.toString()} />}
-            />
-            <li className={styleClientsItem.tabsYourFurniActivityItem}>
-                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                    Total
-                </div>
-                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                    {totalAmount}
-                </div>
-                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                    {totalEarnings}
-                </div>
-            </li>
-        </ul>
+        <>
+            <h2 className={styleClients.tabsYourFurniActivityList__subTitle}>
+                The list of clients directly referred by you. You'll earn 5%
+                commission on all their purchases.
+            </h2>
+            <ul className={styleClients.tabsYourFurniActivityList}>
+                <li className={styleClientsItem.tabsYourFurniActivityItem}>
+                    <div className={cx(styleClientsItem.tabsYourFurniActivityItem__title, styleClientsItem.name)}>
+                        Name
+                    </div>
+                    <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
+                        Order amount, AED
+                    </div>
+                    <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
+                        Your earnings, AED
+                    </div>
+                </li>
+                <List
+                    items={statsClients}
+                    renderItem={(item: IStatsClients, index: number) => <ClientsItem item={item} key={index.toString()} />}
+                />
+                <li className={styleClientsItem.tabsYourFurniActivityItem}>
+                    <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
+                        Total
+                    </div>
+                    <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
+                        {totalAmount}
+                    </div>
+                    <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
+                        {totalEarnings}
+                    </div>
+                </li>
+            </ul>
+        </>
     )
 }
