@@ -45,28 +45,17 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
         if (event.target.value.length > 30) event.target.value = event.target.value.slice(0, 30);
         setInputValuePassword(event.target.value)
     }
-console.log(inputValueLogin.toLowerCase());
 
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        if (inputValueLogin.trim().length === 0) {
-            setErrorInputLoginValue(prev => prev = true)
-        } else {
-            setErrorInputLoginValue(prev => prev = false)
-        }
-        if (inputValueLogin.toLowerCase() !== 'demo') {
+        if (inputValueLogin.trim().length === 0 || inputValueLogin.toLowerCase() !== 'demo') {
             setErrorInputLoginValue(prev => prev = true)
         } else {
             setErrorInputLoginValue(prev => prev = false)
         }
 
-        if (inputValuePassword.trim().length < 8) {
-            setErrorInputPasswordValue(prev => prev = true)
-        } else {
-            setErrorInputPasswordValue(prev => prev = false)
-        }
-        if (inputValuePassword.toLowerCase() !== 'demodemo') {
+        if (inputValuePassword.trim().length < 8 || inputValuePassword.toLowerCase() !== 'demodemo') {
             setErrorInputPasswordValue(prev => prev = true)
         } else {
             setErrorInputPasswordValue(prev => prev = false)
