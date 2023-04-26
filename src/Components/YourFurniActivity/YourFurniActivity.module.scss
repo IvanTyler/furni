@@ -1,5 +1,9 @@
 .sectionYourFurniActivity {
 
+    @media (max-width: 380px) {
+        margin-top: 170px;
+    }
+
     &__title {
         margin-top: 17px;
         font-family: 'FuturaPT';
