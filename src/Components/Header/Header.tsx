@@ -9,9 +9,9 @@ export const Header: React.FC<IHeaderProps> = ({ setIsLogin }) => {
 
     return (
         <header className={style.header}>
-            <a href="/" className={style.header__link}>
+            {/* <a href="/" className={style.header__link}> */}
                 <img src={logoFurni} alt="logo" className={style.header__icon} />
-            </a>
+            {/* </a> */}
             <span onClick={() => setIsLogin((prev: boolean) => prev = false)} className={style.header__logOut}>
                 Log out
             </span>

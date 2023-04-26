@@ -6,4 +6,9 @@
     height: 100%;
     margin: 0 auto;
     padding: 56px 20px 0;
+
+    &>div {
+        overflow-x: auto;
+
+    }
 }
