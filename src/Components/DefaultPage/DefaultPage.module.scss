@@ -1,0 +1,82 @@
+.sectionDefaultPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    padding: 32px 20px;
+    border: 2px solid #323540;
+    border-radius: 12px;
+    background-color: #262830;
+
+    &__title {
+        font-family: 'FuturaPT';
+        font-weight: 500;
+        font-size: 20px;
+        color: #F0F0F0;
+    }
+
+    &__subTitle {
+        text-align: center;
+        max-width: 311px;
+        margin-top: 8px;
+        font-family: 'FuturaPT';
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #E0E0E0;
+    }
+
+    &__contentImg {
+        margin-top: 40px;
+        max-width: 100%;
+    }
+
+    &__contactInformation {
+        font-family: 'FuturaPT';
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 148%;
+        text-align: center;
+        margin-top: 40px;
+        max-width: 315px;
+        color: #8B8B9E;
+
+        a {
+            color: #8B8B9E;
+        }
+    }
+
+    &__mail {
+        border-bottom: solid 1px #8B8B9E;
+    }
+}
+
+.referalCode {
+    display: flex;
+    margin-top: 28px;
+    height: 47px;
+    border-radius: 12px;
+
+    &__code,
+    &__arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    &__code {
+        width: 101px;
+        font-family: 'FuturaPT';
+        font-weight: 450;
+        font-size: 18px;
+        border: 2px dashed #ED5365;
+        border-right: none;
+    }
+
+    &__arrow {
+        width: 36px;
+        border: 2px solid #ED5365;
+        background-color: #ED5365;
+    }
+}

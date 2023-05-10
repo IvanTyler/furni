@@ -6,6 +6,7 @@ import { tabsYourFurniActivityListEnum } from '../../Enums/tabsYourFurniActivity
 import style from './YourFurniActivity.module.scss'
 
 import { IDataApi } from '../../Interfaces/DataApi'
+import { Overview } from '../Overview/Overview'
 
 interface IYourFurniActivityProps {
     getData: IDataApi;
@@ -13,7 +14,7 @@ interface IYourFurniActivityProps {
 
 export const YourFurniActivity: React.FC<IYourFurniActivityProps> = ({ getData }) => {
 
-    const [tabElement, setTabElement] = useState('Clients')
+    const [tabElement, setTabElement] = useState('Overview')
 
     return (
         <>
@@ -27,6 +28,11 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = ({ getData }
                 <div>
                     <TabsList setTabElement={setTabElement} />
                     <div className={style.sectionYourFurniActivity__content}>
+                        {tabElement === tabsYourFurniActivityListEnum.overview ?
+                            <Overview
+                            />
+                            : null
+                        }
                         {tabElement === tabsYourFurniActivityListEnum.clients ?
                             <Clients
                                 statsClients={getData.stats_clients}
