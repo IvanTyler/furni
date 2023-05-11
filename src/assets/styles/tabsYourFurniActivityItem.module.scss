@@ -13,7 +13,7 @@
     transition: background-color .2s ease;
     cursor: pointer;
 
-    &:first-child {
+    &:first-of-type {
         background-color: #323540;
         border-radius: 12px 12px 0 0;
         font-size: 12px;
@@ -70,9 +70,43 @@
         max-width: 110px;
         width: 100%;
         text-align: right;
-        
+
         &:not(:last-child) {
             margin-right: 33px;
+        }
+    }
+
+    &__showDetailsContact {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+        background-color: #444755;
+        border-radius: 6px;
+
+        &::after {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border: 2px solid #E0E0E0;
+            border-right: none;
+            border-bottom: none;
+            transform: rotate(-135deg);
+            transition: 0.2s;
+        }
+    }
+
+    &__showDetailsContact.active {
+        background-color: #A4A4A9;
+
+        &::after {
+            content: '';
+            border: 2px solid #262830;
+            border-right: none;
+            border-bottom: none;
+            transform: rotate(45deg);
         }
     }
 }

@@ -72,11 +72,13 @@
         font-size: 18px;
         border: 2px dashed #ED5365;
         border-right: none;
+        border-radius: 12px 0 0 12px;
     }
 
     &__arrow {
         width: 36px;
         border: 2px solid #ED5365;
         background-color: #ED5365;
+        border-radius: 0 12px 12px 0;
     }
 }

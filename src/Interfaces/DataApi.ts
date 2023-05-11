@@ -6,7 +6,6 @@ export interface IDataApi {
 }
 
 export interface IStatsClients {
-    [x: string]: any;
     id: number;
     name: string;
     amount: number;

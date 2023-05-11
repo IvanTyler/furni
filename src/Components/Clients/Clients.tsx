@@ -6,16 +6,41 @@ import { List } from '../List/List'
 import { ClientsItem } from '../ClientsItem.module.tsx/ClientsItem'
 
 import cx from 'classnames'
+import { IContacts } from '../../Interfaces/contacts'
+import { useState } from 'react'
 
 interface IClientsProps {
     statsClients: any;
+    contentImgDefaultPage: string;
 }
 
-export const Clients: React.FC<IClientsProps> = ({ statsClients }) => {
+export const Clients: React.FC<IClientsProps> = ({ statsClients, contentImgDefaultPage }) => {
 
-    const totalAmount = statsClients.reduce((acc: any, current: { amount: any }) => acc + current.amount, 0)
-    const totalEarnings = statsClients.reduce((acc: any, current: { earnings: any }) => acc + current.earnings, 0)
+    // const totalAmount = statsClients.reduce((acc: any, current: any) => acc + current.amount, 0)
+    // const totalEarnings = statsClients.reduce((acc: any, current: any) => acc + current.earnings, 0)
 
+    const [contacts, setContacts] = useState<IContacts[]>(statsClients)
+
+    const total = contacts.reduce((acc: any, el) => {
+        let total = Object.values(el.detail)
+            .reduce((acc: number, el: number) => acc + el, 0)
+        return acc + total
+    }, 0)
+
+
+    const itemEditHandler = (id: number) => {
+        setContacts((prev: any) => {
+            return prev.map((el: any) => {
+                if (el.id === id) {
+                    return {
+                        ...el,
+                        active: !el.active,
+                    }
+                }
+                return el
+            })
+        })
+    }
     return (
         <>
             <h2 className={styleClients.tabsYourFurniActivityList__subTitle}>
@@ -37,18 +62,22 @@ export const Clients: React.FC<IClientsProps> = ({ statsClients }) => {
                             </div>
                         </li>
                         <List
-                            items={statsClients}
-                            renderItem={(item: IStatsClients, index: number) => <ClientsItem item={item} key={index.toString()} />}
+                            items={contacts}
+                            renderItem={(item: IContacts, index: number) => <ClientsItem
+                                itemEditHandler={itemEditHandler}
+                                item={item}
+                                key={index.toString()}
+                            />}
                         />
+
                         <li className={styleClientsItem.tabsYourFurniActivityItem}>
                             <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                                 Total
                             </div>
                             <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                {totalAmount}
                             </div>
                             <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                {totalEarnings}
+                                {total}
                             </div>
                         </li>
                     </ul>

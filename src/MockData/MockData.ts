@@ -67,3 +67,56 @@ export const dataApi = {
         }
     ]
 }
+
+export const contacts = [
+    {
+        'id': 1,
+        'active': false,
+        'name': 'Merry Johnson',
+        'detail': {
+            'direct_sales': 8575,
+            'via_partners': 1600,
+            'via_subpartners': 400,
+        }
+    },
+    {
+        'id': 2,
+        'active': false,
+        'name': 'Audrey Simmmons',
+        'detail': {
+            'direct_sales': 2575,
+            'via_partners': 1500,
+            'via_subpartners': 300,
+        }
+    },
+    {
+        'id': 3,
+        'active': false,
+        'name': 'Nathan Cooper',
+        'detail': {
+            'direct_sales': 6575,
+            'via_partners': 1400,
+            'via_subpartners': 200,
+        }
+    },
+    {
+        'id': 4,
+        'active': false,
+        'name': 'Dianne Russell',
+        'detail': {
+            'direct_sales': 6575,
+            'via_partners': 1200,
+            'via_subpartners': 200,
+        }
+    },
+    {
+        'id': 5,
+        'active': false,
+        'name': 'Savannah Robertson',
+        'detail': {
+            'direct_sales': 6575,
+            'via_partners': 1000,
+            'via_subpartners': 200,
+        }
+    },
+]

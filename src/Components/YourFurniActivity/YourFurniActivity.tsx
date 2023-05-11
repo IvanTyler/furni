@@ -8,11 +8,26 @@ import style from './YourFurniActivity.module.scss'
 import { IDataApi } from '../../Interfaces/DataApi'
 import { Overview } from '../Overview/Overview'
 
+import imgOverview from '../../assets/images/overview.png'
+import imgContacts from '../../assets/images/contacts.png'
+import imgEvents from '../../assets/images/events.png'
+
+import { contacts } from '../../MockData/MockData'
+
+
 interface IYourFurniActivityProps {
     getData: IDataApi;
+    setContentImgDefaultPage: (item: string) => void;
+    contentImgDefaultPage: string;
 }
 
-export const YourFurniActivity: React.FC<IYourFurniActivityProps> = ({ getData }) => {
+export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
+    {
+        getData,
+        setContentImgDefaultPage,
+        contentImgDefaultPage,
+    }
+) => {
 
     const [tabElement, setTabElement] = useState('Overview')
 
@@ -35,7 +50,8 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = ({ getData }
                         }
                         {tabElement === tabsYourFurniActivityListEnum.clients ?
                             <Clients
-                                statsClients={getData.stats_clients}
+                                statsClients={contacts}
+                                contentImgDefaultPage={contentImgDefaultPage}
                             />
                             : null
                         }
