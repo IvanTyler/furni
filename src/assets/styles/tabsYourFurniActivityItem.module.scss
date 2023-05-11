@@ -13,6 +13,10 @@
     transition: background-color .2s ease;
     cursor: pointer;
 
+    &:hover {
+        background-color: #323540;
+    }
+
     &:first-of-type {
         background-color: #323540;
         border-radius: 12px 12px 0 0;
@@ -34,7 +38,7 @@
         }
     }
 
-    &:last-child {
+    &:last-of-type {
         position: sticky;
         bottom: 0;
         background-color: #323540;
@@ -54,10 +58,6 @@
         div:not(:last-child) {
             margin-right: 33px;
         }
-    }
-
-    &:hover {
-        background-color: #323540;
     }
 
     &__name {
@@ -109,4 +109,19 @@
             transform: rotate(45deg);
         }
     }
+}
+
+.tabsYourFurniActivityItem.detalContent {
+    background-color: #323540;
+
+    &:first-of-type,
+    &:last-of-type {
+        border-radius: 0;
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+
+.tabsYourFurniActivityItem.active {
+    background-color: #323540;
 }

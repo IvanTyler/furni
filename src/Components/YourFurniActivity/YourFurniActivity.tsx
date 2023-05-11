@@ -57,6 +57,7 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
                         }
                         {tabElement === tabsYourFurniActivityListEnum.partners ?
                             <Partners
+                                contacts={contacts}
                                 statsPartners={getData.stats_partners}
                             />
                             : null

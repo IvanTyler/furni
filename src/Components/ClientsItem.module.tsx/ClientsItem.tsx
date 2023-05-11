@@ -16,12 +16,16 @@ export const ClientsItem: React.FC<IClientsProps> = ({ item, itemEditHandler }) 
 
     return (
         <>
-            <li className={style.tabsYourFurniActivityItem}>
+            <li className={item.active ?
+                cx(style.tabsYourFurniActivityItem, style.active) :
+                style.tabsYourFurniActivityItem}>
                 <div className={style.tabsYourFurniActivityItem__name}>
                     <div
                         onClick={() => itemEditHandler(item.id)}
-                        className={item.active ? cx(
-                            style.tabsYourFurniActivityItem__showDetailsContact, style.active) : style.tabsYourFurniActivityItem__showDetailsContact}
+                        className={
+                            item.active ?
+                                cx(style.tabsYourFurniActivityItem__showDetailsContact, style.active) :
+                                style.tabsYourFurniActivityItem__showDetailsContact}
                     >
                     </div>
                     {item.name}
@@ -32,40 +36,43 @@ export const ClientsItem: React.FC<IClientsProps> = ({ item, itemEditHandler }) 
                     {total}
                 </div>
             </li>
-            {item.active ? <div>
-                <li className={style.tabsYourFurniActivityItem}>
-                    <div className={style.tabsYourFurniActivityItem__name}>
-                        Direct sales
-                    </div>
-                    <div className={style.tabsYourFurniActivityItem__item}>
-                        {item.detail.direct_sales}
-                    </div>
-                </li>
-                <li className={style.tabsYourFurniActivityItem}>
-                    <div className={style.tabsYourFurniActivityItem__name}>
-                        Via partners
-                    </div>
-                    <div className={style.tabsYourFurniActivityItem__item}>
-                        {item.detail.via_partners}
-                    </div>
-                </li>
-                <li className={style.tabsYourFurniActivityItem}>
-                    <div className={style.tabsYourFurniActivityItem__name}>
-                        Via subpartners
-                    </div>
-                    <div className={style.tabsYourFurniActivityItem__item}>
-                        {item.detail.via_subpartners}
-                    </div>
-                </li>
-                <li className={style.tabsYourFurniActivityItem}>
-                    <div className={style.tabsYourFurniActivityItem__name}>
-                        Total earnings
-                    </div>
-                    <div className={style.tabsYourFurniActivityItem__item}>
-                        {total}
-                    </div>
-                </li>
-            </div> : null}
+            {
+                item.active ?
+                    <ul>
+                        <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
+                            <div className={style.tabsYourFurniActivityItem__name}>
+                                Direct sales
+                            </div>
+                            <div className={style.tabsYourFurniActivityItem__item}>
+                                {item.detail.direct_sales}
+                            </div>
+                        </li>
+                        <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
+                            <div className={style.tabsYourFurniActivityItem__name}>
+                                Via partners
+                            </div>
+                            <div className={style.tabsYourFurniActivityItem__item}>
+                                {item.detail.via_partners}
+                            </div>
+                        </li>
+                        <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
+                            <div className={style.tabsYourFurniActivityItem__name}>
+                                Via subpartners
+                            </div>
+                            <div className={style.tabsYourFurniActivityItem__item}>
+                                {item.detail.via_subpartners}
+                            </div>
+                        </li>
+                        <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
+                            <div className={style.tabsYourFurniActivityItem__name}>
+                                Total earnings
+                            </div>
+                            <div className={style.tabsYourFurniActivityItem__item}>
+                                {total}
+                            </div>
+                        </li>
+                    </ul> : null
+            }
         </>
     )
 }
