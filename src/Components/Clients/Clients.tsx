@@ -47,10 +47,6 @@ export const Clients: React.FC<IClientsProps> = ({ statsClients, img }) => {
     if (contacts.length) {
         return (
             <>
-                <h2 className={styleClients.tabsYourFurniActivityList__subTitle}>
-                    The list of clients directly referred by you. You'll earn 5%
-                    commission on all their purchases.
-                </h2>
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>
                     <div className={styleClients.tabsYourFurniActivityList__content}>
                         <ul className={styleClients.tabsYourFurniActivityList}>
@@ -65,6 +61,7 @@ export const Clients: React.FC<IClientsProps> = ({ statsClients, img }) => {
                                     Your earnings, AED
                                 </div>
                             </li>
+                            
                             <List
                                 items={contacts}
                                 renderItem={(item: IContacts, index: number) => <ClientsItem

@@ -32,12 +32,12 @@
     }
 
     &__contactInformation {
+        margin-top: 40px;
         font-family: 'FuturaPT';
         font-weight: 400;
         font-size: 14px;
         line-height: 148%;
         text-align: center;
-        margin-top: 40px;
         max-width: 315px;
         color: #8B8B9E;
 
@@ -51,35 +51,11 @@
     }
 }
 
-.referalCode {
-    display: flex;
-    margin-top: 28px;
-    height: 47px;
-    border-radius: 12px;
+.borderForCode {
+    border: 2px dashed #ED5365;
+}
 
-    &__code,
-    &__arrow {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-    }
-
-    &__code {
-        width: 101px;
-        font-family: 'FuturaPT';
-        font-weight: 450;
-        font-size: 18px;
-        border: 2px dashed #ED5365;
-        border-right: none;
-        border-radius: 12px 0 0 12px;
-        color: #fff;
-    }
-
-    &__arrow {
-        width: 36px;
-        border: 2px solid #ED5365;
-        background-color: #ED5365;
-        border-radius: 0 12px 12px 0;
-    }
+.bgColorArrow {
+    background-color: #ED5365;
+    border: 2px solid #ED5365;
 }

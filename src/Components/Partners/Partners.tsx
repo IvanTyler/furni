@@ -18,8 +18,8 @@ interface IPartnersProps {
 
 export const Partners: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
 
-    const totalAmount = statsPartners.reduce((acc: any, current: any) => acc + current.amount, 0)
-    const totalEarnings = statsPartners.reduce((acc: any, current: any) => acc + current.earnings, 0)
+    // const totalAmount = statsPartners.reduce((acc: any, current: any) => acc + current.amount, 0)
+    // const totalEarnings = statsPartners.reduce((acc: any, current: any) => acc + current.earnings, 0)
 
     const [contacts, setContacts] = useState<IContacts[]>(statsPartners)
 
@@ -47,11 +47,6 @@ export const Partners: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
     if (contacts.length) {
         return (
             <>
-                <h2 className={styleClients.tabsYourFurniActivityList__subTitle}>
-                    This is the list of partners directly referred by you. You'll earn 1%
-                    commission on all purchases of their direct clients.
-                </h2>
-
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>
                     <div className={styleClients.tabsYourFurniActivityList__content}>
                         <ul className={styleClients.tabsYourFurniActivityList}>
@@ -66,6 +61,7 @@ export const Partners: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
                                     Your earnings, AED
                                 </div>
                             </li>
+                            
                             <List
                                 items={contacts}
                                 renderItem={(item: IContacts, index: number) => <ClientsItem

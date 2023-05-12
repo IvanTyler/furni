@@ -2,6 +2,7 @@ import style from './DefaultPage.module.scss'
 
 import iconArrowRight from '../../assets/icon/common/arrow-right.svg'
 import imgOverview from '../../assets/images/overview.png'
+import { ReferalCode } from '../ReferalCode/ReferalCode';
 
 interface IDefaultPageProps {
     img: string;
@@ -17,12 +18,11 @@ export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
                 To start earning with us invite new clients and
                 partners using your Referral code:
             </h3>
-            <div className={style.referalCode}>
-                <div className={style.referalCode__code}>9462865</div>
-                <div className={style.referalCode__arrow}>
-                    <img src={iconArrowRight} alt="" />
-                </div>
-            </div>
+            <ReferalCode
+                icon={iconArrowRight}
+                borderForCode={style.borderForCode}
+                bgColorArrow={style.bgColorArrow}
+            />
             <img className={style.sectionDefaultPage__contentImg}
                 src={img ? img : imgOverview}
                 alt=""
