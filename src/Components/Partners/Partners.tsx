@@ -8,16 +8,41 @@ import cx from 'classnames'
 import { PartnersItem } from '../PartnersItem/PartnersItem'
 import { IContacts } from '../../Interfaces/contacts'
 import { DefaultPage } from '../DefaultPage/DefaultPage'
+import { useState } from 'react'
+import { ClientsItem } from '../ClientsItem.module.tsx/ClientsItem'
 
 interface IPartnersProps {
     statsPartners: any;
-    contacts: IContacts[];
+    img: string;
 }
 
-export const Partners: React.FC<IPartnersProps> = ({ statsPartners, contacts }) => {
+export const Partners: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
 
     const totalAmount = statsPartners.reduce((acc: any, current: any) => acc + current.amount, 0)
     const totalEarnings = statsPartners.reduce((acc: any, current: any) => acc + current.earnings, 0)
+
+    const [contacts, setContacts] = useState<IContacts[]>(statsPartners)
+
+    const total = contacts.reduce((acc: any, el) => {
+        let total = Object.values(el.detail)
+            .reduce((acc: number, el: number) => acc + el, 0)
+        return acc + total
+    }, 0)
+
+
+    const itemEditHandler = (id: number) => {
+        setContacts((prev: any) => {
+            return prev.map((el: any) => {
+                if (el.id === id) {
+                    return {
+                        ...el,
+                        active: !el.active,
+                    }
+                }
+                return el
+            })
+        })
+    }
 
     if (contacts.length) {
         return (
@@ -35,15 +60,6 @@ export const Partners: React.FC<IPartnersProps> = ({ statsPartners, contacts }) 
                                     Name
                                 </div>
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    Clients amount
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    Clients network
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    Earnings network
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                                     Order amount, AED
                                 </div>
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
@@ -51,9 +67,14 @@ export const Partners: React.FC<IPartnersProps> = ({ statsPartners, contacts }) 
                                 </div>
                             </li>
                             <List
-                                items={statsPartners}
-                                renderItem={(item: IStatsPartners, index: number) => <PartnersItem item={item} key={index.toString()} />}
+                                items={contacts}
+                                renderItem={(item: IContacts, index: number) => <ClientsItem
+                                    itemEditHandler={itemEditHandler}
+                                    item={item}
+                                    key={index.toString()}
+                                />}
                             />
+
                             <li className={styleClientsItem.tabsYourFurniActivityItem}>
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                                     Total
@@ -61,12 +82,7 @@ export const Partners: React.FC<IPartnersProps> = ({ statsPartners, contacts }) 
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                                 </div>
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    {totalAmount}
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    {totalEarnings}
+                                    {total}
                                 </div>
                             </li>
                         </ul>
@@ -75,10 +91,10 @@ export const Partners: React.FC<IPartnersProps> = ({ statsPartners, contacts }) 
             </>
         )
     }
-    
+
     return (
         <>
-            <DefaultPage />
+            <DefaultPage img={img} />
         </>
     )
 }

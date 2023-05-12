@@ -4,7 +4,7 @@ import iconArrowRight from '../../assets/icon/common/arrow-right.svg'
 import imgOverview from '../../assets/images/overview.png'
 
 interface IDefaultPageProps {
-    img?: string;
+    img: string;
 }
 
 export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {

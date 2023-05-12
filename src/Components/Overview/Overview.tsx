@@ -1,10 +1,14 @@
 import { DefaultPage } from '../DefaultPage/DefaultPage'
 import style from './Overview.module.scss'
 
-export const Overview: React.FC = () => {
+interface IDefaultPageProps {
+    img: string;
+}
+
+export const Overview: React.FC<IDefaultPageProps> = ({ img }) => {
     return (
         <div>
-            <DefaultPage />
+            <DefaultPage img={img} />
         </div>
     )
 }

@@ -18,12 +18,12 @@ export const TabsList: React.FC<ITabsListProps> = ({ setTabElement }) => {
         },
         {
             id: 2,
-            name: 'Clients',
+            name: 'Contacts',
             active: false,
         },
         {
             id: 3,
-            name: 'Partners',
+            name: 'Events',
             active: false,
         },
     ]

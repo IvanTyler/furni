@@ -12,6 +12,8 @@ import imgOverview from '../../assets/images/overview.png'
 import imgContacts from '../../assets/images/contacts.png'
 import imgEvents from '../../assets/images/events.png'
 
+import imgMoney from '../../assets/images/money.png'
+
 import { contacts } from '../../MockData/MockData'
 
 
@@ -36,29 +38,36 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
             <section className={
                 style.sectionYourFurniActivity
             }>
-                <h2 className={style.sectionYourFurniActivity__title}>
-                    Your Furni activity
-                </h2>
-
+                <div className={style.sectionYourFurniActivity__titles}>
+                    <h2 className={style.sectionYourFurniActivity__subTitle}>
+                        you’ve earned with Furni
+                    </h2>
+                    <h2 className={style.sectionYourFurniActivity__title}>
+                        24,204 AED
+                    </h2>
+                    <img className={style.sectionYourFurniActivity__imgMoney} src={imgMoney} alt="" />
+                </div>
                 <div>
                     <TabsList setTabElement={setTabElement} />
                     <div className={style.sectionYourFurniActivity__content}>
                         {tabElement === tabsYourFurniActivityListEnum.overview ?
                             <Overview
+                                img={imgOverview}
                             />
                             : null
                         }
-                        {tabElement === tabsYourFurniActivityListEnum.clients ?
+                        {tabElement === tabsYourFurniActivityListEnum.contacts ?
                             <Clients
                                 statsClients={contacts}
+                                img={imgContacts}
                                 contentImgDefaultPage={contentImgDefaultPage}
                             />
                             : null
                         }
-                        {tabElement === tabsYourFurniActivityListEnum.partners ?
+                        {tabElement === tabsYourFurniActivityListEnum.events ?
                             <Partners
-                                contacts={contacts}
-                                statsPartners={getData.stats_partners}
+                                img={imgEvents}
+                                statsPartners={contacts}
                             />
                             : null
                         }

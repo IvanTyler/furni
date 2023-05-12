@@ -1,5 +1,5 @@
 export enum tabsYourFurniActivityListEnum {
     overview = 'Overview',
-    clients = 'Clients',
-    partners = 'Partners',
+    contacts = 'Contacts',
+    events = 'Events',
 }

@@ -13,9 +13,10 @@ import { DefaultPage } from '../DefaultPage/DefaultPage'
 interface IClientsProps {
     statsClients: any;
     contentImgDefaultPage: string;
+    img: string;
 }
 
-export const Clients: React.FC<IClientsProps> = ({ statsClients, contentImgDefaultPage }) => {
+export const Clients: React.FC<IClientsProps> = ({ statsClients, img }) => {
 
     // const totalAmount = statsClients.reduce((acc: any, current: any) => acc + current.amount, 0)
     // const totalEarnings = statsClients.reduce((acc: any, current: any) => acc + current.earnings, 0)
@@ -72,7 +73,7 @@ export const Clients: React.FC<IClientsProps> = ({ statsClients, contentImgDefau
                                     key={index.toString()}
                                 />}
                             />
-    
+
                             <li className={styleClientsItem.tabsYourFurniActivityItem}>
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                                     Total
@@ -92,7 +93,7 @@ export const Clients: React.FC<IClientsProps> = ({ statsClients, contentImgDefau
 
     return (
         <>
-            <DefaultPage />
+            <DefaultPage img={img} />
         </>
     )
 
