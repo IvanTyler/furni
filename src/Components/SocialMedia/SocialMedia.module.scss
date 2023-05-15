@@ -1,0 +1,42 @@
+.socialMediaList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 17px 20px;
+    position: absolute;
+    right: 32px;
+    width: 196px;
+    top: 56px;
+    background-color: #323540;
+    border: 2px solid #444755;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.64);
+    border-radius: 16px;
+
+    &__item {
+        &:first-child {
+            display: flex;
+            align-items: center;
+        }
+
+        &:not(:first-child) {
+            margin-top: 11px;
+        }
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+    }
+
+    &__icon {
+        margin-right: 12px;
+    }
+
+    &__name {
+        font-family: 'FuturaPT';
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FFFFFF;
+    }
+}

@@ -1,29 +1,31 @@
 import style from './ReferalCode.module.scss'
 import cx from 'classnames'
 
-interface IReferalCode {
+interface IReferalCodeProps {
     icon: string;
     borderForCode: string;
     bgColorArrow: string;
     titleReferalCode?: string;
     sizeCode?: string;
-    marginTop?: string;
     alignItems?: string;
+    referalCode?: string;
 }
 
-export const ReferalCode: React.FC<IReferalCode> = (
+export const ReferalCode: React.FC<IReferalCodeProps> = (
     {
         icon,
         borderForCode,
         bgColorArrow,
         titleReferalCode,
         sizeCode,
-        marginTop,
         alignItems,
+        referalCode,
     }
 ) => {
     return (
-        <div className={marginTop ? cx(style.referalCode, marginTop) : style.referalCode}>
+        <div
+            className={referalCode ? cx(style.referalCode, referalCode) : style.referalCode}
+        >
             <div className={
                 borderForCode || alignItems ?
                     cx(style.referalCode__codeWrapper, borderForCode, alignItems) :

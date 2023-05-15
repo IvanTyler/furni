@@ -27,8 +27,9 @@ export const Body: React.FC = () => {
 
     return (
         <div className={style.container}>
-            {isLogin
-                ? <>
+            {/* {isLogin
+                ? */}
+                <>
                     <Header setIsLogin={setIsLogin} />
                     <YourFurniActivity
                         getData={getData}
@@ -36,11 +37,12 @@ export const Body: React.FC = () => {
                         contentImgDefaultPage={contentImgDefaultPage}
                     />
                 </>
-                : <FormUserLogin
+                {/* :  */}
+                {/* <FormUserLogin
                     setGetData={setGetData}
                     setIsLoading={setIsLoading}
-                />
-            }
+                /> */}
+            {/* } */}
         </div>
     )
 }

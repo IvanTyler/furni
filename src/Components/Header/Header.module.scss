@@ -3,14 +3,17 @@
     top: 0;
     left: 0;
     right: 0;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    // justify-content: space-between;
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas: 'logo-link referal-code log-out';
     align-items: center;
     padding: 0 40px;
     height: 56px;
     background-color: #262830;
 
     &__logOut {
+        grid-area: log-out;
         font-family: 'FuturaPT';
         font-weight: 500;
         font-size: 14px;
@@ -18,6 +21,14 @@
         color: #fff;
         cursor: pointer;
     }
+
+    &__link {
+        grid-area: logo-link;
+    }
+}
+
+.contentReferalCode {
+    position: relative;
 }
 
 .borderForCode {
@@ -26,10 +37,6 @@
 
 .bgColorArrow {
     background-color: #A4A4A9;
-}
-
-.marginTop {
-    margin-top: 0 !important;
 }
 
 .sizeCode {
@@ -41,4 +48,10 @@
 
 .alignItems {
     align-items: start;
+}
+
+.referalCode {
+    margin-top: 0 !important;
+    grid-area: referal-code;
+    margin-right: 32px;
 }
