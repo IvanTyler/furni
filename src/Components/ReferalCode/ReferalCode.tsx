@@ -11,6 +11,7 @@ interface IReferalCodeProps {
     referalCode?: string;
 }
 
+
 export const ReferalCode: React.FC<IReferalCodeProps> = (
     {
         icon,
