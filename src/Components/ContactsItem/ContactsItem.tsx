@@ -1,18 +1,19 @@
 import { log } from 'console';
 import style from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
-import { IContacts, IDetailContacts } from '../../Interfaces/contacts';
+import { IMyDataContacts } from '../../Interfaces/contacts';
 import { IStatsClients } from '../../Interfaces/DataApi'
 import cx from 'classnames'
+import { IMyDataEvents } from '../../Interfaces/Events';
 
 interface IClientsProps {
-    item: IContacts;
+    item: any;
     itemEditHandler: (item: any) => void
 }
 
-export const ClientsItem: React.FC<IClientsProps> = ({ item, itemEditHandler }) => {
+export const ContactsItem: React.FC<IClientsProps> = ({ item, itemEditHandler }) => {
 
-    const total = Object.values(item.detail)
-        .reduce((acc: number, el: number) => acc + el, 0)
+    // const total = Object.values(item.detail)
+    //     .reduce((acc: number, el: number) => acc + el, 0)
 
     return (
         <>
@@ -33,7 +34,7 @@ export const ClientsItem: React.FC<IClientsProps> = ({ item, itemEditHandler }) 
                 <div className={style.tabsYourFurniActivityItem__item}>
                 </div>
                 <div className={style.tabsYourFurniActivityItem__item}>
-                    {total}
+                    {item.event}
                 </div>
             </li>
             {
@@ -68,7 +69,6 @@ export const ClientsItem: React.FC<IClientsProps> = ({ item, itemEditHandler }) 
                                 Total earnings
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
-                                {total}
                             </div>
                         </li>
                     </ul> : null

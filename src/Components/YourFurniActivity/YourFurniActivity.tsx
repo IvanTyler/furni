@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Clients } from '../Clients/Clients'
-import { Partners } from '../Partners/Partners'
+import { Contacts } from '../Contacts/Contacts'
+import { Events } from '../Partners/Events'
 import { TabsList } from '../Tabs/TabsList'
 import { tabsYourFurniActivityListEnum } from '../../Enums/tabsYourFurniActivityListEnum'
 import style from './YourFurniActivity.module.scss'
@@ -15,23 +15,23 @@ import imgEvents from '../../assets/images/events.png'
 import imgMoney from '../../assets/images/money.png'
 
 import { contacts } from '../../MockData/MockData'
+import { useGetData } from '../../Hooks/useGetData'
 
 
 interface IYourFurniActivityProps {
     getData: IDataApi;
-    setContentImgDefaultPage: (item: string) => void;
-    contentImgDefaultPage: string;
 }
 
 export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
     {
         getData,
-        setContentImgDefaultPage,
-        contentImgDefaultPage,
     }
 ) => {
 
     const [tabElement, setTabElement] = useState('Overview')
+
+    const { myDataContacts, myDataEvents } = useGetData()
+    
 
     return (
         <>
@@ -57,17 +57,16 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
                             : null
                         }
                         {tabElement === tabsYourFurniActivityListEnum.contacts ?
-                            <Clients
-                                statsClients={contacts}
+                            <Contacts
+                                statsClients={myDataContacts}
                                 img={imgContacts}
-                                contentImgDefaultPage={contentImgDefaultPage}
                             />
                             : null
                         }
                         {tabElement === tabsYourFurniActivityListEnum.events ?
-                            <Partners
+                            <Events
                                 img={imgEvents}
-                                statsPartners={contacts}
+                                statsPartners={myDataEvents}
                             />
                             : null
                         }

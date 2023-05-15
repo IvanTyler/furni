@@ -1,27 +1,30 @@
 import styleClients from '../../assets/styles/tabsYourFurniActivity.module.scss'
 import styleClientsItem from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
 
-import { IStatsClients } from '../../Interfaces/DataApi'
+import { IStatsPartners } from '../../Interfaces/DataApi'
 import { List } from '../List/List'
-import { ClientsItem } from '../ClientsItem.module.tsx/ClientsItem'
 
 import cx from 'classnames'
-import { IContacts } from '../../Interfaces/contacts'
-import { useState } from 'react'
+import { PartnersItem } from '../PartnersItem/PartnersItem'
+import { IMyDataContacts } from '../../Interfaces/contacts'
 import { DefaultPage } from '../DefaultPage/DefaultPage'
+import { useState } from 'react'
+import { ContactsItem } from '../ContactsItem/ContactsItem'
+import { IMyDataEvents } from '../../Interfaces/Events'
+import { events } from '../../MockData/MockData'
+import { useGetData } from '../../Hooks/useGetData'
 
-interface IClientsProps {
-    statsClients: any;
-    contentImgDefaultPage: string;
+interface IPartnersProps {
+    statsPartners: any;
     img: string;
 }
 
-export const Clients: React.FC<IClientsProps> = ({ statsClients, img }) => {
+export const Events: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
 
-    // const totalAmount = statsClients.reduce((acc: any, current: any) => acc + current.amount, 0)
-    // const totalEarnings = statsClients.reduce((acc: any, current: any) => acc + current.earnings, 0)
+    // const totalAmount = statsPartners.reduce((acc: any, current: any) => acc + current.amount, 0)
+    // const totalEarnings = statsPartners.reduce((acc: any, current: any) => acc + current.earnings, 0)
 
-    const [contacts, setContacts] = useState<IContacts[]>(statsClients)
+    const [contacts, setContacts] = useState<IMyDataContacts[]>(statsPartners)
 
     const total = contacts.reduce((acc: any, el) => {
         let total = Object.values(el.detail)
@@ -52,19 +55,16 @@ export const Clients: React.FC<IClientsProps> = ({ statsClients, img }) => {
                         <ul className={styleClients.tabsYourFurniActivityList}>
                             <li className={styleClientsItem.tabsYourFurniActivityItem}>
                                 <div className={cx(styleClientsItem.tabsYourFurniActivityItem__title, styleClientsItem.name)}>
-                                    Name
+                                    Contact
                                 </div>
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    Order amount, AED
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    Your earnings, AED
+                                    What’s new
                                 </div>
                             </li>
-                            
+
                             <List
                                 items={contacts}
-                                renderItem={(item: IContacts, index: number) => <ClientsItem
+                                renderItem={(item: IMyDataContacts | IMyDataEvents, index: number) => <ContactsItem
                                     itemEditHandler={itemEditHandler}
                                     item={item}
                                     key={index.toString()}
@@ -93,5 +93,4 @@ export const Clients: React.FC<IClientsProps> = ({ statsClients, img }) => {
             <DefaultPage img={img} />
         </>
     )
-
 }

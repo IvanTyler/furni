@@ -1,27 +1,26 @@
 import styleClients from '../../assets/styles/tabsYourFurniActivity.module.scss'
 import styleClientsItem from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
 
-import { IStatsPartners } from '../../Interfaces/DataApi'
+import { IStatsClients } from '../../Interfaces/DataApi'
 import { List } from '../List/List'
+import { ContactsItem } from '../ContactsItem/ContactsItem'
 
 import cx from 'classnames'
-import { PartnersItem } from '../PartnersItem/PartnersItem'
-import { IContacts } from '../../Interfaces/contacts'
-import { DefaultPage } from '../DefaultPage/DefaultPage'
+import { IMyDataContacts } from '../../Interfaces/contacts'
 import { useState } from 'react'
-import { ClientsItem } from '../ClientsItem.module.tsx/ClientsItem'
+import { DefaultPage } from '../DefaultPage/DefaultPage'
 
-interface IPartnersProps {
-    statsPartners: any;
+interface IContactsProps {
+    statsClients: any;
     img: string;
 }
 
-export const Partners: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
+export const Contacts: React.FC<IContactsProps> = ({ statsClients, img }) => {
 
-    // const totalAmount = statsPartners.reduce((acc: any, current: any) => acc + current.amount, 0)
-    // const totalEarnings = statsPartners.reduce((acc: any, current: any) => acc + current.earnings, 0)
+    // const totalAmount = statsClients.reduce((acc: any, current: any) => acc + current.amount, 0)
+    // const totalEarnings = statsClients.reduce((acc: any, current: any) => acc + current.earnings, 0)
 
-    const [contacts, setContacts] = useState<IContacts[]>(statsPartners)
+    const [contacts, setContacts] = useState<IMyDataContacts[]>(statsClients)
 
     const total = contacts.reduce((acc: any, el) => {
         let total = Object.values(el.detail)
@@ -61,10 +60,10 @@ export const Partners: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
                                     Your earnings, AED
                                 </div>
                             </li>
-                            
+
                             <List
                                 items={contacts}
-                                renderItem={(item: IContacts, index: number) => <ClientsItem
+                                renderItem={(item: IMyDataContacts, index: number) => <ContactsItem
                                     itemEditHandler={itemEditHandler}
                                     item={item}
                                     key={index.toString()}
@@ -93,4 +92,5 @@ export const Partners: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
             <DefaultPage img={img} />
         </>
     )
+
 }

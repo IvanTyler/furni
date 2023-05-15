@@ -3,17 +3,18 @@
     top: 0;
     left: 0;
     right: 0;
-    display: grid;
-    // justify-content: space-between;
-    grid-template-columns: 1fr auto auto;
-    grid-template-areas: 'logo-link referal-code log-out';
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 0 40px;
     height: 56px;
     background-color: #262830;
 
+    @media (max-width: 700px) {
+        padding: 0 20px;
+    }
+
     &__logOut {
-        grid-area: log-out;
         font-family: 'FuturaPT';
         font-weight: 500;
         font-size: 14px;
@@ -21,14 +22,15 @@
         color: #fff;
         cursor: pointer;
     }
-
-    &__link {
-        grid-area: logo-link;
-    }
 }
 
 .contentReferalCode {
     position: relative;
+    margin-left: auto;
+}
+
+.wrapperReferalCode {
+    cursor: pointer;
 }
 
 .borderForCode {
@@ -41,7 +43,7 @@
 
 .sizeCode {
     font-size: 12px;
-    line-height: 126%;
+    line-height: 15px;
     letter-spacing: 0.08em;
     color: #E0E0E0;
 }
@@ -52,6 +54,9 @@
 
 .referalCode {
     margin-top: 0 !important;
-    grid-area: referal-code;
     margin-right: 32px;
+
+    @media (max-width: 700px) {
+        margin-right: 10px;
+    }
 }

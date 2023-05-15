@@ -71,7 +71,6 @@ export const dataApi = {
 export const contacts = [
     {
         'id': 1,
-        'active': false,
         'name': 'Merry Johnson',
         'detail': {
             'direct_sales': 8575,
@@ -81,7 +80,6 @@ export const contacts = [
     },
     {
         'id': 2,
-        'active': false,
         'name': 'Audrey Simmmons',
         'detail': {
             'direct_sales': 2575,
@@ -91,7 +89,6 @@ export const contacts = [
     },
     {
         'id': 3,
-        'active': false,
         'name': 'Nathan Cooper',
         'detail': {
             'direct_sales': 6575,
@@ -101,7 +98,6 @@ export const contacts = [
     },
     {
         'id': 4,
-        'active': false,
         'name': 'Dianne Russell',
         'detail': {
             'direct_sales': 6575,
@@ -111,12 +107,102 @@ export const contacts = [
     },
     {
         'id': 5,
-        'active': false,
         'name': 'Savannah Robertson',
         'detail': {
             'direct_sales': 6575,
             'via_partners': 1000,
             'via_subpartners': 200,
+        }
+    },
+]
+
+export const events = [
+    {
+        'id': 1,
+        'name': 'Merry Johnson',
+        'event_type': 'referral',
+        'event': 'new lead',
+        'detail': {
+            'direct_sales': 8575,
+            'via_partners': 1600,
+            'via_subpartners': 400,
+        }
+    },
+    {
+        'id': 2,
+        'name': 'Audrey Simmmons',
+        'event_type': 'closed_won',
+        'event': 'you get',
+        'detail': {
+            'direct_sales': 2575,
+            'via_partners': 1500,
+            'via_subpartners': 300,
+        }
+    },
+    {
+        'id': 3,
+        'name': 'Nathan Cooper',
+        'event_type': 'closed_lost',
+        'event': 'declined',
+        'detail': {
+            'direct_sales': 6575,
+            'via_partners': 1400,
+            'via_subpartners': 200,
+        }
+    },
+    {
+        'id': 4,
+        'name': 'Dianne Russell',
+        'event_type': 'waitkeys',
+        'event': 'paid in full',
+        'detail': {
+            'direct_sales': 6575,
+            'via_partners': 1200,
+            'via_subpartners': 200,
+        }
+    },
+    {
+        'id': 5,
+        'name': 'Savannah Robertson',
+        'event_type': 'willmeet',
+        'event': 'ready to meet',
+        'detail': {
+            'direct_sales': 6575,
+            'via_partners': 1000,
+            'via_subpartners': 200,
+        }
+    },
+    {
+        'id': 6,
+        'name': 'Alfredo Vetrovs',
+        'event_type': 'referral',
+        'event': 'new lead',
+        'detail': {
+            'direct_sales': 8575,
+            'via_partners': 1600,
+            'via_subpartners': 400,
+        }
+    },
+    {
+        'id': 7,
+        'name': 'Leo Stanton',
+        'event_type': 'closed_won',
+        'event': 'you get',
+        'detail': {
+            'direct_sales': 2575,
+            'via_partners': 1500,
+            'via_subpartners': 300,
+        }
+    },
+    {
+        'id': 8,
+        'name': 'Penny Lane Badgely',
+        'event_type': 'closed_won',
+        'event': 'you get',
+        'detail': {
+            'direct_sales': 2575,
+            'via_partners': 1500,
+            'via_subpartners': 300,
         }
     },
 ]

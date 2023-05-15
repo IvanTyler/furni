@@ -1,14 +1,16 @@
 import { IDetail } from "./Detail";
 
-export interface IGetaDataContacts {
+export interface IGetaDataEvents {
     id: number;
     name: string;
     detail: IDetail
 }
 
-export interface IMyDataContacts {
+export interface IMyDataEvents {
     id: number;
-    name: string;
     active: boolean;
+    name: string;
+    event_type: string;
+    event: string;
     detail: IDetail
 }
