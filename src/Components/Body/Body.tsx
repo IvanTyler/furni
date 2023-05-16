@@ -25,21 +25,20 @@ export const Body: React.FC = () => {
         )
 
     return (
-        <div>
-            {/* {isLogin
-                ? */}
+        <div className={!isLogin ? style.containerBody : ''}>
+            {isLogin ?
                 <>
                     <Header setIsLogin={setIsLogin} />
                     <YourFurniActivity
                         getData={getData}
                     />
                 </>
-                {/* : 
+                :
                 <FormUserLogin
                     setGetData={setGetData}
                     setIsLoading={setIsLoading}
                 />
-            } */}
+            }
         </div>
     )
 }
