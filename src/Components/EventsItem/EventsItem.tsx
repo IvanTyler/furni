@@ -1,19 +1,38 @@
-import { log } from 'console';
 import style from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
-import { IMyDataContacts } from '../../Interfaces/contacts';
-import { IStatsClients } from '../../Interfaces/DataApi'
+import { IStatsPartners } from '../../Interfaces/DataApi'
+import { IMyDataEvents } from '../../Interfaces/Events'
 import cx from 'classnames'
-import { IMyDataEvents } from '../../Interfaces/Events';
 
-interface IClientsProps {
-    item: IMyDataContacts;
+interface IEventsProps {
+    item: IMyDataEvents;
     itemEditHandler: (item: any) => void
 }
 
-export const ContactsItem: React.FC<IClientsProps> = ({ item, itemEditHandler }) => {
+export const EventsItem: React.FC<IEventsProps> = ({ item, itemEditHandler }) => {
 
-    const total = Object.values(item.detail)
-        .reduce((acc: number, el: number) => acc + el, 0)
+
+    function eventTypeColor(event_type: string) {
+        switch (event_type) {
+            case 'referral':
+                return `${style.tabsYourFurniActivityItem__item, style.referral}`
+            case 'closed_won':
+                return `${style.tabsYourFurniActivityItem__item, style.closed_won}`
+            case 'closed_lost':
+                return `${style.tabsYourFurniActivityItem__item, style.closed_lost}`
+            case 'waitkeys':
+                return `${style.tabsYourFurniActivityItem__item, style.waitkeys}`
+            case 'willmeet':
+                return `${style.tabsYourFurniActivityItem__item, style.willmeet}`
+            case 'sentofferr':
+                return `${style.tabsYourFurniActivityItem__item, style.sentofferr}`
+            case 'waitprepay':
+                return `${style.tabsYourFurniActivityItem__item, style.waitprepay}`
+            case 'recelc':
+                return `${style.tabsYourFurniActivityItem__item, style.recelc}`
+            default:
+                return `${style.tabsYourFurniActivityItem__item}`
+        }
+    }
 
     return (
         <>
@@ -31,10 +50,10 @@ export const ContactsItem: React.FC<IClientsProps> = ({ item, itemEditHandler })
                     </div>
                     {item.name}
                 </div>
-                <div className={style.tabsYourFurniActivityItem__item}>
-                </div>
-                <div className={style.tabsYourFurniActivityItem__item}>
-                    {total}
+                <div className={
+                    cx(eventTypeColor(item.event_type))
+                }>
+                    {item.event}
                 </div>
             </li>
             {
@@ -42,34 +61,34 @@ export const ContactsItem: React.FC<IClientsProps> = ({ item, itemEditHandler })
                     <ul>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
                             <div className={style.tabsYourFurniActivityItem__name}>
-                                Direct sales
+                                Sale type
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
-                                {item.detail.direct_sales}
+                                {item.detail.Sale_type}
                             </div>
                         </li>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
                             <div className={style.tabsYourFurniActivityItem__name}>
-                                Via partners
+                                Deal amount
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
-                                {item.detail.via_partners}
+                                {item.detail.Deal_amount}
                             </div>
                         </li>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
                             <div className={style.tabsYourFurniActivityItem__name}>
-                                Via subpartners
+                                Your commission
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
-                                {item.detail.via_subpartners}
+                                {item.detail.Your_commission}
                             </div>
                         </li>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
                             <div className={style.tabsYourFurniActivityItem__name}>
-                                Total earnings
+                                Reference code
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
-                                {total}
+                                {item.detail.Reference_code}
                             </div>
                         </li>
                     </ul> : null

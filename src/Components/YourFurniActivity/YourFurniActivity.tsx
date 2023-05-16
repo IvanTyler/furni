@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Contacts } from '../Contacts/Contacts'
-import { Events } from '../Partners/Events'
+import { Events } from '../Events/Events'
 import { TabsList } from '../Tabs/TabsList'
 import { tabsYourFurniActivityListEnum } from '../../Enums/tabsYourFurniActivityListEnum'
 import style from './YourFurniActivity.module.scss'

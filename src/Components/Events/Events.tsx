@@ -5,7 +5,7 @@ import { IStatsPartners } from '../../Interfaces/DataApi'
 import { List } from '../List/List'
 
 import cx from 'classnames'
-import { PartnersItem } from '../PartnersItem/PartnersItem'
+import { EventsItem } from '../EventsItem/EventsItem'
 import { IMyDataContacts } from '../../Interfaces/contacts'
 import { DefaultPage } from '../DefaultPage/DefaultPage'
 import { useState } from 'react'
@@ -24,17 +24,10 @@ export const Events: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
     // const totalAmount = statsPartners.reduce((acc: any, current: any) => acc + current.amount, 0)
     // const totalEarnings = statsPartners.reduce((acc: any, current: any) => acc + current.earnings, 0)
 
-    const [contacts, setContacts] = useState<IMyDataContacts[]>(statsPartners)
-
-    const total = contacts.reduce((acc: any, el) => {
-        let total = Object.values(el.detail)
-            .reduce((acc: number, el: number) => acc + el, 0)
-        return acc + total
-    }, 0)
-
+    const [events, setEvents] = useState<IMyDataEvents[]>(statsPartners)
 
     const itemEditHandler = (id: number) => {
-        setContacts((prev: any) => {
+        setEvents((prev: any) => {
             return prev.map((el: any) => {
                 if (el.id === id) {
                     return {
@@ -47,7 +40,7 @@ export const Events: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
         })
     }
 
-    if (contacts.length) {
+    if (events.length) {
         return (
             <>
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>
@@ -63,24 +56,13 @@ export const Events: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
                             </li>
 
                             <List
-                                items={contacts}
-                                renderItem={(item: IMyDataContacts | IMyDataEvents, index: number) => <ContactsItem
+                                items={events}
+                                renderItem={(item: IMyDataEvents, index: number) => <EventsItem
                                     itemEditHandler={itemEditHandler}
                                     item={item}
                                     key={index.toString()}
                                 />}
                             />
-
-                            <li className={styleClientsItem.tabsYourFurniActivityItem}>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    Total
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    {total}
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>

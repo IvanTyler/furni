@@ -123,10 +123,11 @@ export const events = [
         'event_type': 'referral',
         'event': 'new lead',
         'detail': {
-            'direct_sales': 8575,
-            'via_partners': 1600,
-            'via_subpartners': 400,
-        }
+            'Sale_type': 'Subpartner',
+            'Deal_amount': 6000,
+            'Your_commission': 15,
+            'Reference_code': '317-483',
+        },
     },
     {
         'id': 2,
@@ -134,10 +135,11 @@ export const events = [
         'event_type': 'closed_won',
         'event': 'you get',
         'detail': {
-            'direct_sales': 2575,
-            'via_partners': 1500,
-            'via_subpartners': 300,
-        }
+            'Sale_type': 'Subpartner',
+            'Deal_amount': 6000,
+            'Your_commission': 15,
+            'Reference_code': '317-483',
+        },
     },
     {
         'id': 3,
@@ -145,10 +147,11 @@ export const events = [
         'event_type': 'closed_lost',
         'event': 'declined',
         'detail': {
-            'direct_sales': 6575,
-            'via_partners': 1400,
-            'via_subpartners': 200,
-        }
+            'Sale_type': 'Subpartner',
+            'Deal_amount': 6000,
+            'Your_commission': 15,
+            'Reference_code': '317-483',
+        },
     },
     {
         'id': 4,
@@ -156,10 +159,11 @@ export const events = [
         'event_type': 'waitkeys',
         'event': 'paid in full',
         'detail': {
-            'direct_sales': 6575,
-            'via_partners': 1200,
-            'via_subpartners': 200,
-        }
+            'Sale_type': 'Subpartner',
+            'Deal_amount': 6000,
+            'Your_commission': 15,
+            'Reference_code': '317-483',
+        },
     },
     {
         'id': 5,
@@ -167,10 +171,11 @@ export const events = [
         'event_type': 'willmeet',
         'event': 'ready to meet',
         'detail': {
-            'direct_sales': 6575,
-            'via_partners': 1000,
-            'via_subpartners': 200,
-        }
+            'Sale_type': 'Subpartner',
+            'Deal_amount': 6000,
+            'Your_commission': 15,
+            'Reference_code': '317-483',
+        },
     },
     {
         'id': 6,
@@ -178,10 +183,11 @@ export const events = [
         'event_type': 'referral',
         'event': 'new lead',
         'detail': {
-            'direct_sales': 8575,
-            'via_partners': 1600,
-            'via_subpartners': 400,
-        }
+            'Sale_type': 'Subpartner',
+            'Deal_amount': 6000,
+            'Your_commission': 15,
+            'Reference_code': '317-483',
+        },
     },
     {
         'id': 7,
@@ -189,10 +195,11 @@ export const events = [
         'event_type': 'closed_won',
         'event': 'you get',
         'detail': {
-            'direct_sales': 2575,
-            'via_partners': 1500,
-            'via_subpartners': 300,
-        }
+            'Sale_type': 'Subpartner',
+            'Deal_amount': 6000,
+            'Your_commission': 15,
+            'Reference_code': '317-483',
+        },
     },
     {
         'id': 8,
@@ -200,9 +207,46 @@ export const events = [
         'event_type': 'closed_won',
         'event': 'you get',
         'detail': {
-            'direct_sales': 2575,
-            'via_partners': 1500,
-            'via_subpartners': 300,
-        }
+            'Sale_type': 'Subpartner',
+            'Deal_amount': 6000,
+            'Your_commission': 15,
+            'Reference_code': '317-483',
+        },
+    },
+    {
+        'id': 9,
+        'name': 'Cristofer Vetrovs',
+        'event_type': 'sentofferr',
+        'event': 'offer sent',
+        'detail': {
+            'Sale_type': 'Subpartner',
+            'Deal_amount': 6000,
+            'Your_commission': 15,
+            'Reference_code': '317-483',
+        },
+    },
+    {
+        'id': 10,
+        'name': 'Cristofer Vetrovs',
+        'event_type': 'waitprepay',
+        'event': 'invoice sent',
+        'detail': {
+            'Sale_type': 'Subpartner',
+            'Deal_amount': 6000,
+            'Your_commission': 15,
+            'Reference_code': '317-483',
+        },
+    },
+    {
+        'id': 11,
+        'name': 'Cristofer Vetrovs',
+        'event_type': 'recelc',
+        'event': 'recalculation',
+        'detail': {
+            'Sale_type': 'Subpartner',
+            'Deal_amount': 6000,
+            'Your_commission': 15,
+            'Reference_code': '317-483',
+        },
     },
 ]

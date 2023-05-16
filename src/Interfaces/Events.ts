@@ -1,9 +1,9 @@
-import { IDetail } from "./Detail";
+import { IDetailEvents } from "./Detail";
 
 export interface IGetaDataEvents {
     id: number;
     name: string;
-    detail: IDetail
+    detail: IDetailEvents
 }
 
 export interface IMyDataEvents {
@@ -12,5 +12,5 @@ export interface IMyDataEvents {
     name: string;
     event_type: string;
     event: string;
-    detail: IDetail
+    detail: IDetailEvents
 }
