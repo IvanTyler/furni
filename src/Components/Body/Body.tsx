@@ -25,7 +25,7 @@ export const Body: React.FC = () => {
         )
 
     return (
-        <div className={style.container}>
+        <div>
             {/* {isLogin
                 ? */}
                 <>
@@ -34,12 +34,12 @@ export const Body: React.FC = () => {
                         getData={getData}
                     />
                 </>
-                {/* :  */}
-                {/* <FormUserLogin
+                {/* : 
+                <FormUserLogin
                     setGetData={setGetData}
                     setIsLoading={setIsLoading}
-                /> */}
-            {/* } */}
+                />
+            } */}
         </div>
     )
 }

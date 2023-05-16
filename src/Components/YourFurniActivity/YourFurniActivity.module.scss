@@ -1,9 +1,11 @@
 .sectionYourFurniActivity {
-    margin-top: 25px;
+    width: 600px;
+    max-width: 100%;
+    margin: 25px auto 0;
 
-    @media (max-width: 380px) {
-        margin-top: 170px;
-    }
+    // @media (max-width: 380px) {
+    //     margin-top: 170px;
+    // }
 
     &__titles {
         display: grid;
@@ -23,6 +25,17 @@
         font-weight: 700;
         font-size: 46px;
         line-height: 49px;
+        margin-right: 10px;
+
+        @media (max-width: 375px) {
+            font-size: 40px;
+            line-height: 43px;
+        }
+
+        @media (max-width: 330px) {
+            font-size: 35px;
+            line-height: 38px;
+        }
     }
 
     &__subTitle {

@@ -1,9 +1,7 @@
-import { log } from 'console';
 import style from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
 import { IMyDataContacts } from '../../Interfaces/contacts';
 import { IStatsClients } from '../../Interfaces/DataApi'
 import cx from 'classnames'
-import { IMyDataEvents } from '../../Interfaces/Events';
 
 interface IClientsProps {
     item: IMyDataContacts;
@@ -30,8 +28,6 @@ export const ContactsItem: React.FC<IClientsProps> = ({ item, itemEditHandler })
                     >
                     </div>
                     {item.name}
-                </div>
-                <div className={style.tabsYourFurniActivityItem__item}>
                 </div>
                 <div className={style.tabsYourFurniActivityItem__item}>
                     {total}

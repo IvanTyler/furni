@@ -17,9 +17,6 @@ interface IContactsProps {
 
 export const Contacts: React.FC<IContactsProps> = ({ statsClients, img }) => {
 
-    // const totalAmount = statsClients.reduce((acc: any, current: any) => acc + current.amount, 0)
-    // const totalEarnings = statsClients.reduce((acc: any, current: any) => acc + current.earnings, 0)
-
     const [contacts, setContacts] = useState<IMyDataContacts[]>(statsClients)
 
     const total = contacts.reduce((acc: any, el) => {
@@ -52,9 +49,6 @@ export const Contacts: React.FC<IContactsProps> = ({ statsClients, img }) => {
                             <li className={styleClientsItem.tabsYourFurniActivityItem}>
                                 <div className={cx(styleClientsItem.tabsYourFurniActivityItem__title, styleClientsItem.name)}>
                                     Name
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    Order amount, AED
                                 </div>
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                                     Your earnings, AED

@@ -13,6 +13,16 @@
         font-size: 46px;
         line-height: 49px;
         color: #F0F0F0;
+
+        @media (max-width: 415px) {
+            font-size: 40px;
+            line-height: 43px;
+        }
+
+        @media (max-width: 370px) {
+            font-size: 32px;
+            line-height: 35px;
+        }
     }
 
     &__submit {
@@ -54,7 +64,6 @@
         position: absolute;
         left: calc(50% - 67.5px);
         bottom: 0;
-        transform: translateY(129px);
         display: inline-block;
         height: 31px;
         padding: 9px 20px;
@@ -65,5 +74,20 @@
         font-size: 12px;
         line-height: 15px;
         color: #fff;
+    }
+
+    &__reference {
+        max-width: 265px;
+        margin: 0 auto;
+        margin-top: 124px;
+        font-family: 'FuturaPT';
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: #8B8B9E;
+
+        a {
+            color: #8B8B9E;
+        }
     }
 }

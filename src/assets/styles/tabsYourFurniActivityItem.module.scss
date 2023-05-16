@@ -4,7 +4,7 @@
     padding: 6px 20px;
     height: 52px;
     background-color: #262830;
-    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 -1px 0px rgba(255, 255, 255, 0.04);
     font-family: 'FuturaPT';
     font-weight: 400;
     font-size: 16px;
@@ -52,23 +52,19 @@
 
         div:first-child {
             flex: 1 1 auto;
-            margin-right: 33px;
         }
 
         div:not(:last-child) {
-            margin-right: 33px;
+            // margin-right: 33px;
         }
     }
 
     &__name {
         flex: 1 1 auto;
         min-width: 130px;
-        margin-right: 33px;
     }
 
     &__item {
-        max-width: 110px;
-        width: 100%;
         text-align: right;
 
         &:not(:last-child) {

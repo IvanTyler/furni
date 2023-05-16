@@ -1,17 +1,15 @@
 .container {
-    display: flex;
-    justify-content: center;
     max-width: 1024px;
     height: 100%;
     margin: 0 auto;
     padding: 56px 20px 0;
 
     &>div {
-        overflow-x: auto;
+        // overflow-x: auto;
 
-        &::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-        }
+        // &::-webkit-scrollbar {
+        //     width: 0;
+        //     height: 0;
+        // }
     }
 }
