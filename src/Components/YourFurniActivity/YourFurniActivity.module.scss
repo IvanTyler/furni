@@ -1,4 +1,5 @@
 .sectionYourFurniActivity {
+    position: relative;
     width: 600px;
     max-width: 100%;
     margin: 25px auto 0;
@@ -53,6 +54,25 @@
 
     &__content {
         margin-top: 30px;
+    }
+
+    &__codeCopied {
+        position: absolute;
+        z-index: 20;
+        left: calc(50% - 51px);
+        bottom: 21px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 102px;
+        height: 31px;
+        background: #EFF2FD;
+        border-radius: 12px;
+        font-family: 'FuturaPT';
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #0E0F12;
     }
 
 }

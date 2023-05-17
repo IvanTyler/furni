@@ -16,6 +16,8 @@ import imgMoney from '../../assets/images/money.png'
 
 import { contacts } from '../../MockData/MockData'
 import { useGetData } from '../../Hooks/useGetData'
+import { useDispatch } from 'react-redux'
+import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied'
 
 
 interface IYourFurniActivityProps {
@@ -27,11 +29,9 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
         getData,
     }
 ) => {
-
     const [tabElement, setTabElement] = useState('Overview')
 
-    const { myDataContacts, myDataEvents } = useGetData()
-    
+    const { myDataContacts, myDataEvents, codeCopied } = useGetData()
 
     return (
         <>
@@ -71,8 +71,10 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
                             : null
                         }
                     </div>
+                    {codeCopied && <div className={style.sectionYourFurniActivity__codeCopied}>
+                        Code copied
+                    </div>}
                 </div>
-
             </section>
         </>
     )

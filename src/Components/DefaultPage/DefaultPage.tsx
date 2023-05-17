@@ -14,8 +14,6 @@ interface IDefaultPageProps {
 export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
     const dispath = useDispatch<any>()
 
-    const { codeCopied } = useGetData()
-
     const code = '9462865'
 
     const copyReferalCode = () => {
@@ -49,9 +47,6 @@ export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
                     className={style.sectionDefaultPage__mail}>
                     partners@furni.ae
                 </a> or call <a href="tel:+97143102096" className={style.sectionDefaultPage__phone}>+971-431-02096</a>
-                {codeCopied && <div className={style.sectionDefaultPage__codeCopied}>
-                    Code copied
-                </div>}
             </div>
         </section>
     )

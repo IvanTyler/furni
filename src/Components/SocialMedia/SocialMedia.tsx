@@ -20,9 +20,7 @@ export const SocialMedia: React.FC<ISocialMediaProps> = ({ code }) => {
     const copyReferalCode = () => {
         navigator.clipboard.writeText(code)
         dispath(codeCopiedAction())
-
     }
-    const { codeCopied } = useGetData()
 
     return (
         <>
