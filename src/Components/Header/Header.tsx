@@ -14,12 +14,14 @@ interface IHeaderProps {
 export const Header: React.FC<IHeaderProps> = ({ setIsLogin }) => {
 
     const [isShowSocialMedia, setIsSocialMedia] = useState(false)
+    const code = '9462865'
+
 
     return (
         <header className={style.header}>
-            <a href="/" className={style.header__link}>
-                <img src={logoFurni} alt="logo" className={style.header__icon} />
-            </a>
+            {/* <a href="/" className={style.header__link}> */}
+            <img src={logoFurni} alt="logo" className={style.header__icon} />
+            {/* </a> */}
             <div className={style.contentReferalCode}>
                 <div className={style.wrapperReferalCode}
                     onClick={() => setIsSocialMedia((prev: any) => prev = !prev)}
@@ -32,9 +34,10 @@ export const Header: React.FC<IHeaderProps> = ({ setIsLogin }) => {
                         sizeCode={style.sizeCode}
                         alignItems={style.alignItems}
                         referalCode={style.referalCode}
+                        code={code}
                     />
                 </div>
-                {isShowSocialMedia && <SocialMedia />}
+                {isShowSocialMedia && <SocialMedia code={code} />}
             </div>
             <span onClick={() => setIsLogin((prev: boolean) => prev = false)} className={style.header__logOut}>
                 Log out

@@ -3,7 +3,7 @@ export const dataApi = {
         {
             "id": 1,
             "name": "Merry Johnson",
-            "amount": 11500,
+            "amount": 11501,
             "earnings": 575
         },
         {
@@ -71,16 +71,16 @@ export const dataApi = {
 export const contacts = [
     {
         'id': 1,
-        'name': 'Merry Johnson',
+        'name': 'Imran Khan',
         'detail': {
-            'direct_sales': 8575,
+            'direct_sales': 0,
             'via_partners': 1600,
             'via_subpartners': 400,
         }
     },
     {
         'id': 2,
-        'name': 'Audrey Simmmons',
+        'name': 'Audrey Simmons',
         'detail': {
             'direct_sales': 2575,
             'via_partners': 1500,
@@ -89,29 +89,29 @@ export const contacts = [
     },
     {
         'id': 3,
-        'name': 'Nathan Cooper',
+        'name': 'حسن النّيّر',
         'detail': {
             'direct_sales': 6575,
-            'via_partners': 1400,
-            'via_subpartners': 200,
+            'via_partners': 0,
+            'via_subpartners': 0,
         }
     },
     {
         'id': 4,
-        'name': 'Dianne Russell',
+        'name': 'Marina',
         'detail': {
-            'direct_sales': 6575,
-            'via_partners': 1200,
-            'via_subpartners': 200,
+            'direct_sales': 0,
+            'via_partners': 0,
+            'via_subpartners': 500,
         }
     },
     {
         'id': 5,
-        'name': 'Savannah Robertson',
+        'name': 'Jonas Kuegelhoff',
         'detail': {
-            'direct_sales': 6575,
-            'via_partners': 1000,
-            'via_subpartners': 200,
+            'direct_sales': 0,
+            'via_partners': 552,
+            'via_subpartners': 0,
         }
     },
 ]
@@ -119,134 +119,103 @@ export const contacts = [
 export const events = [
     {
         'id': 1,
-        'name': 'Merry Johnson',
+        'name': 'Marina',
         'event_type': 'referral',
         'event': 'new lead',
         'detail': {
             'Sale_type': 'Subpartner',
-            'Deal_amount': 6000,
-            'Your_commission': 15,
-            'Reference_code': '317-483',
+            'Reference_code': '317-624',
         },
     },
     {
         'id': 2,
-        'name': 'Audrey Simmmons',
+        'name': 'Jonas Kuegelhoff',
         'event_type': 'closed_won',
-        'event': 'you get',
+        'event': 'you get 450 AED',
         'detail': {
             'Sale_type': 'Subpartner',
             'Deal_amount': 6000,
             'Your_commission': 15,
-            'Reference_code': '317-483',
+            'Reference_code': '317-378',
         },
     },
     {
         'id': 3,
-        'name': 'Nathan Cooper',
+        'name': 'Audrey Simmons',
         'event_type': 'closed_lost',
         'event': 'declined',
         'detail': {
-            'Sale_type': 'Subpartner',
-            'Deal_amount': 6000,
-            'Your_commission': 15,
-            'Reference_code': '317-483',
+            'Sale_type': 'Partner',
+            'Reference_code': '317-331',
         },
     },
     {
         'id': 4,
-        'name': 'Dianne Russell',
+        'name': 'Jonas Kuegelhoff',
         'event_type': 'waitkeys',
         'event': 'paid in full',
         'detail': {
-            'Sale_type': 'Subpartner',
-            'Deal_amount': 6000,
-            'Your_commission': 15,
-            'Reference_code': '317-483',
+            'Sale_type': 'Partner',
+            'Deal_amount': 19129,
+            'Your_commission': 192,
+            'Reference_code': '317-523',
         },
     },
     {
         'id': 5,
-        'name': 'Savannah Robertson',
+        'name': 'Audrey Simmons',
         'event_type': 'willmeet',
         'event': 'ready to meet',
         'detail': {
-            'Sale_type': 'Subpartner',
-            'Deal_amount': 6000,
-            'Your_commission': 15,
-            'Reference_code': '317-483',
+            'Sale_type': 'Client',
+            'Reference_code': '317-633',
         },
     },
     {
         'id': 6,
-        'name': 'Alfredo Vetrovs',
+        'name': 'Imran Khan',
         'event_type': 'referral',
         'event': 'new lead',
         'detail': {
             'Sale_type': 'Subpartner',
             'Deal_amount': 6000,
             'Your_commission': 15,
-            'Reference_code': '317-483',
+            'Reference_code': '317-929',
         },
     },
     {
         'id': 7,
-        'name': 'Leo Stanton',
+        'name': 'حسن النّيّر',
         'event_type': 'closed_won',
-        'event': 'you get',
+        'event': 'you get 329 AED',
         'detail': {
-            'Sale_type': 'Subpartner',
-            'Deal_amount': 6000,
-            'Your_commission': 15,
-            'Reference_code': '317-483',
+            'Sale_type': 'Client',
+            'Deal_amount': 6575,
+            'Your_commission': 329,
+            'Reference_code': '317-335',
         },
     },
     {
         'id': 8,
-        'name': 'Penny Lane Badgely',
+        'name': 'Imran Khan',
         'event_type': 'closed_won',
-        'event': 'you get',
+        'event': 'you get 89 AED',
         'detail': {
-            'Sale_type': 'Subpartner',
-            'Deal_amount': 6000,
-            'Your_commission': 15,
-            'Reference_code': '317-483',
+            'Sale_type': 'Partner',
+            'Deal_amount': 8920,
+            'Your_commission': 89,
+            'Reference_code': '317-339',
         },
     },
     {
         'id': 9,
-        'name': 'Cristofer Vetrovs',
+        'name': 'Audrey Simmons',
         'event_type': 'sentofferr',
         'event': 'offer sent',
         'detail': {
             'Sale_type': 'Subpartner',
-            'Deal_amount': 6000,
-            'Your_commission': 15,
-            'Reference_code': '317-483',
+            'Reference_code': '317-524',
         },
     },
-    {
-        'id': 10,
-        'name': 'Cristofer Vetrovs',
-        'event_type': 'waitprepay',
-        'event': 'invoice sent',
-        'detail': {
-            'Sale_type': 'Subpartner',
-            'Deal_amount': 6000,
-            'Your_commission': 15,
-            'Reference_code': '317-483',
-        },
-    },
-    {
-        'id': 11,
-        'name': 'Cristofer Vetrovs',
-        'event_type': 'recelc',
-        'event': 'recalculation',
-        'detail': {
-            'Sale_type': 'Subpartner',
-            'Deal_amount': 6000,
-            'Your_commission': 15,
-            'Reference_code': '317-483',
-        },
-    },
+
 ]

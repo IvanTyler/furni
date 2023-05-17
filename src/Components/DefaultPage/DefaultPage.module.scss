@@ -31,6 +31,7 @@
     }
 
     &__contactInformation {
+        position: relative;
         margin-top: 40px;
         font-family: 'FuturaPT';
         font-weight: 400;
@@ -48,6 +49,24 @@
 
     &__mail {
         border-bottom: solid 1px #8B8B9E;
+    }
+
+    &__codeCopied {
+        position: absolute;
+        left: calc(50% - 51px);
+        bottom: -12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 102px;
+        height: 31px;
+        background: #EFF2FD;
+        border-radius: 12px;
+        font-family: 'FuturaPT';
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #0E0F12;
     }
 }
 

@@ -19,7 +19,7 @@ export const Body: React.FC = () => {
 
     if (isLoading)
         return (
-            <div className={style.container} >
+            <div className={style.preloaderWrapper} >
                 <Preloader />
             </div >
         )

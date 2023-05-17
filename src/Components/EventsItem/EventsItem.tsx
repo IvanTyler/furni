@@ -14,21 +14,21 @@ export const EventsItem: React.FC<IEventsProps> = ({ item, itemEditHandler }) =>
     function eventTypeColor(event_type: string) {
         switch (event_type) {
             case 'referral':
-                return `${style.tabsYourFurniActivityItem__item, style.referral}`
+                return `${cx(style.tabsYourFurniActivityItem__item, style.referral)}`
             case 'closed_won':
-                return `${style.tabsYourFurniActivityItem__item, style.closed_won}`
+                return `${cx(style.tabsYourFurniActivityItem__item, style.closed_won)}`
             case 'closed_lost':
-                return `${style.tabsYourFurniActivityItem__item, style.closed_lost}`
+                return `${cx(style.tabsYourFurniActivityItem__item, style.closed_lost)}`
             case 'waitkeys':
-                return `${style.tabsYourFurniActivityItem__item, style.waitkeys}`
+                return `${cx(style.tabsYourFurniActivityItem__item, style.waitkeys)}`
             case 'willmeet':
-                return `${style.tabsYourFurniActivityItem__item, style.willmeet}`
+                return `${cx(style.tabsYourFurniActivityItem__item, style.willmeet)}`
             case 'sentofferr':
-                return `${style.tabsYourFurniActivityItem__item, style.sentofferr}`
+                return `${cx(style.tabsYourFurniActivityItem__item, style.sentofferr)}`
             case 'waitprepay':
-                return `${style.tabsYourFurniActivityItem__item, style.waitprepay}`
+                return `${cx(style.tabsYourFurniActivityItem__item, style.waitprepay)}`
             case 'recelc':
-                return `${style.tabsYourFurniActivityItem__item, style.recelc}`
+                return `${cx(style.tabsYourFurniActivityItem__item, style.recelc)}`
             default:
                 return `${style.tabsYourFurniActivityItem__item}`
         }
@@ -50,9 +50,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item, itemEditHandler }) =>
                     </div>
                     {item.name}
                 </div>
-                <div className={
-                    cx(eventTypeColor(item.event_type))
-                }>
+                <div className={eventTypeColor(item.event_type)}>
                     {item.event}
                 </div>
             </li>

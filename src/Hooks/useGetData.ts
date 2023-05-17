@@ -1,4 +1,7 @@
 import { contacts, events } from "../MockData/MockData"
+import { useDispatch } from "react-redux"
+import { codeCopiedAction } from "../Redux/Actions/ActionCodeCopied"
+import { useTypeSelector } from "./useTypeSelector"
 
 
 export const useGetData = () => {
@@ -12,9 +15,12 @@ export const useGetData = () => {
         })
     }
 
+
+    const { codeCopied } = useTypeSelector(state => state.codeCopied)
+
     const myDataContacts = getDataContactsEventsDto(contacts)
     const myDataEvents = getDataContactsEventsDto(events)
 
 
-    return { myDataContacts, myDataEvents }
+    return { myDataContacts, myDataEvents, codeCopied }
 }

@@ -49,6 +49,7 @@
         &:nth-child(2) {
             display: flex;
             align-items: center;
+            cursor: pointer;
         }
 
         &:not(:first-child, :nth-child(2)) {

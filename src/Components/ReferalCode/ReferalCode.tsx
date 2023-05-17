@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import style from './ReferalCode.module.scss'
 import cx from 'classnames'
 
@@ -9,8 +10,8 @@ interface IReferalCodeProps {
     sizeCode?: string;
     alignItems?: string;
     referalCode?: string;
+    code?: string;
 }
-
 
 export const ReferalCode: React.FC<IReferalCodeProps> = (
     {
@@ -21,8 +22,11 @@ export const ReferalCode: React.FC<IReferalCodeProps> = (
         sizeCode,
         alignItems,
         referalCode,
+        code
     }
 ) => {
+
+
     return (
         <div
             className={referalCode ? cx(style.referalCode, referalCode) : style.referalCode}
@@ -39,12 +43,13 @@ export const ReferalCode: React.FC<IReferalCodeProps> = (
                         </span> :
                         null
                 }
-                <span className={
-                    sizeCode ?
-                        cx(style.referalCode__code, sizeCode) :
-                        style.referalCode__code
-                }>
-                    9462865
+                <span
+                    className={
+                        sizeCode ?
+                            cx(style.referalCode__code, sizeCode) :
+                            style.referalCode__code
+                    }>
+                    {code}
                 </span>
             </div>
             <div className={

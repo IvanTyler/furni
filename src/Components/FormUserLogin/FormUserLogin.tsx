@@ -105,7 +105,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
             <button className={style.formUserLogin__submit}>Login</button>
 
             <div className={style.formUserLogin__reference}>
-                Forgot password? Call us <a href="tel:+797143102096">+7-971-431-02096</a>
+                Forgot password? Call us <a href="tel:+97143102096">+971-431-02096</a>
                 &nbsp; Don’t have an account? <span className={style.formUserLogin__registr}></span> Register
             </div>
 

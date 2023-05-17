@@ -5,9 +5,25 @@ import iconFacebook from '../../assets/icon/social-media/facebook.svg'
 import iconWhatsApp from '../../assets/icon/social-media/whatsApp.svg'
 import iconTelergam from '../../assets/icon/social-media/telegram.svg'
 import iconLinkedin from '../../assets/icon/social-media/Linkedin.svg'
+import { useGetData } from '../../Hooks/useGetData'
+import { useDispatch } from 'react-redux'
+import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied'
 
 
-export const SocialMedia: React.FC = () => {
+interface ISocialMediaProps {
+    code?: any;
+}
+
+export const SocialMedia: React.FC<ISocialMediaProps> = ({ code }) => {
+    const dispath = useDispatch<any>()
+
+    const copyReferalCode = () => {
+        navigator.clipboard.writeText(code)
+        dispath(codeCopiedAction())
+
+    }
+    const { codeCopied } = useGetData()
+
     return (
         <>
             <ul className={style.socialMediaList}>
@@ -16,11 +32,11 @@ export const SocialMedia: React.FC = () => {
                         Share your referral code
                     </h2>
                 </li>
-                <li className={style.socialMediaList__item}>
+                <li onClick={() => copyReferalCode()} className={style.socialMediaList__item}>
                     <img src={iconCopyCode} alt="copy code" className={style.socialMediaList__icon} />
                     <span className={style.socialMediaList__name}>Copy code</span>
                 </li>
-                <li className={style.socialMediaList__item}>
+                {/* <li className={style.socialMediaList__item}>
                     <a href="" className={style.socialMediaList__link}>
                         <img src={iconFacebook} alt="Share on Facebook" className={style.socialMediaList__icon} />
                         <span className={style.socialMediaList__name}>Share on Facebook</span>
@@ -43,7 +59,7 @@ export const SocialMedia: React.FC = () => {
                         <img src={iconLinkedin} alt="Share on LinkedIn" className={style.socialMediaList__icon} />
                         <span className={style.socialMediaList__name}>Share on LinkedIn</span>
                     </a>
-                </li>
+                </li> */}
             </ul>
         </>
     )
