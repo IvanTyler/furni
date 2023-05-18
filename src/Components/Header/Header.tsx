@@ -6,7 +6,6 @@ import iconArrowRight from '../../assets/icon/common/arrow-right-gray.svg'
 import { SocialMedia } from '../SocialMedia/SocialMedia'
 import { useState } from 'react'
 
-
 interface IHeaderProps {
     setIsLogin(item: any): void
 }
@@ -15,7 +14,6 @@ export const Header: React.FC<IHeaderProps> = ({ setIsLogin }) => {
 
     const [isShowSocialMedia, setIsSocialMedia] = useState(false)
     const code = '9462865'
-
 
     return (
         <header className={style.header}>

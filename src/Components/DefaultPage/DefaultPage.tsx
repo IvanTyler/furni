@@ -6,6 +6,8 @@ import { ReferalCode } from '../ReferalCode/ReferalCode';
 import { useGetData } from '../../Hooks/useGetData';
 import { useDispatch } from 'react-redux';
 import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied';
+import { useEffect, useState } from 'react';
+import { copyReferalCodeMobile } from '../../assets/Functions/copyReferalCodeMobile';
 
 interface IDefaultPageProps {
     img: string;
@@ -14,11 +16,24 @@ interface IDefaultPageProps {
 export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
     const dispath = useDispatch<any>()
 
+    const [dimensionWindowbrowser, setdimensionWindowbrowser] = useState<number>(window.innerWidth)
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
+    const handleResize = () => setdimensionWindowbrowser((prev: number) => prev = window.innerWidth)
+
     const code = '9462865'
 
     const copyReferalCode = () => {
-        navigator.clipboard.writeText(code)
-        dispath(codeCopiedAction())
+        if (dimensionWindowbrowser > 400) {
+            navigator.clipboard.writeText(code)
+            dispath(codeCopiedAction())
+        } else {
+            copyReferalCodeMobile(code)
+        }
     }
 
     return (
@@ -30,7 +45,7 @@ export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
                 To start earning with us invite new clients and
                 partners using your Referral code:
             </h3>
-            <div onClick={() => copyReferalCode()}>
+            <div className={style.sectionDefaultPage__copyCode} onClick={() => copyReferalCode()}>
                 <ReferalCode
                     icon={iconArrowRight}
                     borderForCode={style.borderForCode}
@@ -51,3 +66,4 @@ export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
         </section>
     )
 }
+

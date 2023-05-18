@@ -8,6 +8,8 @@ import iconLinkedin from '../../assets/icon/social-media/Linkedin.svg'
 import { useGetData } from '../../Hooks/useGetData'
 import { useDispatch } from 'react-redux'
 import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied'
+import { useEffect, useState } from 'react'
+import { copyReferalCodeMobile } from '../../assets/Functions/copyReferalCodeMobile'
 
 
 interface ISocialMediaProps {
@@ -17,9 +19,22 @@ interface ISocialMediaProps {
 export const SocialMedia: React.FC<ISocialMediaProps> = ({ code }) => {
     const dispath = useDispatch<any>()
 
-    const copyReferalCode = () => {
-        navigator.clipboard.writeText(code)
-        dispath(codeCopiedAction())
+    const [dimensionWindowbrowser, setdimensionWindowbrowser] = useState<number>(window.innerWidth)
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
+    const handleResize = () => setdimensionWindowbrowser((prev: number) => prev = window.innerWidth)
+
+    const copyReferalCode = async () => {
+        if (dimensionWindowbrowser > 400) {
+            navigator.clipboard.writeText(code)
+            dispath(codeCopiedAction())
+        } else {
+            copyReferalCodeMobile(code)
+        }
     }
 
     return (

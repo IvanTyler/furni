@@ -49,6 +49,10 @@
     &__mail {
         border-bottom: solid 1px #8B8B9E;
     }
+
+    &__copyCode {
+        cursor: pointer;
+    }
 }
 
 .borderForCode {

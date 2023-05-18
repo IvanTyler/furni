@@ -8,7 +8,8 @@
         font-family: 'FuturaPT';
         font-weight: 400;
         font-size: 12px;
-        line-height: 126%;
+        line-height: 15px;
+        white-space: nowrap;
         color: #8B8B9E;
     }
 
@@ -23,9 +24,9 @@
     &__codeWrapper {
         display: flex;
         flex-direction: column;
-        width: 101px;
+        width: 110px;
         font-family: 'FuturaPT';
-        padding: 5px 5px;
+        padding: 5px 10px;
         font-weight: 450;
         font-size: 18px;
         border-right: none !important;

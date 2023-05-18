@@ -32,8 +32,7 @@ export const Body: React.FC = () => {
                     <YourFurniActivity
                         getData={getData}
                     />
-                </>
-                :
+                </> :
                 <FormUserLogin
                     setGetData={setGetData}
                     setIsLoading={setIsLoading}
