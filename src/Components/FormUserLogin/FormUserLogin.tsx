@@ -6,12 +6,13 @@ import axios from 'axios'
 import { IDataApi } from '../../Interfaces/DataApi'
 
 interface IFormUserLoginProps {
-    setGetData(data: IDataApi): void
-    setIsLoading(item: any): void
+    setGetData(data: IDataApi): void;
+    setIsLoading(item: any): void;
+    isShowElement: boolean;
 }
 
 export const FormUserLogin: React.FC<IFormUserLoginProps> = (
-    { setGetData, setIsLoading }
+    { setGetData, setIsLoading, isShowElement }
 ) => {
 
     const [toggleTypeInput, setToggleTypeInput] = useState(false)
@@ -83,12 +84,52 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
             </h1>
             <Input
                 type='text'
-                name='name'
-                placeholder='Username'
+                name='Email'
+                placeholder='Email'
                 valueInput={inputValueLogin}
                 error={errorInputLoginValue}
                 onChangeInput={inputChangeLoginValue}
             />
+            {isShowElement && <div className={style.formUserLogin__inputWrapper}>
+                <Input
+                    type='text'
+                    name='name'
+                    placeholder='First name'
+                    valueInput={inputValueLogin}
+                    error={errorInputLoginValue}
+                    onChangeInput={inputChangeLoginValue}
+                />
+            </div>}
+            {isShowElement && <div className={style.formUserLogin__inputWrapper}>
+                <Input
+                    type='text'
+                    name='name'
+                    placeholder='Last name'
+                    valueInput={inputValueLogin}
+                    error={errorInputLoginValue}
+                    onChangeInput={inputChangeLoginValue}
+                />
+            </div>}
+            {isShowElement && <div className={style.formUserLogin__inputWrapper}>
+                <Input
+                    type='phone'
+                    name='name'
+                    placeholder='Phone number'
+                    valueInput={inputValueLogin}
+                    error={errorInputLoginValue}
+                    onChangeInput={inputChangeLoginValue}
+                />
+            </div>}
+            {isShowElement && <div className={style.formUserLogin__inputWrapper}>
+                <Input
+                    type='text'
+                    name='name'
+                    placeholder='Username'
+                    valueInput={inputValueLogin}
+                    error={errorInputLoginValue}
+                    onChangeInput={inputChangeLoginValue}
+                />
+            </div>}
             <div className={style.formUserLogin__inputWrapper}>
                 <Input
                     type={toggleTypeInput ? 'text' : 'password'}
@@ -102,7 +143,9 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
                     {toggleTypeInput ? 'Hide' : 'Show'}
                 </span>
             </div>
-            <button className={style.formUserLogin__submit}>Login</button>
+            <button className={style.formUserLogin__submit}>
+                {isShowElement ? 'Create account' : 'Login'}
+            </button>
 
             <div className={style.formUserLogin__reference}>
                 Forgot password? Call us <a href="tel:+97143102096">+971-431-02096</a>

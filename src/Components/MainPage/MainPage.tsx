@@ -6,6 +6,7 @@ import saveTimeEnergyIcon from '../../assets/icon/saveTimeEnergy.png'
 import takeCareClientIcon from '../../assets/icon/flag.png'
 import cx from 'classnames'
 import { Link } from 'react-router-dom'
+import { IDataApi } from '../../Interfaces/DataApi'
 
 export const MainPage: React.FC = () => {
     return (
@@ -40,7 +41,7 @@ export const MainPage: React.FC = () => {
                         How it works?
                     </h2>
 
-                    <h3 className={style.listDescriptionWorksFurni__subTitles}>
+                    <h3 className={style.listDescriptionWorksFurni__subTitle}>
                         Our bonus program:
                     </h3>
                     <ul className={style.listDescriptionProgram}>
@@ -55,31 +56,33 @@ export const MainPage: React.FC = () => {
                         </li>
                     </ul>
 
-                    <h3 className={style.listDescriptionWorksFurni__subTitles}>
+                    <h3 className={style.listDescriptionWorksFurni__subTitle}>
                         How to get the bonus?
                     </h3>
                     <ul className={style.listDescriptionProgram}>
                         <li className={style.listDescriptionProgram__item}>
-                            5% of the deal with the customer you referred
+                            Payment to partners under the referral program is made after the
+                            client's order is paid
                         </li>
                         <li className={style.listDescriptionProgram__item}>
-                            Payment to partners under the referral program is
-                            made after the client's order is paid
+                            The manager will arrange a meeting with you and
+                            give you your percentage of the deal
                         </li>
                     </ul>
 
-                    <h3 className={style.listDescriptionWorksFurni__subTitles}>
+                    <h3 className={style.listDescriptionWorksFurni__subTitle}>
                         Any questions?
                     </h3>
                     <ul className={style.listDescriptionProgram}>
                         <li className={style.listDescriptionProgram__item}>
-                            Text us to <a href="mailto:partners@furni.ae">partners@furni.ae</a>
-                            or call
+                            Text us to &nbsp;<a className={style.email} href="mailto:partners@furni.ae">partners@furni.ae</a>&nbsp;
+                            or call&nbsp;
                             <a href="tel:+97143102096">+971-431-02096</a>
                         </li>
                     </ul>
                 </li>
             </ul>
+            
         </section>
     )
 }

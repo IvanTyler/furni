@@ -6,6 +6,8 @@ import { Preloader } from '../Preloader/Preloader'
 import { YourFurniActivity } from '../YourFurniActivity/YourFurniActivity'
 import style from './Body.module.scss'
 import { MainPage } from '../MainPage/MainPage'
+import { Route, Routes } from 'react-router-dom'
+import { Registration } from '../Registration/Registration'
 
 export const Body: React.FC = () => {
 
@@ -33,12 +35,21 @@ export const Body: React.FC = () => {
                     <YourFurniActivity
                         getData={getData}
                     />
-                    <MainPage />
                 </> :
-                <FormUserLogin
-                    setGetData={setGetData}
-                    setIsLoading={setIsLoading}
-                />
+                <>
+                    <Routes>
+                        <Route path='/' element={<MainPage />} />
+                        <Route path='/logIn' element={<FormUserLogin
+                            setGetData={setGetData}
+                            setIsLoading={setIsLoading}
+                            isShowElement={false}
+                        />} />
+                        <Route path='/registr' element={<Registration
+                            setGetData={setGetData}
+                            setIsLoading={setIsLoading}
+                        />} />
+                    </Routes>
+                </>
             }
         </div>
     )
