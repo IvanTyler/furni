@@ -1,0 +1,79 @@
+.listDescriptionWorksFurni {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(488px, 1fr));
+    gap: 40px;
+
+    &__item {
+        padding: 48px 40px;
+        height: 486px;
+        background-color: #262830;
+        border: 2px solid #323540;
+        border-radius: 24px;
+    }
+
+    &__title {
+        margin-top: 17px;
+        font-family: 'FuturaPT';
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 43px;
+        color: #F0F0F0;
+    }
+}
+
+.listFurniServices {
+    display: grid;
+    margin-top: 23px;
+    gap: 27px;
+
+    &__item {
+        display: flex;
+        align-items: center;
+    }
+
+    &__icon {
+        margin-right: 17px;
+        width: 30px;
+        height: 30px;
+    }
+
+    &__text {
+        font-family: 'FuturaPT';
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23px;
+        color: #E0E0E0;
+    }
+}
+
+.sectionMainPageNavigation {
+    display: flex;
+    margin-top: 36px;
+    gap: 20px;
+
+
+    &__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 56px;
+        border-radius: 88px;
+        font-family: 'FuturaPT';
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FFFFFF;
+        
+        &:first-child {
+            background-color: #ED5365;
+            width: 113px;
+        }
+
+        &:last-child {
+            width: 100px;
+            background-color: transparent;
+            border: 2px solid #FFFFFF;
+        }
+    }
+}

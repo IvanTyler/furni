@@ -5,6 +5,7 @@ import { Header } from '../Header/Header'
 import { Preloader } from '../Preloader/Preloader'
 import { YourFurniActivity } from '../YourFurniActivity/YourFurniActivity'
 import style from './Body.module.scss'
+import { MainPage } from '../MainPage/MainPage'
 
 export const Body: React.FC = () => {
 
@@ -32,6 +33,7 @@ export const Body: React.FC = () => {
                     <YourFurniActivity
                         getData={getData}
                     />
+                    <MainPage />
                 </> :
                 <FormUserLogin
                     setGetData={setGetData}

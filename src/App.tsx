@@ -3,12 +3,15 @@ import './App.scss';
 import { Body } from './Components/Body/Body';
 import { Container } from './Components/Container/Container';
 import './normalize.css'
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <Container>
-      <Body />
-    </Container>
+    <BrowserRouter>
+      <Container>
+        <Body />
+      </Container>
+    </BrowserRouter>
   );
 }
 
