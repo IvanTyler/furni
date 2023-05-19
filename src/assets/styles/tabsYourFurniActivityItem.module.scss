@@ -13,6 +13,11 @@
     transition: background-color .2s ease;
     cursor: pointer;
 
+    @media (max-width: 400px) {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
     &:hover {
         background-color: #323540;
     }
@@ -82,10 +87,16 @@
         background-color: #444755;
         border-radius: 6px;
 
+        @media(max-width: 400px) {
+            margin-right: 8px;
+        }
+
         &::after {
-            content: '';
-            width: 5px;
-            height: 5px;
+            content: "";
+            position: relative;
+            top: -2px;
+            width: 8px;
+            height: 8px;
             border: 2px solid #E0E0E0;
             border-right: none;
             border-bottom: none;
@@ -123,6 +134,19 @@
     background-color: #323540;
 }
 
+.tabsYourFurniActivityItem.events {
+    &:last-of-type {
+        position: static;
+        background-color: #262830;
+    }
+}
+
+.tabsYourFurniActivityItem.events.active {
+    &:last-of-type {
+        border-radius: 0;
+        background-color: #323540;
+    }
+}
 
 .referral {
     color: #E7E960;

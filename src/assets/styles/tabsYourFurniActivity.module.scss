@@ -1,6 +1,4 @@
 .tabsYourFurniActivityList {
-    margin-top: 24px;
-    overflow-y: auto;
 
     &::-webkit-scrollbar-thumb {
         background-color: #4F525C;
@@ -27,7 +25,6 @@
     }
 
     &__content {
-        overflow-x: auto;
 
         &::-webkit-scrollbar-thumb {
             background-color: #4F525C;
@@ -42,5 +39,21 @@
 
     &__wrapper {
         height: 504px;
+        overflow-x: auto;
+        
+        &::-webkit-scrollbar-thumb {
+            background-color: #4F525C;
+            border-radius: 8px;
+        }
+
+        &::-webkit-scrollbar {
+            width: 6px;
+            height: 8px;
+        }
+    
+        &::-webkit-scrollbar-track {
+            background-color: #262830;
+            border-radius: 3px;
+        }
     }
 }

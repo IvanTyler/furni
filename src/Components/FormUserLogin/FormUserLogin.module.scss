@@ -75,7 +75,7 @@
         color: #fff;
     }
 
-    &__reference {
+    &__signature {
         max-width: 265px;
         margin: 0 auto;
         margin-top: 124px;
@@ -88,5 +88,13 @@
         a {
             color: #8B8B9E;
         }
+    }
+
+    &__link {
+        border-bottom: solid 1px;
+    }
+
+    .alreadyAccount {
+        margin-top: 37px;
     }
 }

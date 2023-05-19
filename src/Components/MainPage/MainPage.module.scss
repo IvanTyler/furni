@@ -131,16 +131,27 @@
         font-size: 14px;
         line-height: 17px;
         color: #FFFFFF;
+        transition: background-color .2s ease;
+
 
         &:first-child {
             background-color: #ED5365;
             width: 113px;
+
+            &:hover {
+                background-color: #8243F0;
+            }
         }
 
         &:last-child {
             width: 100px;
             background-color: transparent;
             border: 2px solid #FFFFFF;
+
+            &:hover {
+                background-color: #8243F0;
+                border: solid 2px #8243F0;
+            }
         }
     }
 }

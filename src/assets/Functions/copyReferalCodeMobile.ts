@@ -1,6 +1,5 @@
 export const copyReferalCodeMobile = async (code: string) => {
     const shareData = {
-        title: 'Furni',
         text: code,
     };
 

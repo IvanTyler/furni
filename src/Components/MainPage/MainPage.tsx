@@ -6,7 +6,6 @@ import saveTimeEnergyIcon from '../../assets/icon/saveTimeEnergy.png'
 import takeCareClientIcon from '../../assets/icon/flag.png'
 import cx from 'classnames'
 import { Link } from 'react-router-dom'
-import { IDataApi } from '../../Interfaces/DataApi'
 
 export const MainPage: React.FC = () => {
     return (
@@ -32,7 +31,7 @@ export const MainPage: React.FC = () => {
                         </li>
                     </ul>
                     <nav className={style.sectionMainPageNavigation}>
-                        <Link className={style.sectionMainPageNavigation__link} to='/registr'>Registr</Link>
+                        {/* <Link className={style.sectionMainPageNavigation__link} to='/registr'>Registr</Link> */}
                         <Link className={style.sectionMainPageNavigation__link} to='/logIn'>Log In</Link>
                     </nav>
                 </li>

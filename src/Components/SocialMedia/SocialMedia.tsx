@@ -39,7 +39,7 @@ export const SocialMedia: React.FC<ISocialMediaProps> = ({ code }) => {
 
     return (
         <>
-            <ul className={style.socialMediaList}>
+            <ul className={style.socialMediaList} onClick={(e) => e.stopPropagation()}>
                 <li className={style.socialMediaList__item}>
                     <h2 className={style.socialMediaList__title}>
                         Share your referral code

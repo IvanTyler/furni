@@ -1,5 +1,4 @@
 import style from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
-import { IStatsPartners } from '../../Interfaces/DataApi'
 import { IMyDataEvents } from '../../Interfaces/Events'
 import cx from 'classnames'
 
@@ -37,8 +36,8 @@ export const EventsItem: React.FC<IEventsProps> = ({ item, itemEditHandler }) =>
     return (
         <>
             <li className={item.active ?
-                cx(style.tabsYourFurniActivityItem, style.active) :
-                style.tabsYourFurniActivityItem}>
+                cx(style.tabsYourFurniActivityItem, style.active, style.events) :
+                cx(style.tabsYourFurniActivityItem, style.events)}>
                 <div className={style.tabsYourFurniActivityItem__name}>
                     <div
                         onClick={() => itemEditHandler(item.id)}

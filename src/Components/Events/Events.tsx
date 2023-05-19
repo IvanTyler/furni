@@ -21,9 +21,6 @@ interface IPartnersProps {
 
 export const Events: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
 
-    // const totalAmount = statsPartners.reduce((acc: any, current: any) => acc + current.amount, 0)
-    // const totalEarnings = statsPartners.reduce((acc: any, current: any) => acc + current.earnings, 0)
-
     const [events, setEvents] = useState<IMyDataEvents[]>(statsPartners)
 
     const itemEditHandler = (id: number) => {

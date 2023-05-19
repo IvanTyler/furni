@@ -15,6 +15,9 @@ export const Header: React.FC<IHeaderProps> = ({ setIsLogin }) => {
     const [isShowSocialMedia, setIsSocialMedia] = useState(false)
     const code = '9462865'
 
+    const documentBody = document
+    documentBody.addEventListener('click', (e) => setIsSocialMedia((prev: any) => prev = false))
+
     return (
         <header className={style.header}>
             {/* <a href="/" className={style.header__link}> */}
@@ -22,7 +25,10 @@ export const Header: React.FC<IHeaderProps> = ({ setIsLogin }) => {
             {/* </a> */}
             <div className={style.contentReferalCode}>
                 <div className={style.wrapperReferalCode}
-                    onClick={() => setIsSocialMedia((prev: any) => prev = !prev)}
+                    onClick={(e) => {
+                        setIsSocialMedia((prev: any) => prev = !prev)
+                        e.stopPropagation()
+                    }}
                 >
                     <ReferalCode
                         icon={iconArrowRight}
