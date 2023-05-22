@@ -1,8 +1,8 @@
 import { IDetailContacts, IDetailEvents } from "./Detail";
 
 export interface IgetDataDto {
-    contacts: IgetDataContactsDto;
-    events: IGetDataEventsDto;
+    contacts: IgetDataContactsDto[];
+    events: IGetDataEventsDto[];
     status: boolean;
 }
 

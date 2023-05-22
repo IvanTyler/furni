@@ -17,8 +17,8 @@ export const dataSlice = createSlice({
         },
         getDataFetchingSuccess(state, action: PayloadAction<any>) {
             state.data = action.payload
-            state.data.status = true
             state.isloading = false;
+            state.data.status = true
         },
     }
 })
