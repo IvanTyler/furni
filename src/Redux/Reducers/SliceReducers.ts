@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialState } from '../initialState'
 
 
-export const codeCopiedSlice = createSlice({
-    name: 'codeCopied',
+export const dataSlice = createSlice({
+    name: 'getData',
     initialState,
     reducers: {
         codeCopiedActiveReducer(state) {
@@ -11,12 +11,22 @@ export const codeCopiedSlice = createSlice({
         },
         codeCopiedNotActiveReducer(state) {
             state.codeCopied = false
-        }
+        },
+        getDataFetching(state) {
+            state.isloading = true;
+        },
+        getDataFetchingSuccess(state, action: PayloadAction<any>) {
+            state.data = action.payload
+            state.data.status = true
+            state.isloading = false;
+        },
     }
 })
 
-export default codeCopiedSlice.reducer
+export default dataSlice.reducer
 export const {
     codeCopiedActiveReducer,
     codeCopiedNotActiveReducer,
-} = codeCopiedSlice.actions
+    getDataFetchingSuccess,
+    getDataFetching,
+} = dataSlice.actions

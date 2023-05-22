@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import codeCopiedReducer from '../Reducers/SliceReducers'
+import getData from '../Reducers/SliceReducers'
 
 const rootReducer = combineReducers({
-    codeCopied: codeCopiedReducer,
+    data: getData,
 })
 
 export const setupStore = () => {

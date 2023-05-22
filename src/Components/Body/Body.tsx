@@ -8,8 +8,11 @@ import style from './Body.module.scss'
 import { MainPage } from '../MainPage/MainPage'
 import { Route, Routes } from 'react-router-dom'
 import { Registration } from '../Registration/Registration'
+import { useGetData } from '../../Hooks/useGetData'
 
 export const Body: React.FC = () => {
+
+    const { isloading, isStatus } = useGetData()
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -20,7 +23,7 @@ export const Body: React.FC = () => {
         if (getData?.status) setIsLogin(true)
     }, [getData])
 
-    if (isLoading)
+    if (isloading)
         return (
             <div className={style.preloaderWrapper} >
                 <Preloader />
@@ -29,16 +32,16 @@ export const Body: React.FC = () => {
 
     return (
         <div className={isLogin ? '' : style.containerBody}>
-            {/* {isLogin ? */}
-            <>
-                <Header setIsLogin={setIsLogin} />
-                <YourFurniActivity
-                    getData={getData}
-                />
-            </>
-            :
-            <>
-                {/* <Routes>
+            {isStatus ?
+                <>
+                    <Header setIsLogin={setIsLogin} />
+                    <YourFurniActivity
+                        getData={getData}
+                    />
+                </>
+                :
+                <>
+                    <Routes>
                         <Route path='/' element={<MainPage />} />
                         <Route path='/logIn' element={<FormUserLogin
                             setGetData={setGetData}
@@ -49,9 +52,9 @@ export const Body: React.FC = () => {
                             setGetData={setGetData}
                             setIsLoading={setIsLoading}
                         />} />
-                    </Routes> */}
-            </>
-            //
+                    </Routes>
+                </>
+            }
         </div>
     )
 }

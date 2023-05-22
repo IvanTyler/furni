@@ -1,10 +1,10 @@
 import style from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
-import { IMyDataContacts } from '../../Interfaces/contacts';
+import { IGetDataContacts } from '../../Interfaces/contacts';
 import { IStatsClients } from '../../Interfaces/DataApi'
 import cx from 'classnames'
 
 interface IClientsProps {
-    item: IMyDataContacts;
+    item: IGetDataContacts;
     itemEditHandler: (item: any) => void
 }
 

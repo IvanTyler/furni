@@ -6,12 +6,12 @@ import { List } from '../List/List'
 
 import cx from 'classnames'
 import { EventsItem } from '../EventsItem/EventsItem'
-import { IMyDataContacts } from '../../Interfaces/contacts'
+import { IGetDataContacts } from '../../Interfaces/contacts'
 import { DefaultPage } from '../DefaultPage/DefaultPage'
 import { useState } from 'react'
 import { ContactsItem } from '../ContactsItem/ContactsItem'
-import { IMyDataEvents } from '../../Interfaces/Events'
-import { events } from '../../MockData/MockData'
+import { IGetDataEvents } from '../../Interfaces/Events'
+import { getData } from '../../MockData/MockData'
 import { useGetData } from '../../Hooks/useGetData'
 
 interface IPartnersProps {
@@ -21,7 +21,7 @@ interface IPartnersProps {
 
 export const Events: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
 
-    const [events, setEvents] = useState<IMyDataEvents[]>(statsPartners)
+    const [events, setEvents] = useState<IGetDataEvents[]>(statsPartners)
 
     const itemEditHandler = (id: number) => {
         setEvents((prev: any) => {
@@ -54,7 +54,7 @@ export const Events: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
 
                             <List
                                 items={events}
-                                renderItem={(item: IMyDataEvents, index: number) => <EventsItem
+                                renderItem={(item: IGetDataEvents, index: number) => <EventsItem
                                     itemEditHandler={itemEditHandler}
                                     item={item}
                                     key={index.toString()}

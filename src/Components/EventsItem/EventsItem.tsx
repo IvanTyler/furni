@@ -1,14 +1,13 @@
 import style from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
-import { IMyDataEvents } from '../../Interfaces/Events'
+import { IGetDataEvents } from '../../Interfaces/Events'
 import cx from 'classnames'
 
 interface IEventsProps {
-    item: IMyDataEvents;
+    item: IGetDataEvents;
     itemEditHandler: (item: any) => void
 }
 
 export const EventsItem: React.FC<IEventsProps> = ({ item, itemEditHandler }) => {
-
 
     function eventTypeColor(event_type: string) {
         switch (event_type) {

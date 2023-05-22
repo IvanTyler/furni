@@ -6,7 +6,7 @@ import { List } from '../List/List'
 import { ContactsItem } from '../ContactsItem/ContactsItem'
 
 import cx from 'classnames'
-import { IMyDataContacts } from '../../Interfaces/contacts'
+import { IGetDataContacts } from '../../Interfaces/contacts'
 import { useState } from 'react'
 import { DefaultPage } from '../DefaultPage/DefaultPage'
 
@@ -17,7 +17,7 @@ interface IContactsProps {
 
 export const Contacts: React.FC<IContactsProps> = ({ statsClients, img }) => {
 
-    const [contacts, setContacts] = useState<IMyDataContacts[]>(statsClients)
+    const [contacts, setContacts] = useState<IGetDataContacts[]>(statsClients)
 
     const total = contacts.reduce((acc: any, el) => {
         let total = Object.values(el.detail)
@@ -57,7 +57,7 @@ export const Contacts: React.FC<IContactsProps> = ({ statsClients, img }) => {
 
                             <List
                                 items={contacts}
-                                renderItem={(item: IMyDataContacts, index: number) => <ContactsItem
+                                renderItem={(item: IGetDataContacts, index: number) => <ContactsItem
                                     itemEditHandler={itemEditHandler}
                                     item={item}
                                     key={index.toString()}

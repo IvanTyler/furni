@@ -1,11 +1,13 @@
 import style from './FormUserLogin.module.scss'
 import logoFurni from '../../assets/icon/logo.svg'
 import { Input } from '../Input/Input'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { IDataApi } from '../../Interfaces/DataApi'
 import { Link } from 'react-router-dom'
 import cx from 'classnames'
+import { useDispatch } from 'react-redux'
+import { getDataSuccess } from '../../Redux/Actions/ActionGetDataSuccess'
 
 interface IFormUserLoginProps {
     setGetData(data: IDataApi): void;
@@ -16,6 +18,8 @@ interface IFormUserLoginProps {
 export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     { setGetData, setIsLoading, isShowElement }
 ) => {
+
+    const dispath = useDispatch<any>()
 
     const [toggleTypeInput, setToggleTypeInput] = useState(false)
 
@@ -35,7 +39,6 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     const [inputValueEmail, setInputValueEmail] = useState('')
 
 
-
     const fetchData = async () => {
         setIsLoading(true)
         const response = await axios.post<IDataApi>(
@@ -44,6 +47,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
             .then(response => setGetData(response.data))
             .catch(error => console.log(error))
             .finally(() => setIsLoading(false))
+        dispath(getDataSuccess(inputValueLogin, inputValuePassword))
     }
 
     const toggleInputTypeFunc = () => {

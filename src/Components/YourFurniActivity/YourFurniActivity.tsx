@@ -14,7 +14,7 @@ import imgEvents from '../../assets/images/events.png'
 
 import imgMoney from '../../assets/images/money.png'
 
-import { contacts } from '../../MockData/MockData'
+import { getData } from '../../MockData/MockData'
 import { useGetData } from '../../Hooks/useGetData'
 import { useDispatch } from 'react-redux'
 import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied'

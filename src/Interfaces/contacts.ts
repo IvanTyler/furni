@@ -1,12 +1,6 @@
 import { IDetailContacts } from "./Detail";
 
-export interface IGetaDataContacts {
-    id: number;
-    name: string;
-    detail: IDetailContacts
-}
-
-export interface IMyDataContacts {
+export interface IGetDataContacts {
     id: number;
     name: string;
     active: boolean;
