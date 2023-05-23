@@ -1,13 +1,13 @@
 import style from './FormUserLogin.module.scss'
 import logoFurni from '../../assets/icon/logo.svg'
 import { Input } from '../Input/Input'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { IDataApi } from '../../Interfaces/DataApi'
 import { Link } from 'react-router-dom'
 import cx from 'classnames'
 import { useDispatch } from 'react-redux'
-import { getDataSuccess } from '../../Redux/Actions/ActionGetDataSuccess'
+import { dataAction } from '../../Redux/Actions/dataAction'
 
 interface IFormUserLoginProps {
     setGetData(data: IDataApi): void;
@@ -47,7 +47,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
             .then(response => setGetData(response.data))
             .catch(error => console.log(error))
             .finally(() => setIsLoading(false))
-        dispath(getDataSuccess(inputValueLogin, inputValuePassword))
+        dispath(dataAction(inputValueLogin, inputValuePassword))
     }
 
     const toggleInputTypeFunc = () => {

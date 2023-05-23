@@ -12,8 +12,8 @@ import { useGetData } from '../../Hooks/useGetData'
 
 export const Body: React.FC = () => {
 
-    const { isloading, isStatus } = useGetData()
-
+    const { isloading, isStatus, error } = useGetData()
+    
     const [isLoading, setIsLoading] = useState(false)
 
     const [isLogin, setIsLogin] = useState(false)

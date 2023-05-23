@@ -1,6 +1,5 @@
 import style from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
 import { IGetDataContacts } from '../../Interfaces/contacts';
-import { IStatsClients } from '../../Interfaces/DataApi'
 import cx from 'classnames'
 
 interface IClientsProps {

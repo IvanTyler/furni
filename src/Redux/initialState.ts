@@ -1,12 +1,11 @@
-import { IGetDataEventsDto, IgetDataContactsDto, IgetDataDto } from "../Interfaces/getData";
-
+import { IgetDataDto } from "../Interfaces/getDataDto";
 
 export interface IInitialState {
     codeCopied: boolean;
     data: IgetDataDto;
     isloading: boolean;
+    error: null | string;
 }
-
 
 export const initialState: IInitialState = {
     codeCopied: false,
@@ -16,4 +15,5 @@ export const initialState: IInitialState = {
         status: false,
     },
     isloading: false,
+    error: '',
 }

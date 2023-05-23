@@ -6,12 +6,6 @@ export const dataSlice = createSlice({
     name: 'getData',
     initialState,
     reducers: {
-        codeCopiedActiveReducer(state) {
-            state.codeCopied = true
-        },
-        codeCopiedNotActiveReducer(state) {
-            state.codeCopied = false
-        },
         getDataFetching(state) {
             state.isloading = true;
         },
@@ -19,6 +13,16 @@ export const dataSlice = createSlice({
             state.data = action.payload
             state.isloading = false;
             state.data.status = true
+        },
+        codeCopiedActiveReducer(state) {
+            state.codeCopied = true
+        },
+        codeCopiedNotActiveReducer(state) {
+            state.codeCopied = false
+        },
+        getDataFetchError(state, action: PayloadAction<string>) {
+            state.isloading = false;
+            state.error = action.payload
         },
     }
 })
@@ -29,4 +33,5 @@ export const {
     codeCopiedNotActiveReducer,
     getDataFetchingSuccess,
     getDataFetching,
+    getDataFetchError,
 } = dataSlice.actions

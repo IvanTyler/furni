@@ -1,23 +1,22 @@
 import styleClients from '../../assets/styles/tabsYourFurniActivity.module.scss'
 import styleClientsItem from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
+import cx from 'classnames'
 
-import { IStatsClients } from '../../Interfaces/DataApi'
 import { List } from '../List/List'
 import { ContactsItem } from '../ContactsItem/ContactsItem'
 
-import cx from 'classnames'
 import { IGetDataContacts } from '../../Interfaces/contacts'
 import { useState } from 'react'
 import { DefaultPage } from '../DefaultPage/DefaultPage'
 
 interface IContactsProps {
-    statsClients: any;
+    statsContacts: any;
     img: string;
 }
 
-export const Contacts: React.FC<IContactsProps> = ({ statsClients, img }) => {
+export const Contacts: React.FC<IContactsProps> = ({ statsContacts, img }) => {
 
-    const [contacts, setContacts] = useState<IGetDataContacts[]>(statsClients)
+    const [contacts, setContacts] = useState<IGetDataContacts[]>(statsContacts)
 
     const total = contacts.reduce((acc: any, el) => {
         let total = Object.values(el.detail)

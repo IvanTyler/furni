@@ -1,27 +1,22 @@
 import styleClients from '../../assets/styles/tabsYourFurniActivity.module.scss'
 import styleClientsItem from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
+import cx from 'classnames'
 
-import { IStatsPartners } from '../../Interfaces/DataApi'
 import { List } from '../List/List'
 
-import cx from 'classnames'
 import { EventsItem } from '../EventsItem/EventsItem'
-import { IGetDataContacts } from '../../Interfaces/contacts'
 import { DefaultPage } from '../DefaultPage/DefaultPage'
 import { useState } from 'react'
-import { ContactsItem } from '../ContactsItem/ContactsItem'
 import { IGetDataEvents } from '../../Interfaces/Events'
-import { getData } from '../../MockData/MockData'
-import { useGetData } from '../../Hooks/useGetData'
 
 interface IPartnersProps {
-    statsPartners: any;
+    statsEvents: any;
     img: string;
 }
 
-export const Events: React.FC<IPartnersProps> = ({ statsPartners, img }) => {
+export const Events: React.FC<IPartnersProps> = ({ statsEvents, img }) => {
 
-    const [events, setEvents] = useState<IGetDataEvents[]>(statsPartners)
+    const [events, setEvents] = useState<IGetDataEvents[]>(statsEvents)
 
     const itemEditHandler = (id: number) => {
         setEvents((prev: any) => {

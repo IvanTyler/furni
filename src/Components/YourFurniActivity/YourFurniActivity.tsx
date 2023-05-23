@@ -14,10 +14,7 @@ import imgEvents from '../../assets/images/events.png'
 
 import imgMoney from '../../assets/images/money.png'
 
-import { getData } from '../../MockData/MockData'
 import { useGetData } from '../../Hooks/useGetData'
-import { useDispatch } from 'react-redux'
-import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied'
 
 
 interface IYourFurniActivityProps {
@@ -58,7 +55,7 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
                         }
                         {tabElement === tabsYourFurniActivityListEnum.contacts ?
                             <Contacts
-                                statsClients={myDataContacts}
+                                statsContacts={myDataContacts}
                                 img={imgContacts}
                             />
                             : null
@@ -66,7 +63,7 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
                         {tabElement === tabsYourFurniActivityListEnum.events ?
                             <Events
                                 img={imgEvents}
-                                statsPartners={myDataEvents}
+                                statsEvents={myDataEvents}
                             />
                             : null
                         }
