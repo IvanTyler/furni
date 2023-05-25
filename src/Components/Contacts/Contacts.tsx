@@ -8,6 +8,8 @@ import { ContactsItem } from '../ContactsItem/ContactsItem'
 import { IGetDataContacts } from '../../Interfaces/contacts'
 import { useState } from 'react'
 import { DefaultPage } from '../DefaultPage/DefaultPage'
+import { OpenFilterContacts } from '../OpenFilterContacts/OpenFilterContacts'
+import { FilterContacts } from '../FilterContacts/FilterContacts'
 
 interface IContactsProps {
     statsContacts: any;
@@ -17,6 +19,8 @@ interface IContactsProps {
 export const Contacts: React.FC<IContactsProps> = ({ statsContacts, img }) => {
 
     const [contacts, setContacts] = useState<IGetDataContacts[]>(statsContacts)
+
+    const [isFilterContactsActive, setIsFilterContactsActive] = useState(false)
 
     const total = contacts.reduce((acc: any, el) => {
         let total = Object.values(el.detail)
@@ -43,11 +47,16 @@ export const Contacts: React.FC<IContactsProps> = ({ statsContacts, img }) => {
         return (
             <>
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>
+                    {isFilterContactsActive && <FilterContacts />}
                     <div className={styleClients.tabsYourFurniActivityList__content}>
                         <ul className={styleClients.tabsYourFurniActivityList}>
                             <li className={styleClientsItem.tabsYourFurniActivityItem}>
                                 <div className={cx(styleClientsItem.tabsYourFurniActivityItem__title, styleClientsItem.name)}>
-                                    Name
+                                    <OpenFilterContacts
+                                        active={isFilterContactsActive}
+                                        setIsFilterContactsActive={setIsFilterContactsActive}
+                                    />
+                                    Contact
                                 </div>
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                                     Your earnings, AED

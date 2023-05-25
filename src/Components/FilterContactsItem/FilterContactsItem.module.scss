@@ -1,0 +1,18 @@
+.FilterContactsListItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding-left: 32px;
+    font-family: 'FuturaPT';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #fff;
+    cursor: pointer;
+
+    &__icon {
+        position: absolute;
+        left: 0;
+    }
+}

@@ -1,5 +1,6 @@
 .tabsYourFurniActivityItem {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 6px 20px;
     height: 52px;
@@ -12,6 +13,11 @@
     color: #E0E0E0;
     transition: background-color .2s ease;
     cursor: pointer;
+
+    &__title {
+        display: flex;
+        align-items: center;
+    }
 
     @media (max-width: 400px) {
         padding: 6px 10px;
@@ -27,6 +33,7 @@
         border-radius: 12px 12px 0 0;
         font-size: 12px;
         line-height: 15px;
+        cursor: default;
 
         div:not(:first-child) {
             width: 110px;
@@ -34,11 +41,10 @@
         }
 
         div:first-child {
-            flex: 1 1 auto;
-            min-width: 130px;
         }
 
         div:not(:last-child) {
+            display: flex;
             margin-right: 33px;
         }
     }

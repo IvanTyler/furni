@@ -1,0 +1,15 @@
+.openfilterContacts {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    background-color: #444755;
+    border-radius: 6px;
+}
+
+.openfilterContacts.active {
+    background-color: #A4A4A9;
+}
