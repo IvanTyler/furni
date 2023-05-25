@@ -43,11 +43,22 @@ export const Contacts: React.FC<IContactsProps> = ({ statsContacts, img }) => {
         })
     }
 
+    const setAllContacts = () => setContacts(prev => prev = statsContacts)
+    const filterClients = () => setContacts((prev: any) => prev = statsContacts.filter((el: IGetDataContacts) => el.detail.direct_sales !== 0))
+    const filterPartners = () => setContacts((prev: any) => prev = statsContacts.filter((el: IGetDataContacts) => el.detail.via_partners !== 0))
+    const filterSubPartners = () => setContacts((prev: any) => prev = statsContacts.filter((el: IGetDataContacts) => el.detail.via_subpartners !== 0))
+
     if (contacts.length) {
         return (
             <>
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>
-                    {isFilterContactsActive && <FilterContacts />}
+                    {isFilterContactsActive && <FilterContacts
+                        setAllContacts={setAllContacts}
+                        filterClients={filterClients}
+                        filterPartners={filterPartners}
+                        filterSubPartners={filterSubPartners}
+                        setIsFilterContactsActive={setIsFilterContactsActive}
+                    />}
                     <div className={styleClients.tabsYourFurniActivityList__content}>
                         <ul className={styleClients.tabsYourFurniActivityList}>
                             <li className={styleClientsItem.tabsYourFurniActivityItem}>
@@ -75,8 +86,6 @@ export const Contacts: React.FC<IContactsProps> = ({ statsContacts, img }) => {
                             <li className={styleClientsItem.tabsYourFurniActivityItem}>
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                                     Total
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                                 </div>
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
                                     {total}

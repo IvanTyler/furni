@@ -1,8 +1,9 @@
-import { IgetDataDto } from "../Interfaces/getDataDto";
+import { IgetDataContactsDto, IgetDataDto } from "../Interfaces/getDataDto";
 
 export interface IInitialState {
     codeCopied: boolean;
     data: IgetDataDto;
+    contactsFilter: IgetDataContactsDto[];
     isloading: boolean;
     error: null | string;
 }
@@ -15,5 +16,6 @@ export const initialState: IInitialState = {
         status: false,
     },
     isloading: false,
+    contactsFilter: [],
     error: '',
 }

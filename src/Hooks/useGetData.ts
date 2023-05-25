@@ -6,7 +6,7 @@ export const useGetData = () => {
 
     const [isStatus, setIsStatus] = useState(false)
 
-    const { codeCopied, data, isloading, error } = useTypeSelector(state => state.data)
+    let { codeCopied, data, isloading, error, contactsFilter } = useTypeSelector(state => state.data)
 
     useEffect(() => {
         if (data.status) setIsStatus(true)
@@ -30,6 +30,7 @@ export const useGetData = () => {
         codeCopied,
         isloading,
         isStatus,
-        error
+        error,
+        contactsFilter
     }
 }

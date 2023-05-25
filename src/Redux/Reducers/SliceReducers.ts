@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialState } from '../initialState'
+import { IgetDataContactsDto } from "../../Interfaces/getDataDto";
 
 
 export const dataSlice = createSlice({
@@ -11,6 +12,7 @@ export const dataSlice = createSlice({
         },
         getDataFetchingSuccess(state, action: PayloadAction<any>) {
             state.data = action.payload
+            state.contactsFilter = state.data.contacts
             state.isloading = false;
             state.data.status = true
         },

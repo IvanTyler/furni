@@ -6,7 +6,7 @@ import selectedFilterIcon from '../../assets/icon/common/selected-green.svg'
 
 interface IFilterContactsItemProps {
     item: IFilterContacts
-    itemFilterContactsEditHandler: (item: any) => void
+    itemFilterContactsEditHandler: (id: number, name: string) => void
 }
 
 export const FilterContactsItem: React.FC<IFilterContactsItemProps> = (
@@ -17,7 +17,7 @@ export const FilterContactsItem: React.FC<IFilterContactsItemProps> = (
 ) => {
     return (
         <li
-            onClick={() => itemFilterContactsEditHandler(item.id)}
+            onClick={() => itemFilterContactsEditHandler(item.id, item.name)}
             className={style.FilterContactsListItem}>
             {
                 item.active &&

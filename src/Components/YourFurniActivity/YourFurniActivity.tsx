@@ -28,8 +28,8 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
 ) => {
     const [tabElement, setTabElement] = useState('Overview')
 
-    const { myDataContacts, myDataEvents, codeCopied } = useGetData()
-
+    const { myDataEvents, codeCopied, contactsFilter } = useGetData()
+    
     return (
         <>
             <section className={
@@ -55,7 +55,7 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
                         }
                         {tabElement === tabsYourFurniActivityListEnum.contacts ?
                             <Contacts
-                                statsContacts={myDataContacts}
+                                statsContacts={contactsFilter}
                                 img={imgContacts}
                             />
                             : null

@@ -3,13 +3,32 @@ import { useState } from 'react'
 import { IFilterContacts } from '../../Interfaces/FilterContacts'
 import { List } from '../List/List'
 import { FilterContactsItem } from '../FilterContactsItem/FilterContactsItem'
+import { useDispatch } from 'react-redux'
 
-export const FilterContacts: React.FC = () => {
+interface IFilterContactsProps {
+    setIsFilterContactsActive: (item: boolean) => void
+    filterClients: () => void
+    setAllContacts: () => void
+    filterPartners: () => void
+    filterSubPartners: () => void
+}
+
+export const FilterContacts: React.FC<IFilterContactsProps> = (
+    {
+        setIsFilterContactsActive,
+        setAllContacts,
+        filterClients,
+        filterPartners,
+        filterSubPartners,
+    }
+) => {
+
+    const dispath = useDispatch<any>()
 
     const filterContactsItems: IFilterContacts[] = [
         {
             id: 1,
-            name: 'All contacts',
+            name: 'Allcontacts',
             active: true,
         },
         {
@@ -32,7 +51,16 @@ export const FilterContacts: React.FC = () => {
     const [filterContactsItem, setFilterContactsItem] = useState<IFilterContacts[]>(filterContactsItems)
 
 
-    const itemFilterContactsEditHandler = (id: number) => {
+    const itemFilterContactsEditHandler = (id: number, name: string) => {
+        setIsFilterContactsActive(false)
+
+        const currentname = filterContactsItem.find((el: IFilterContacts) => el.name === name)
+        if (currentname?.name === 'Clients') filterClients()
+        if (currentname?.name === 'Allcontacts') setAllContacts()
+        if (currentname?.name === 'Partners') filterPartners()
+        if (currentname?.name === 'Subpartners') filterSubPartners()
+
+
         setFilterContactsItem((prev: any) => {
             return prev.map((el: any) => {
                 if (el.id === id) {
