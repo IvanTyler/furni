@@ -4,10 +4,13 @@ import cx from 'classnames'
 
 interface IClientsProps {
     item: IGetDataContacts;
+    totalActive: boolean;
     itemEditHandler: (item: any) => void
 }
 
-export const ContactsItem: React.FC<IClientsProps> = ({ item, itemEditHandler }) => {
+export const ContactsItem: React.FC<IClientsProps> = (
+    { item, itemEditHandler, totalActive }
+) => {
 
     const total = Object.values(item.detail)
         .reduce((acc: number, el: number) => acc + el, 0)
@@ -29,7 +32,7 @@ export const ContactsItem: React.FC<IClientsProps> = ({ item, itemEditHandler })
                     {item.name}
                 </div>
                 <div className={style.tabsYourFurniActivityItem__item}>
-                    {total}
+                    {totalActive ? total : item.titleTotal}
                 </div>
             </li>
             {
