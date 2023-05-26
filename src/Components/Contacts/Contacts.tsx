@@ -27,7 +27,6 @@ export const Contacts: React.FC<IContactsProps> = ({ statsContacts, img }) => {
         return acc + total
     }, 0)
 
-
     const [totalSum, setTotalSum] = useState(total)
     const [totalActive, setTotalActive] = useState(true)
 
@@ -55,6 +54,7 @@ export const Contacts: React.FC<IContactsProps> = ({ statsContacts, img }) => {
         setTotalSum((prev: number) => prev = total)
         setTotalActive(true)
     }
+
     const filterClients = () => {
         const direct_sales = statsContacts.map((el: IGetDataContacts) => el.detail.direct_sales).
             filter((el: any) => el !== 0)
@@ -80,11 +80,9 @@ export const Contacts: React.FC<IContactsProps> = ({ statsContacts, img }) => {
                     titleTotal: via_partners[index]
                 }
             }))
-
         const total = statsContacts.reduce((acc: any, el: any) => acc + el.detail.via_partners, 0)
         setTotalSum((prev: number) => prev = total)
         setTotalActive(false)
-
     }
     const filterSubPartners = () => {
         const via_subpartners = statsContacts.map((el: IGetDataContacts) => el.detail.via_subpartners).
