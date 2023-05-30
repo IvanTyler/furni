@@ -3,12 +3,16 @@ import { ITabs } from '../../Interfaces/Tabs'
 import { List } from '../List/List'
 import { TabsListItem } from '../TabsItem/TabsListItem'
 import style from './TabsList.module.scss'
+import { dataActionContacts } from '../../Redux/Actions/dataAction'
+import { useDispatch } from 'react-redux'
 
 interface ITabsListProps {
     setTabElement(item: any): void
 }
 
 export const TabsList: React.FC<ITabsListProps> = ({ setTabElement }) => {
+
+    const dispath = useDispatch<any>()
 
     const tabsList: ITabs[] = [
         {
@@ -31,6 +35,12 @@ export const TabsList: React.FC<ITabsListProps> = ({ setTabElement }) => {
     const [tabsYourFurniActivityList, setTabsYourFurniActivityListList] = useState<ITabs[]>(tabsList)
 
     const tabEditHandler = (id: number, name: string) => {
+
+        // const currentname = tabsList.find((el: ITabs) => el.name === name)
+        // if (currentname?.name === 'Contacts') {
+        //     dispath(dataActionContacts())
+        // }
+        
         setTabElement((prev: string) => prev = name)
         setTabsYourFurniActivityListList(prev => {
             return prev.map(el => {

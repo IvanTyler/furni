@@ -3,7 +3,6 @@ import { IDetailContacts, IDetailEvents } from "./Detail";
 export interface IgetDataDto {
     contacts: IgetDataContactsDto[];
     events: IGetDataEventsDto[];
-    status: boolean;
 }
 
 export interface IgetDataContactsDto {

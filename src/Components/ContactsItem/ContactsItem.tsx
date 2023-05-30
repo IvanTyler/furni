@@ -1,30 +1,33 @@
+import { useState } from 'react';
 import style from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
 import { IGetDataContacts } from '../../Interfaces/contacts';
 import cx from 'classnames'
 
 interface IClientsProps {
     item: IGetDataContacts;
-    totalActive: boolean;
-    itemEditHandler: (item: any) => void
+    // totalActive: boolean;
+    // itemEditHandler: (item: any) => void
 }
 
 export const ContactsItem: React.FC<IClientsProps> = (
-    { item, itemEditHandler, totalActive }
+    { item }
 ) => {
 
     const total = Object.values(item.detail)
         .reduce((acc: number, el: number) => acc + el, 0)
 
+    const [openDetailList, setOpenDetailList] = useState(false)
+
     return (
         <>
-            <li className={item.active ?
+            <li className={openDetailList ?
                 cx(style.tabsYourFurniActivityItem, style.active) :
                 style.tabsYourFurniActivityItem}>
                 <div className={style.tabsYourFurniActivityItem__name}>
                     <div
-                        onClick={() => itemEditHandler(item.id)}
+                        onClick={() => setOpenDetailList(prev => prev = !prev)}
                         className={
-                            item.active ?
+                            openDetailList ?
                                 cx(style.tabsYourFurniActivityItem__showDetailsContact, style.active) :
                                 style.tabsYourFurniActivityItem__showDetailsContact}
                     >
@@ -32,11 +35,11 @@ export const ContactsItem: React.FC<IClientsProps> = (
                     {item.name}
                 </div>
                 <div className={style.tabsYourFurniActivityItem__item}>
-                    {totalActive ? total : item.titleTotal}
+                    {item.titleTotal}
                 </div>
             </li>
             {
-                item.active ?
+                openDetailList ?
                     <ul>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
                             <div className={style.tabsYourFurniActivityItem__name}>

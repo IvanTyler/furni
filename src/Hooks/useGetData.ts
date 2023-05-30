@@ -1,16 +1,15 @@
-import { useTypeSelector } from "./useTypeSelector"
+import { dataActionContacts } from "../Redux/Actions/dataAction";
+import { useAppDispath, useTypeSelector } from "./useTypeSelector"
 import { useEffect, useState } from "react"
 
 
 export const useGetData = () => {
 
-    const [isStatus, setIsStatus] = useState(false)
 
-    let { codeCopied, data, isloading, error, contactsFilter } = useTypeSelector(state => state.data)
+    let { codeCopied, isloading, error, contacts } = useTypeSelector(state => state.data)
+    console.log(contacts);
+    const dispath = useAppDispath()
 
-    useEffect(() => {
-        if (data.status) setIsStatus(true)
-    }, [data])
 
     function getDataContactsEventsDto<T>(array: T[]): T[] {
         return array.map((el: any) => {
@@ -21,16 +20,15 @@ export const useGetData = () => {
         })
     }
 
-    const myDataEvents = getDataContactsEventsDto(data.events)
-    const myDataContacts = getDataContactsEventsDto(data.contacts)
+    // const myDataEvents = getDataContactsEventsDto(data.events)
+    const myDataContacts = getDataContactsEventsDto(contacts)
 
     return {
         myDataContacts,
-        myDataEvents,
+        // myDataEvents,
         codeCopied,
         isloading,
-        isStatus,
         error,
-        contactsFilter
+        contacts
     }
 }

@@ -10,7 +10,7 @@ import { useState } from 'react'
 import { IGetDataEvents } from '../../Interfaces/Events'
 
 interface IPartnersProps {
-    statsEvents: any;
+    statsEvents?: any;
     img: string;
 }
 

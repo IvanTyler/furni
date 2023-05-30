@@ -17,7 +17,7 @@ export const FilterContactsItem: React.FC<IFilterContactsItemProps> = (
 ) => {
     return (
         <li
-            onClick={() => itemFilterContactsEditHandler(item.id, item.name)}
+            onClick={() => itemFilterContactsEditHandler(item.id, item.filter)}
             className={style.FilterContactsListItem}>
             {
                 item.active &&

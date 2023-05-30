@@ -18,18 +18,15 @@ import { useGetData } from '../../Hooks/useGetData'
 
 
 interface IYourFurniActivityProps {
-    getData: IDataApi;
+    // getData: IDataApi;
 }
 
-export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
-    {
-        getData,
-    }
-) => {
+export const YourFurniActivity: React.FC = () => {
+
     const [tabElement, setTabElement] = useState('Overview')
 
-    const { myDataEvents, codeCopied, contactsFilter } = useGetData()
-    
+    // const { myDataEvents, codeCopied, myDataContacts } = useGetData()
+
     return (
         <>
             <section className={
@@ -55,7 +52,7 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
                         }
                         {tabElement === tabsYourFurniActivityListEnum.contacts ?
                             <Contacts
-                                statsContacts={contactsFilter}
+                                // statsContacts={myDataContacts}
                                 img={imgContacts}
                             />
                             : null
@@ -63,12 +60,12 @@ export const YourFurniActivity: React.FC<IYourFurniActivityProps> = (
                         {tabElement === tabsYourFurniActivityListEnum.events ?
                             <Events
                                 img={imgEvents}
-                                statsEvents={myDataEvents}
+                                // statsEvents={myDataEvents}
                             />
                             : null
                         }
                     </div>
-                    {codeCopied && <div className={style.sectionYourFurniActivity__codeCopied}>
+                    {false && <div className={style.sectionYourFurniActivity__codeCopied}>
                         Code copied
                     </div>}
                 </div>

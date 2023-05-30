@@ -10,3 +10,8 @@
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.64);
     border-radius: 16px;
 }
+
+.FilterContactsList.hide {
+    z-index: -5;
+    opacity: 0;
+}

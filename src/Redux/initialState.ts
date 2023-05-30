@@ -3,8 +3,9 @@ import { IgetDataContactsDto, IgetDataDto } from "../Interfaces/getDataDto";
 export interface IInitialState {
     codeCopied: boolean;
     data: IgetDataDto;
-    contactsFilter: IgetDataContactsDto[];
+    contacts: IgetDataContactsDto[];
     isloading: boolean;
+    filterBy: null | string;
     error: null | string;
 }
 
@@ -13,9 +14,9 @@ export const initialState: IInitialState = {
     data: {
         contacts: [],
         events: [],
-        status: false,
     },
     isloading: false,
-    contactsFilter: [],
+    contacts: [],
+    filterBy: null,
     error: '',
 }

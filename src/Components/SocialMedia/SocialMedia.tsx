@@ -29,7 +29,7 @@ export const SocialMedia: React.FC<ISocialMediaProps> = ({ code }) => {
     const handleResize = () => setdimensionWindowbrowser((prev: number) => prev = window.innerWidth)
 
     const copyReferalCode = async () => {
-        if (dimensionWindowbrowser > 400) {
+        if (dimensionWindowbrowser > 450) {
             navigator.clipboard.writeText(code)
             dispath(codeCopiedAction())
         } else {

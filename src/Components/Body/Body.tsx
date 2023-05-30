@@ -9,11 +9,12 @@ import { MainPage } from '../MainPage/MainPage'
 import { Route, Routes } from 'react-router-dom'
 import { Registration } from '../Registration/Registration'
 import { useGetData } from '../../Hooks/useGetData'
+import { Content } from '../Content/Content'
 
 export const Body: React.FC = () => {
 
-    const { isloading, isStatus, error } = useGetData()
-    
+    const { isloading, error } = useGetData()
+
     const [isLoading, setIsLoading] = useState(false)
 
     const [isLogin, setIsLogin] = useState(false)
@@ -32,29 +33,21 @@ export const Body: React.FC = () => {
 
     return (
         <div className={isLogin ? '' : style.containerBody}>
-            {isStatus ?
-                <>
-                    <Header setIsLogin={setIsLogin} />
-                    <YourFurniActivity
-                        getData={getData}
-                    />
-                </>
-                :
-                <>
-                    <Routes>
-                        <Route path='/' element={<MainPage />} />
-                        <Route path='/logIn' element={<FormUserLogin
-                            setGetData={setGetData}
-                            setIsLoading={setIsLoading}
-                            isShowElement={false}
-                        />} />
-                        <Route path='/registr' element={<Registration
-                            setGetData={setGetData}
-                            setIsLoading={setIsLoading}
-                        />} />
-                    </Routes>
-                </>
-            }
+            <>
+                <Routes>
+                    <Route path='/' element={<MainPage />} />
+                    <Route path='/logIn' element={<FormUserLogin
+                        setGetData={setGetData}
+                        setIsLoading={setIsLoading}
+                        isShowElement={false}
+                    />} />
+                    <Route path='/registr' element={<Registration
+                        setGetData={setGetData}
+                        setIsLoading={setIsLoading}
+                    />} />
+                    <Route path='/content' element={<Content />} />
+                </Routes>
+            </>
         </div>
     )
 }

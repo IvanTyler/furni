@@ -10,7 +10,7 @@ interface IHeaderProps {
     setIsLogin(item: any): void
 }
 
-export const Header: React.FC<IHeaderProps> = ({ setIsLogin }) => {
+export const Header: React.FC = () => {
 
     const [isShowSocialMedia, setIsSocialMedia] = useState(false)
     const code = '9462865'
@@ -43,7 +43,7 @@ export const Header: React.FC<IHeaderProps> = ({ setIsLogin }) => {
                 </div>
                 {isShowSocialMedia && <SocialMedia code={code} />}
             </div>
-            <span onClick={() => setIsLogin((prev: boolean) => prev = false)} className={style.header__logOut}>
+            <span className={style.header__logOut}>
                 Log out
             </span>
         </header>

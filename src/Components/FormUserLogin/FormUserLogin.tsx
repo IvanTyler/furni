@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import cx from 'classnames'
 import { useDispatch } from 'react-redux'
 import { dataAction } from '../../Redux/Actions/dataAction'
+import { useGetData } from '../../Hooks/useGetData'
 
 interface IFormUserLoginProps {
     setGetData(data: IDataApi): void;
@@ -18,6 +19,8 @@ interface IFormUserLoginProps {
 export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     { setGetData, setIsLoading, isShowElement }
 ) => {
+
+    
 
     const dispath = useDispatch<any>()
 
@@ -30,7 +33,6 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     const [errorInputPhone, setErrorInputPhone] = useState(false)
     const [errorInputEmail, setErrorInputEmail] = useState(false)
 
-
     const [inputValueLogin, setInputValueLogin] = useState('')
     const [inputValuePassword, setInputValuePassword] = useState('')
     const [inputValueFirstName, setInputValueFirstName] = useState('')
@@ -41,13 +43,13 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
 
     const fetchData = async () => {
         setIsLoading(true)
-        const response = await axios.post<IDataApi>(
-            'https://partnerinfo.furni.ae/api/partner/stats',
-            { login: inputValueLogin, password: inputValuePassword })
-            .then(response => setGetData(response.data))
-            .catch(error => console.log(error))
-            .finally(() => setIsLoading(false))
-        dispath(dataAction(inputValueLogin, inputValuePassword))
+        // const response = await axios.post<IDataApi>(
+        //     'https://partnerinfo.furni.ae/api/partner/stats',
+        //     { login: inputValueLogin, password: inputValuePassword })
+        //     .then(response => setGetData(response.data))
+        //     .catch(error => console.log(error))
+        //     .finally(() => setIsLoading(false))
+        dispath(dataAction(inputValueEmail, inputValuePassword))
     }
 
     const toggleInputTypeFunc = () => {
@@ -108,28 +110,35 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
         //     setErrorInputEmail(prev => prev = false)
         // }
 
-        if (inputValueLogin.trim().length === 0 || inputValueLogin.toLowerCase() !== 'demo') {
-            setErrorInputLoginValue(prev => prev = true)
+        // if (inputValueLogin.trim().length === 0) {
+        //     setErrorInputLoginValue(prev => prev = true)
+        // } else {
+        //     setErrorInputLoginValue(prev => prev = false)
+        // }
+
+        if (inputValueEmail.trim().length === 0) {
+            setErrorInputEmail(prev => prev = true)
         } else {
-            setErrorInputLoginValue(prev => prev = false)
+            setErrorInputEmail(prev => prev = false)
         }
 
-        if (inputValuePassword.trim().length < 8 || inputValuePassword.toLowerCase() !== 'demodemo') {
+        if (inputValuePassword.trim().length < 8) {
             setErrorInputPasswordValue(prev => prev = true)
         } else {
             setErrorInputPasswordValue(prev => prev = false)
         }
 
-        if (inputValueLogin.trim().length >= 1
+        if (inputValueEmail.trim().length >= 1
             && inputValuePassword.trim().length >= 8
-            && inputValueLogin.toLowerCase() === 'demo'
-            && inputValuePassword.toLowerCase() === 'demodemo'
+            // && inputValueLogin.toLowerCase() === 'demo'
+            // && inputValuePassword.toLowerCase() === 'demodemo'
         ) {
             setErrorInputLoginValue(prev => prev = false)
             setErrorInputPasswordValue(prev => prev = false)
             fetchData()
             setInputValueLogin('')
             setInputValuePassword('')
+
         }
     }
 
@@ -140,14 +149,14 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
                 Login to your
                 partner’s account
             </h1>
-            {isShowElement && <Input
+            <Input
                 type='text'
                 name='Email'
                 placeholder='Email'
                 valueInput={inputValueEmail}
                 error={errorInputEmail}
                 onChangeInput={inputChangeEmail}
-            />}
+            />
             {isShowElement && <div className={style.formUserLogin__inputWrapper}>
                 <Input
                     type='text'
@@ -178,7 +187,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
                     onChangeInput={inputChangePhone}
                 />
             </div>}
-            <div className={style.formUserLogin__inputWrapper}>
+            {isShowElement && <div className={style.formUserLogin__inputWrapper}>
                 <Input
                     type='text'
                     name='name'
@@ -188,6 +197,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
                     onChangeInput={inputChangeLoginValue}
                 />
             </div>
+            }
             <div className={style.formUserLogin__inputWrapper}>
                 <Input
                     type={toggleTypeInput ? 'text' : 'password'}
@@ -201,7 +211,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
                     {toggleTypeInput ? 'Hide' : 'Show'}
                 </span>
             </div>
-            <button className={style.formUserLogin__submit}>
+            <button className={style.formUserLogin__submit} >
                 {isShowElement ? 'Create account' : 'Login'}
             </button>
 
