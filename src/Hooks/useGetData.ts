@@ -7,7 +7,6 @@ export const useGetData = () => {
 
 
     let { codeCopied, isloading, error, contacts } = useTypeSelector(state => state.data)
-    console.log(contacts);
     const dispath = useAppDispath()
 
 

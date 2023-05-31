@@ -4,8 +4,8 @@ import { IFilterContacts } from '../../Interfaces/FilterContacts'
 import { List } from '../List/List'
 import { FilterContactsItem } from '../FilterContactsItem/FilterContactsItem'
 import cx from 'classnames'
-import { useAppDispath } from '../../Hooks/useTypeSelector'
-import { setfilterBy } from '../../Redux/Reducers/SliceReducers'
+import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
+import { grandTotalSelector, setfilterBy, totalDirectSales, totalViaPartners, totalViaSubPartners } from '../../Redux/Reducers/SliceReducers'
 
 interface IFilterContactsProps {
     isFilterContactsActive: boolean
@@ -30,6 +30,12 @@ export const FilterContacts: React.FC<IFilterContactsProps> = (
 ) => {
 
     const dispath = useAppDispath()
+
+    const mainTotal = useTypeSelector(grandTotalSelector)
+    const totalClients = useTypeSelector(totalDirectSales)
+    const totalPartners = useTypeSelector(totalViaPartners)
+    const totalSubPartners = useTypeSelector(totalViaSubPartners)
+
 
     const filterContactsItems: IFilterContacts[] = [
         {
@@ -65,7 +71,6 @@ export const FilterContacts: React.FC<IFilterContactsProps> = (
         setIsFilterContactsActive(false)
 
         dispath(setfilterBy(filter))
-        
 
         setFilterContactsItem((prev: any) => {
             return prev.map((el: any) => {

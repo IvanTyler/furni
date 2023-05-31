@@ -2,21 +2,37 @@ import { useState } from 'react';
 import style from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
 import { IGetDataContacts } from '../../Interfaces/contacts';
 import cx from 'classnames'
+import { useTypeSelector } from '../../Hooks/useTypeSelector';
 
 interface IClientsProps {
     item: IGetDataContacts;
-    // totalActive: boolean;
-    // itemEditHandler: (item: any) => void
 }
 
 export const ContactsItem: React.FC<IClientsProps> = (
     { item }
 ) => {
 
+    const { filterBy } = useTypeSelector(state => state.data)
+
     const total = Object.values(item.detail)
         .reduce((acc: number, el: number) => acc + el, 0)
 
     const [openDetailList, setOpenDetailList] = useState(false)
+
+    function setGrandTitleContacts() {
+        switch (filterBy) {
+            case null:
+                return item.titleTotal
+            case 'direct_sales':
+                return item.detail.direct_sales
+            case 'via_partners':
+                return item.detail.via_partners
+            case 'via_subpartners':
+                return item.detail.via_subpartners
+            default:
+                return item.titleTotal
+        }
+    }
 
     return (
         <>
@@ -35,7 +51,7 @@ export const ContactsItem: React.FC<IClientsProps> = (
                     {item.name}
                 </div>
                 <div className={style.tabsYourFurniActivityItem__item}>
-                    {item.titleTotal}
+                    {setGrandTitleContacts()}
                 </div>
             </li>
             {

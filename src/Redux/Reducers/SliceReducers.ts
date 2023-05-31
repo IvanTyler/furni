@@ -58,6 +58,7 @@ const contacts = (state: RootState) => state.data.contacts
 const filterBy = (state: RootState) => state.data.filterBy
 
 export const contactsSelector = createSelector([contacts, filterBy], (contacts, filterBy) => {
+    
     if (filterBy) {
         contacts = contacts.filter((el: any) => el.detail[filterBy] > 0)
     }
@@ -71,6 +72,18 @@ export const contactsSelector = createSelector([contacts, filterBy], (contacts, 
 
 export const grandTotalSelector = createSelector([contactsSelector], (contactsSelector) => {
     return contactsSelector.reduce((acc: any, el) => acc + el.titleTotal, 0)
+})
+
+export const totalDirectSales = createSelector([contactsSelector], (contactsSelector) => {
+    return contactsSelector.reduce((acc: any, el) => acc + el.detail.direct_sales, 0)
+})
+
+export const totalViaPartners = createSelector([contactsSelector], (contactsSelector) => {
+    return contactsSelector.reduce((acc: any, el) => acc + el.detail.via_partners, 0)
+})
+
+export const totalViaSubPartners = createSelector([contactsSelector], (contactsSelector) => {
+    return contactsSelector.reduce((acc: any, el) => acc + el.detail.via_subpartners, 0)
 })
 
 export default dataSlice.reducer
