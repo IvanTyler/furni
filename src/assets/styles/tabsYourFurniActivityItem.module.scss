@@ -40,8 +40,7 @@
             text-align: right;
         }
 
-        div:first-child {
-        }
+        div:first-child {}
 
         div:not(:last-child) {
             display: flex;
@@ -153,28 +152,70 @@
     }
 }
 
-.referral {
+.new_lead {
     color: #E7E960;
 }
 
-.closed_won {
-    color: #22D3A5;
+.customers_communication {
+    color: #888888;
 }
 
-.closed_lost {
-    color: #F94C4C;
+.customers_agreement_for_a_meeting {
+    color: #ef9618;
 }
 
-.waitkeys {
+.customers_the_brief_is_filled_in {
+    color: #888888;
+}
+
+.customers_meeting_with_the_designer {
+    color: #888888;
+}
+
+.customers_sent_offer {
+    color: #ff3ae8;
+}
+
+.customers_invoice_sent {
+    color: #ff3ae8;
+}
+
+.customers_closed_won {
     color: #B3BAFF;
 }
 
-.willmeet {
-    color: #F5A50A;
+.re_calc {
+    color: #ff3ae8;
 }
 
-.sentofferr,
-.waitprepay,
-.recelc {
-    color: #ff3ae8;
+.realization_keys_received {
+    color: #888888;
+}
+
+.realization_buy_products {
+    color: #888888;
+}
+
+.realization_waiting_for_delivery {
+    color: #888888;
+}
+
+.realization_products_delivered {
+    color: #888888;
+}
+
+.realization_cleaning {
+    color: #888888;
+}
+
+.realization_closed_won {
+    color: #22D3A5;
+}
+
+.realization_closed_lost {
+    color: #F94C4C;
+}
+
+.customers_closed_lost {
+    color: #F94C4C;
 }

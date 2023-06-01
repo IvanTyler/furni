@@ -2,7 +2,7 @@ import { FormUserLogin } from '../FormUserLogin/FormUserLogin'
 import { Preloader } from '../Preloader/Preloader'
 import style from './Body.module.scss'
 import { MainPage } from '../MainPage/MainPage'
-import { Navigate, Route, Routes, redirect, useLocation, useNavigate } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { Registration } from '../Registration/Registration'
 import { useGetData } from '../../Hooks/useGetData'
 import { Content } from '../Content/Content'
@@ -21,7 +21,9 @@ export const Body: React.FC = () => {
 
     }, [status])
 
-
+    // if (status) {
+    //     history("/content");
+    // }
 
 
     if (isloading)

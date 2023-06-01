@@ -26,10 +26,10 @@ export const dataSlice = createSlice({
             state.error = action.payload
         },
         getDataFetchContacts(state, action: PayloadAction<any>) {
-            state.contacts = action.payload.contacts
+            state.contacts = action.payload
         },
         getDataFetchEvents(state, action: PayloadAction<any>) {
-            state.events = action.payload.events
+            state.events = action.payload
         },
         setfilterBy(state, action: PayloadAction<any>) {
             state.filterBy = action.payload

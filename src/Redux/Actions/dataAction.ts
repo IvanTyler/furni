@@ -43,10 +43,11 @@ export const dataActionContacts = () => async (dispath: AppDispatch) => {
                 }
             )
                 .then(response => {
+                    console.log(response);
 
                     const res = getData
 
-                    dispath(getDataFetchContacts(res))
+                    dispath(getDataFetchContacts(response.data))
 
                 })
                 .catch(error => console.log(error))
@@ -71,10 +72,11 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
                 }
             )
                 .then(response => {
+                    console.log(response);
                     
                     const res = getData
 
-                    dispath(getDataFetchEvents(res))
+                    dispath(getDataFetchEvents(response.data))
 
                 })
                 .catch(error => console.log(error))

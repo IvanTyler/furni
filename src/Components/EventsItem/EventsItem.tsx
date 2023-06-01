@@ -11,29 +11,6 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
 
     const [openDetailList, setOpenDetailList] = useState(false)
 
-    function eventTypeColor(event_type: string) {
-        switch (event_type) {
-            case 'referral':
-                return `${cx(style.tabsYourFurniActivityItem__item, style.referral)}`
-            case 'closed_won':
-                return `${cx(style.tabsYourFurniActivityItem__item, style.closed_won)}`
-            case 'closed_lost':
-                return `${cx(style.tabsYourFurniActivityItem__item, style.closed_lost)}`
-            case 'waitkeys':
-                return `${cx(style.tabsYourFurniActivityItem__item, style.waitkeys)}`
-            case 'willmeet':
-                return `${cx(style.tabsYourFurniActivityItem__item, style.willmeet)}`
-            case 'sentofferr':
-                return `${cx(style.tabsYourFurniActivityItem__item, style.sentofferr)}`
-            case 'waitprepay':
-                return `${cx(style.tabsYourFurniActivityItem__item, style.waitprepay)}`
-            case 'recelc':
-                return `${cx(style.tabsYourFurniActivityItem__item, style.recelc)}`
-            default:
-                return `${style.tabsYourFurniActivityItem__item}`
-        }
-    }
-
     return (
         <>
             <li className={openDetailList ?
@@ -50,8 +27,8 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                     </div>
                     {item.name}
                 </div>
-                <div className={eventTypeColor(item.event_type)}>
-                    {item.event}
+                <div className={cx(style.tabsYourFurniActivityItem__item, style[item.event_type])}>
+                    {item.event_text}
                 </div>
             </li>
             {

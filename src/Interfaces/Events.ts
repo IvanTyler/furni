@@ -4,6 +4,6 @@ export interface IGetDataEvents {
     id: number;
     name: string;
     event_type: string;
-    event: string;
+    event_text: string;
     detail: IDetailEvents
 }
