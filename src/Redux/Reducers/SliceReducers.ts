@@ -9,10 +9,13 @@ export const dataSlice = createSlice({
     initialState,
     reducers: {
         getDataFetching(state) {
-            state.isloading = true;
+            state.isloading = 'loading';
+        },
+        getDataFetchingSuccess(state) {
+            state.isloading = 'ok';
         },
         getDataToken(state) {
-            state.isloading = false;
+            state.isloading = 'ok';
             state.status = true
         },
         codeCopiedActiveReducer(state) {
@@ -22,7 +25,8 @@ export const dataSlice = createSlice({
             state.codeCopied = false
         },
         getDataFetchError(state, action: PayloadAction<string>) {
-            state.isloading = false;
+            state.isloading = 'error';
+            state.status = false
             state.error = action.payload
         },
         getDataFetchContacts(state, action: PayloadAction<any>) {
@@ -80,4 +84,5 @@ export const {
     getDataToken,
     setfilterBy,
     getDataFetchEvents,
+    getDataFetchingSuccess,
 } = dataSlice.actions

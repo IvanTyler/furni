@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import { IGetDataEvents } from '../../Interfaces/Events'
 import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
 import { dataActionEvents } from '../../Redux/Actions/dataAction'
+import { Preloader } from '../Preloader/Preloader'
 
 interface IPartnersProps {
     statsEvents?: any;
@@ -27,7 +28,12 @@ export const Events: React.FC<IPartnersProps> = ({ statsEvents, img }) => {
     }, [])
 
 
-    if (events.length) {
+    if (!events.length)
+        return (
+            <Preloader />
+        )
+
+    else if (events.length) {
         return (
             <>
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>

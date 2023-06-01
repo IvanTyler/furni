@@ -5,7 +5,7 @@ export interface IInitialState {
     codeCopied: boolean;
     contacts: IGetDataContacts[];
     events: IGetDataEvents[];
-    isloading: boolean;
+    isloading: string;
     filterBy: null | string;
     error: null | string;
     status: boolean;
@@ -13,7 +13,7 @@ export interface IInitialState {
 
 export const initialState: IInitialState = {
     codeCopied: false,
-    isloading: false,
+    isloading: '',
     contacts: [],
     events: [],
     filterBy: null,

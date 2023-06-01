@@ -12,14 +12,15 @@ import { FilterContacts } from '../FilterContacts/FilterContacts'
 import { dataActionContacts } from '../../Redux/Actions/dataAction'
 import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
 import { contactsSelector, grandTotalSelector, totalDirectSales, totalViaPartners, totalViaSubPartners } from '../../Redux/Reducers/SliceReducers'
+import { Preloader } from '../Preloader/Preloader'
 
 interface IContactsProps {
     img: string;
 }
 
 export const Contacts: React.FC<IContactsProps> = ({ img }) => {
-    
-    const { filterBy } = useTypeSelector(state => state.data)
+
+    const { filterBy, isloading } = useTypeSelector(state => state.data)
 
     const contacts = useTypeSelector(contactsSelector)
     const grandTotal = useTypeSelector(grandTotalSelector)
@@ -51,7 +52,13 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
     const [isFilterContactsActive, setIsFilterContactsActive] = useState(false)
     const [titleContacts, setTitleContacts] = useState('All contacts')
 
-    if (contacts.length) {
+
+    if (isloading === 'loading')
+        return (
+            <Preloader />
+        )
+
+    else if (isloading === 'ok') {
         return (
             <>
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>
@@ -98,10 +105,12 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
         )
     }
 
+    
     return (
         <>
             <DefaultPage img={img} />
         </>
     )
+
 
 }
