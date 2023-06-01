@@ -20,8 +20,11 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                     refresh_token: response.data.refresh_token,
                     token: response.data.token
                 }))
+                
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+            })
 
         dispath(getDataToken())
     } catch (error) {
@@ -52,7 +55,11 @@ export const dataActionContacts = () => async (dispath: AppDispatch) => {
                     dispath(getDataFetchContacts(response.data))
 
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                    console.log(error)
+                    dispath(getDataFetchError('Ошибка, данных нет'))
+
+                })
             dispath(getDataFetchingSuccess())
         }
 
@@ -65,6 +72,8 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
     try {
         const getTokenSessionStorage = localStorage.getItem('token')
         if (getTokenSessionStorage !== null) {
+
+            dispath(getDataFetching())
             const getTokenSessionStorageParse = JSON.parse(getTokenSessionStorage)
             const response = await axios.get<any>(
                 `api/user/events`,
@@ -83,6 +92,8 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
 
                 })
                 .catch(error => console.log(error))
+            dispath(getDataFetchingSuccess())
+
         }
 
     } catch (error) {

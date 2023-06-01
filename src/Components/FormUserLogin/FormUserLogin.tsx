@@ -4,7 +4,7 @@ import { Input } from '../Input/Input'
 import React, { useState } from 'react'
 import axios from 'axios'
 import { IDataApi } from '../../Interfaces/DataApi'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import cx from 'classnames'
 import { useDispatch } from 'react-redux'
 import { dataAction } from '../../Redux/Actions/dataAction'
@@ -18,8 +18,7 @@ interface IFormUserLoginProps {
 export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     { isShowElement }
 ) => {
-    const { status } = useTypeSelector(state => state.data)
-    
+    const navigate = useNavigate()
 
     const dispath = useDispatch<any>()
 
@@ -41,7 +40,8 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
 
 
     const fetchData = async () => {
-        dispath(dataAction(inputValueEmail, inputValuePassword))
+        await dispath(dataAction(inputValueEmail, inputValuePassword))
+        navigate("/content");
     }
 
     const toggleInputTypeFunc = () => {

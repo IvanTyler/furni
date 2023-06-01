@@ -19,7 +19,7 @@ interface IPartnersProps {
 
 export const Events: React.FC<IPartnersProps> = ({ statsEvents, img }) => {
 
-    const { events } = useTypeSelector(state => state.data)
+    const { events, isloading } = useTypeSelector(state => state.data)
 
     const dispath = useAppDispath()
 
@@ -28,12 +28,12 @@ export const Events: React.FC<IPartnersProps> = ({ statsEvents, img }) => {
     }, [])
 
 
-    if (!events.length)
+    if (isloading === 'loading')
         return (
             <Preloader />
         )
 
-    else if (events.length) {
+    else if (isloading === 'ok' && events.length) {
         return (
             <>
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>
@@ -58,6 +58,14 @@ export const Events: React.FC<IPartnersProps> = ({ statsEvents, img }) => {
                         </ul>
                     </div>
                 </div>
+            </>
+        )
+    }
+
+    else if (!events) {
+        return (
+            <>
+                <DefaultPage img={img} />
             </>
         )
     }

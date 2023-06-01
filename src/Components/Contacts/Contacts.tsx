@@ -58,7 +58,7 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
             <Preloader />
         )
 
-    else if (isloading === 'ok') {
+    else if (isloading === 'ok' && contacts.length) {
         return (
             <>
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>
@@ -105,12 +105,10 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
         )
     }
 
-    
     return (
         <>
             <DefaultPage img={img} />
         </>
     )
-
 
 }

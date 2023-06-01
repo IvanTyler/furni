@@ -10,6 +10,8 @@ export const dataSlice = createSlice({
     reducers: {
         getDataFetching(state) {
             state.isloading = 'loading';
+            state.status = true
+
         },
         getDataFetchingSuccess(state) {
             state.isloading = 'ok';

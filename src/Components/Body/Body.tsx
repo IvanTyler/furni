@@ -20,17 +20,15 @@ export const Body: React.FC = () => {
 
     }, [status])
 
-    if (status) {
-        return <Content />;
-    }
+   
 
 
-    if (isloading === 'loading')
-        return (
-            <div className={style.preloaderWrapper} >
-                <Preloader />
-            </div >
-        )
+    // if (isloading === 'loading')
+    //     return (
+    //         <div className={style.preloaderWrapper} >
+    //             <Preloader />
+    //         </div >
+    //     )
 
     return (
         <div className={style.containerBody}>
@@ -43,7 +41,6 @@ export const Body: React.FC = () => {
                     <Route path='/registr' element={<Registration
                     />} />
                     <Route path='/content' element={<Content />} />
-                    <Route path='/logIn' element={<Navigate to="/content" />} />
 
                 </Routes>
             </>
