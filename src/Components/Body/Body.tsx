@@ -20,15 +20,13 @@ export const Body: React.FC = () => {
 
     }, [status])
 
-   
 
-
-    // if (isloading === 'loading')
-    //     return (
-    //         <div className={style.preloaderWrapper} >
-    //             <Preloader />
-    //         </div >
-    //     )
+    if (status)
+        return (
+            <div className={style.preloaderWrapper} >
+                <Preloader />
+            </div >
+        )
 
     return (
         <div className={style.containerBody}>

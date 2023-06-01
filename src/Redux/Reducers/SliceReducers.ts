@@ -8,17 +8,17 @@ export const dataSlice = createSlice({
     name: 'getData',
     initialState,
     reducers: {
-        getDataFetching(state) {
+        getDataFetchingToken(state) {
+            state.status = true
+        },
+        getDataFetchingSuccessToken(state) {
+            state.status = false
+        },
+        getDataLoadingContacts(state) {
             state.isloading = 'loading';
-            state.status = true
-
         },
-        getDataFetchingSuccess(state) {
-            state.isloading = 'ok';
-        },
-        getDataToken(state) {
-            state.isloading = 'ok';
-            state.status = true
+        getDataLoadingEvents(state) {
+            state.isloading = 'loading';
         },
         codeCopiedActiveReducer(state) {
             state.codeCopied = true
@@ -33,9 +33,11 @@ export const dataSlice = createSlice({
         },
         getDataFetchContacts(state, action: PayloadAction<any>) {
             state.contacts = action.payload
+            state.isloading = 'ok';
         },
         getDataFetchEvents(state, action: PayloadAction<any>) {
             state.events = action.payload
+            state.isloading = 'ok';
         },
         setfilterBy(state, action: PayloadAction<any>) {
             state.filterBy = action.payload
@@ -80,11 +82,12 @@ export default dataSlice.reducer
 export const {
     codeCopiedActiveReducer,
     codeCopiedNotActiveReducer,
-    getDataFetching,
+    getDataFetchingToken,
+    getDataFetchingSuccessToken,
     getDataFetchError,
     getDataFetchContacts,
-    getDataToken,
+    getDataLoadingEvents,
     setfilterBy,
     getDataFetchEvents,
-    getDataFetchingSuccess,
+    getDataLoadingContacts
 } = dataSlice.actions

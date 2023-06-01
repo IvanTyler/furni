@@ -1,12 +1,20 @@
 import axios from "axios";
 import { getData } from "../../MockData/MockData";
-import { getDataFetchContacts, getDataFetchError, getDataFetchEvents, getDataFetching, getDataFetchingSuccess, getDataToken } from "../Reducers/SliceReducers";
+import {
+    getDataFetchContacts,
+    getDataFetchError,
+    getDataFetchEvents,
+    getDataFetchingSuccessToken,
+    getDataFetchingToken,
+    getDataLoadingContacts,
+    getDataLoadingEvents
+} from "../Reducers/SliceReducers";
 import { AppDispatch } from "../Store/Store";
 
 
 export const dataAction = (email: string, password: string) => async (dispath: AppDispatch) => {
     try {
-        dispath(getDataFetching())
+        dispath(getDataFetchingToken())
 
         let token = ''
         await axios.post<any>(
@@ -20,13 +28,13 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                     refresh_token: response.data.refresh_token,
                     token: response.data.token
                 }))
-                
+
             })
             .catch(error => {
                 console.log(error)
             })
 
-        dispath(getDataToken())
+        dispath(getDataFetchingSuccessToken())
     } catch (error) {
         dispath(getDataFetchError('Ошибка, данных нет'))
     }
@@ -37,7 +45,7 @@ export const dataActionContacts = () => async (dispath: AppDispatch) => {
         const getTokenSessionStorage = localStorage.getItem('token')
         if (getTokenSessionStorage !== null) {
             const getTokenSessionStorageParse = JSON.parse(getTokenSessionStorage)
-            dispath(getDataFetching())
+            dispath(getDataLoadingContacts())
 
             await axios.get<any>(
                 `api/user/contacts`,
@@ -60,7 +68,6 @@ export const dataActionContacts = () => async (dispath: AppDispatch) => {
                     dispath(getDataFetchError('Ошибка, данных нет'))
 
                 })
-            dispath(getDataFetchingSuccess())
         }
 
     } catch (error) {
@@ -73,7 +80,7 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
         const getTokenSessionStorage = localStorage.getItem('token')
         if (getTokenSessionStorage !== null) {
 
-            dispath(getDataFetching())
+            dispath(getDataLoadingEvents())
             const getTokenSessionStorageParse = JSON.parse(getTokenSessionStorage)
             const response = await axios.get<any>(
                 `api/user/events`,
@@ -92,7 +99,6 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
 
                 })
                 .catch(error => console.log(error))
-            dispath(getDataFetchingSuccess())
 
         }
 
