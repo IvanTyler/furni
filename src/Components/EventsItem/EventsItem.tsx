@@ -1,13 +1,15 @@
+import { useState } from 'react';
 import style from '../../assets/styles/tabsYourFurniActivityItem.module.scss'
 import { IGetDataEvents } from '../../Interfaces/Events'
 import cx from 'classnames'
 
 interface IEventsProps {
     item: IGetDataEvents;
-    itemEditHandler: (item: any) => void
 }
 
-export const EventsItem: React.FC<IEventsProps> = ({ item, itemEditHandler }) => {
+export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
+
+    const [openDetailList, setOpenDetailList] = useState(false)
 
     function eventTypeColor(event_type: string) {
         switch (event_type) {
@@ -34,14 +36,14 @@ export const EventsItem: React.FC<IEventsProps> = ({ item, itemEditHandler }) =>
 
     return (
         <>
-            <li className={item.active ?
+            <li className={openDetailList ?
                 cx(style.tabsYourFurniActivityItem, style.active, style.events) :
                 cx(style.tabsYourFurniActivityItem, style.events)}>
                 <div className={style.tabsYourFurniActivityItem__name}>
                     <div
-                        onClick={() => itemEditHandler(item.id)}
+                        onClick={() => setOpenDetailList(prev => prev = !prev)}
                         className={
-                            item.active ?
+                            openDetailList ?
                                 cx(style.tabsYourFurniActivityItem__showDetailsContact, style.active) :
                                 style.tabsYourFurniActivityItem__showDetailsContact}
                     >
@@ -53,7 +55,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item, itemEditHandler }) =>
                 </div>
             </li>
             {
-                item.active ?
+                openDetailList ?
                     <ul>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
                             <div className={style.tabsYourFurniActivityItem__name}>

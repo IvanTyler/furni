@@ -1,25 +1,8 @@
 import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit";
-import { IgetDataContactsDto, IgetDataDto } from "../../Interfaces/getDataDto";
 import { RootState } from "../Store/Store";
-import { IFilterContacts } from "../../Interfaces/FilterContacts";
 import { IGetDataContacts } from "../../Interfaces/contacts";
+import { initialState } from '../initialState'
 
-
-export interface IInitialState {
-    codeCopied: boolean;
-    contacts: IGetDataContacts[];
-    isloading: boolean;
-    filterBy: null | string;
-    error: null | string;
-}
-
-export const initialState: IInitialState = {
-    codeCopied: false,
-    isloading: false,
-    contacts: [],
-    filterBy: null,
-    error: '',
-}
 
 export const dataSlice = createSlice({
     name: 'getData',
@@ -30,9 +13,7 @@ export const dataSlice = createSlice({
         },
         getDataToken(state) {
             state.isloading = false;
-        },
-        getDataFetchingSuccess(state, action: PayloadAction<any>) {
-            state.isloading = false;
+            state.status = true
         },
         codeCopiedActiveReducer(state) {
             state.codeCopied = true
@@ -46,6 +27,9 @@ export const dataSlice = createSlice({
         },
         getDataFetchContacts(state, action: PayloadAction<any>) {
             state.contacts = action.payload.contacts
+        },
+        getDataFetchEvents(state, action: PayloadAction<any>) {
+            state.events = action.payload.events
         },
         setfilterBy(state, action: PayloadAction<any>) {
             state.filterBy = action.payload
@@ -90,10 +74,10 @@ export default dataSlice.reducer
 export const {
     codeCopiedActiveReducer,
     codeCopiedNotActiveReducer,
-    getDataFetchingSuccess,
     getDataFetching,
     getDataFetchError,
     getDataFetchContacts,
     getDataToken,
     setfilterBy,
+    getDataFetchEvents,
 } = dataSlice.actions

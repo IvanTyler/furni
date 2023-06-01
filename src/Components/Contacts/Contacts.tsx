@@ -18,7 +18,9 @@ interface IContactsProps {
 }
 
 export const Contacts: React.FC<IContactsProps> = ({ img }) => {
+    
     const { filterBy } = useTypeSelector(state => state.data)
+
     const contacts = useTypeSelector(contactsSelector)
     const grandTotal = useTypeSelector(grandTotalSelector)
     const totalClients = useTypeSelector(totalDirectSales)

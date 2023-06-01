@@ -5,7 +5,6 @@ import { TabsList } from '../Tabs/TabsList'
 import { tabsYourFurniActivityListEnum } from '../../Enums/tabsYourFurniActivityListEnum'
 import style from './YourFurniActivity.module.scss'
 
-import { IDataApi } from '../../Interfaces/DataApi'
 import { Overview } from '../Overview/Overview'
 
 import imgOverview from '../../assets/images/overview.png'
@@ -17,15 +16,11 @@ import imgMoney from '../../assets/images/money.png'
 import { useGetData } from '../../Hooks/useGetData'
 
 
-interface IYourFurniActivityProps {
-    // getData: IDataApi;
-}
-
 export const YourFurniActivity: React.FC = () => {
 
     const [tabElement, setTabElement] = useState('Overview')
 
-    // const { myDataEvents, codeCopied, myDataContacts } = useGetData()
+    const { codeCopied } = useGetData()
 
     return (
         <>
@@ -52,7 +47,6 @@ export const YourFurniActivity: React.FC = () => {
                         }
                         {tabElement === tabsYourFurniActivityListEnum.contacts ?
                             <Contacts
-                                // statsContacts={myDataContacts}
                                 img={imgContacts}
                             />
                             : null
@@ -60,12 +54,11 @@ export const YourFurniActivity: React.FC = () => {
                         {tabElement === tabsYourFurniActivityListEnum.events ?
                             <Events
                                 img={imgEvents}
-                                // statsEvents={myDataEvents}
                             />
                             : null
                         }
                     </div>
-                    {false && <div className={style.sectionYourFurniActivity__codeCopied}>
+                    {codeCopied && <div className={style.sectionYourFurniActivity__codeCopied}>
                         Code copied
                     </div>}
                 </div>

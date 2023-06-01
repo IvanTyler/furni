@@ -9,17 +9,16 @@ import cx from 'classnames'
 import { useDispatch } from 'react-redux'
 import { dataAction } from '../../Redux/Actions/dataAction'
 import { useGetData } from '../../Hooks/useGetData'
+import { useTypeSelector } from '../../Hooks/useTypeSelector'
 
 interface IFormUserLoginProps {
-    setGetData(data: IDataApi): void;
-    setIsLoading(item: any): void;
     isShowElement: boolean;
 }
 
 export const FormUserLogin: React.FC<IFormUserLoginProps> = (
-    { setGetData, setIsLoading, isShowElement }
+    { isShowElement }
 ) => {
-
+    const { status } = useTypeSelector(state => state.data)
     
 
     const dispath = useDispatch<any>()
@@ -42,13 +41,6 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
 
 
     const fetchData = async () => {
-        setIsLoading(true)
-        // const response = await axios.post<IDataApi>(
-        //     'https://partnerinfo.furni.ae/api/partner/stats',
-        //     { login: inputValueLogin, password: inputValuePassword })
-        //     .then(response => setGetData(response.data))
-        //     .catch(error => console.log(error))
-        //     .finally(() => setIsLoading(false))
         dispath(dataAction(inputValueEmail, inputValuePassword))
     }
 

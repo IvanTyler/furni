@@ -3,10 +3,9 @@ import style from './FilterContactsItem.module.scss'
 
 import selectedFilterIcon from '../../assets/icon/common/selected-green.svg'
 
-
 interface IFilterContactsItemProps {
     item: IFilterContacts
-    itemFilterContactsEditHandler: (id: number, name: string) => void
+    itemFilterContactsEditHandler: (id: number, filter: string, name: string) => void
 }
 
 export const FilterContactsItem: React.FC<IFilterContactsItemProps> = (
@@ -17,7 +16,7 @@ export const FilterContactsItem: React.FC<IFilterContactsItemProps> = (
 ) => {
     return (
         <li
-            onClick={() => itemFilterContactsEditHandler(item.id, item.filter)}
+            onClick={() => itemFilterContactsEditHandler(item.id, item.filter, item.name)}
             className={style.FilterContactsListItem}>
             {
                 item.active &&

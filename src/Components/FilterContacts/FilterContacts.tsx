@@ -4,38 +4,24 @@ import { IFilterContacts } from '../../Interfaces/FilterContacts'
 import { List } from '../List/List'
 import { FilterContactsItem } from '../FilterContactsItem/FilterContactsItem'
 import cx from 'classnames'
-import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
-import { grandTotalSelector, setfilterBy, totalDirectSales, totalViaPartners, totalViaSubPartners } from '../../Redux/Reducers/SliceReducers'
+import { useAppDispath } from '../../Hooks/useTypeSelector'
+import { setfilterBy } from '../../Redux/Reducers/SliceReducers'
 
 interface IFilterContactsProps {
     isFilterContactsActive: boolean
     setIsFilterContactsActive: (item: boolean) => void
-    // filterClients: () => void
-    // setAllContacts: () => void
-    // filterPartners: () => void
-    // filterSubPartners: () => void
-    setTitleContacts: (item: string) => void
+    setTitleContacts:( item: string) => void
 }
 
 export const FilterContacts: React.FC<IFilterContactsProps> = (
     {
         isFilterContactsActive,
         setIsFilterContactsActive,
-        // setAllContacts,
-        // filterClients,
-        // filterPartners,
-        // filterSubPartners,
-        setTitleContacts,
+        setTitleContacts
     }
 ) => {
 
     const dispath = useAppDispath()
-
-    const mainTotal = useTypeSelector(grandTotalSelector)
-    const totalClients = useTypeSelector(totalDirectSales)
-    const totalPartners = useTypeSelector(totalViaPartners)
-    const totalSubPartners = useTypeSelector(totalViaSubPartners)
-
 
     const filterContactsItems: IFilterContacts[] = [
         {
@@ -67,7 +53,7 @@ export const FilterContacts: React.FC<IFilterContactsProps> = (
     const [filterContactsItem, setFilterContactsItem] = useState<IFilterContacts[]>(filterContactsItems)
 
 
-    const itemFilterContactsEditHandler = (id: number, filter: any) => {
+    const itemFilterContactsEditHandler = (id: number, filter: any, name: string) => {
         setIsFilterContactsActive(false)
 
         dispath(setfilterBy(filter))

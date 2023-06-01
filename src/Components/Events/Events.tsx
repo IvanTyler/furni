@@ -6,8 +6,10 @@ import { List } from '../List/List'
 
 import { EventsItem } from '../EventsItem/EventsItem'
 import { DefaultPage } from '../DefaultPage/DefaultPage'
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { IGetDataEvents } from '../../Interfaces/Events'
+import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
+import { dataActionEvents } from '../../Redux/Actions/dataAction'
 
 interface IPartnersProps {
     statsEvents?: any;
@@ -16,21 +18,14 @@ interface IPartnersProps {
 
 export const Events: React.FC<IPartnersProps> = ({ statsEvents, img }) => {
 
-    const [events, setEvents] = useState<IGetDataEvents[]>(statsEvents)
+    const { events } = useTypeSelector(state => state.data)
 
-    const itemEditHandler = (id: number) => {
-        setEvents((prev: any) => {
-            return prev.map((el: any) => {
-                if (el.id === id) {
-                    return {
-                        ...el,
-                        active: !el.active,
-                    }
-                }
-                return el
-            })
-        })
-    }
+    const dispath = useAppDispath()
+
+    useEffect(() => {
+        dispath(dataActionEvents())
+    }, [])
+
 
     if (events.length) {
         return (
@@ -50,7 +45,6 @@ export const Events: React.FC<IPartnersProps> = ({ statsEvents, img }) => {
                             <List
                                 items={events}
                                 renderItem={(item: IGetDataEvents, index: number) => <EventsItem
-                                    itemEditHandler={itemEditHandler}
                                     item={item}
                                     key={index.toString()}
                                 />}
