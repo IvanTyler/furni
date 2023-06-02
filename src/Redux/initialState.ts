@@ -10,7 +10,6 @@ export interface IInitialState {
     isLoadingAuth: boolean;
     filterBy: null | string;
     error: null | string;
-    status: boolean;
 }
 
 export const initialState: IInitialState = {
@@ -22,5 +21,4 @@ export const initialState: IInitialState = {
     events: [],
     filterBy: null,
     error: '',
-    status: false,
 }

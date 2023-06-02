@@ -28,8 +28,10 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                 }
                 token = response.data.token
                 localStorage.setItem('token', JSON.stringify({
-                    refresh_token: response.data.refresh_token,
                     token: response.data.token
+                }))
+                localStorage.setItem('refresh_token', JSON.stringify({
+                    refresh_token: response.data.refresh_token,
                 }))
                 dispath(getDataFetchingSuccessToken())
 
@@ -39,7 +41,6 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                 dispath(getDataFetchError('Ошибка, данных нет'))
 
             })
-            dispath(getDataFetchingSuccessToken())
 
     } catch (error) {
         dispath(getDataFetchError('Ошибка, данных нет'))

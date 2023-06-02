@@ -9,18 +9,11 @@ import { Content } from '../Content/Content'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { useEffect } from 'react'
 import cx from 'classnames'
+import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute'
 
 export const Body: React.FC = () => {
 
-    let location = useLocation();
-    const history = useNavigate()
-    const { status, isLoadingContent } = useTypeSelector(state => state.data)
-
-    useEffect(() => {
-
-    }, [location])
-
-    console.log('isLoadingContent>>>>', isLoadingContent);
+    const { isLoadingContent } = useTypeSelector(state => state.data)
 
     if (isLoadingContent === 'loading')
         return (
@@ -30,14 +23,7 @@ export const Body: React.FC = () => {
         )
 
     return (
-        <div className={
-            window.location.href === 'http://localhost:3000/' ?
-                cx(style.containerBody, style.mainPageHeight) :
-                window.location.href === 'http://localhost:3000/content' ?
-                cx(style.containerBody, style.mainPageHeight) :
-                style.containerBody
-        }
-        >
+        <div className={style.containerBody}>
             <>
                 <Routes>
                     <Route path='/' element={<MainPage />} />
@@ -46,7 +32,13 @@ export const Body: React.FC = () => {
                     />} />
                     <Route path='/registr' element={<Registration
                     />} />
-                    <Route path='/content' element={<Content />} />
+                    <Route path='/content'
+                        element={
+                            <ProtectedRoute>
+                                <Content />
+                            </ProtectedRoute>
+                        }
+                    />
 
                 </Routes>
             </>

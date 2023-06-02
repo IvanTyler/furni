@@ -1,7 +1,7 @@
 import style from './FormUserLogin.module.scss'
 import logoFurni from '../../assets/icon/logo.svg'
 import { Input } from '../Input/Input'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import cx from 'classnames'
@@ -18,7 +18,11 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
 ) => {
     const navigate = useNavigate()
     const { isloading, isLoadingAuth } = useTypeSelector(state => state.data)
-    console.log('login loading', isloading);
+    
+
+    useEffect(() => {
+        if (isLoadingAuth) navigate("/content");
+    }, [isLoadingAuth])
 
     const dispath = useDispatch<any>()
 
@@ -43,11 +47,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
         await dispath(dataAction(inputValueEmail, inputValuePassword))
         console.log('isLoadingAuth after dispath', isLoadingAuth);
         
-        if (isLoadingAuth) {
-            console.log("navigate > content");
-            
-            navigate("/content");
-        }
+        
     }
 
     const toggleInputTypeFunc = () => {

@@ -9,15 +9,16 @@ export const dataSlice = createSlice({
     initialState,
     reducers: {
         getDataFetchingToken(state) {
-            state.status = true
             state.isloading = 'loading';
             state.isLoadingContent = 'loading'
         },
         getDataFetchingSuccessToken(state) {
-            // state.status = false
             state.isloading = 'ok';
             state.isLoadingContent = 'ok'
             state.isLoadingAuth = true
+        },
+        setAuth(state, action: PayloadAction<any>) {
+            state.isLoadingAuth = action.payload
         },
         getDataLoadingContacts(state) {
             state.isloading = 'loading';
@@ -26,15 +27,16 @@ export const dataSlice = createSlice({
             state.isloading = 'loading';
         },
         codeCopiedActiveReducer(state) {
-            state.codeCopied = true
+            state.codeCopied = true 
         },
         codeCopiedNotActiveReducer(state) {
             state.codeCopied = false
         },
         getDataFetchError(state, action: PayloadAction<string>) {
             state.isloading = 'error';
-            state.status = false
             state.error = action.payload
+            state.isLoadingAuth = false
+            state.isLoadingContent = 'error'
         },
         getDataFetchContacts(state, action: PayloadAction<any>) {
             state.contacts = action.payload
@@ -58,6 +60,12 @@ export const contactsSelector = createSelector([contacts, filterBy], (contacts, 
     
     if (filterBy) {
         contacts = contacts.filter((el: any) => el.detail[filterBy] > 0)
+        // return contacts.map((el: IGetDataContacts | any) => {
+        //     return {
+        //         ...el,
+        //         titleTotal: Object.values(el.detail[filterBy]).reduce((acc: number, el: any) => acc + el, 0)
+        //     }
+        // })
     }
     return contacts.map((el: IGetDataContacts) => {
         return {
@@ -94,5 +102,6 @@ export const {
     getDataLoadingEvents,
     setfilterBy,
     getDataFetchEvents,
-    getDataLoadingContacts
+    getDataLoadingContacts,
+    setAuth,
 } = dataSlice.actions
