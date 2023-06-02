@@ -10,9 +10,11 @@ export const dataSlice = createSlice({
     reducers: {
         getDataFetchingToken(state) {
             state.status = true
+            state.isloading = 'loading';
         },
         getDataFetchingSuccessToken(state) {
-            state.status = false
+            // state.status = false
+            state.isloading = 'ok';
         },
         getDataLoadingContacts(state) {
             state.isloading = 'loading';

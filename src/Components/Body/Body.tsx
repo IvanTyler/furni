@@ -12,16 +12,17 @@ import { useEffect } from 'react'
 export const Body: React.FC = () => {
 
     let location = useLocation();
-    const { isloading } = useGetData()
+    // const { isloading } = useGetData()
     const history = useNavigate()
-    const { status } = useTypeSelector(state => state.data)
+    const { status, isloading } = useTypeSelector(state => state.data)
 
     useEffect(() => {
 
     }, [status])
 
+    console.log('loading>>>>', isloading);
 
-    if (status)
+    if (isloading === 'loading')
         return (
             <div className={style.preloaderWrapper} >
                 <Preloader />

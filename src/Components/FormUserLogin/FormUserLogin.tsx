@@ -19,6 +19,8 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     { isShowElement }
 ) => {
     const navigate = useNavigate()
+    const { isloading } = useTypeSelector(state => state.data)
+    console.log('login loading', isloading);
 
     const dispath = useDispatch<any>()
 
@@ -41,7 +43,13 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
 
     const fetchData = async () => {
         await dispath(dataAction(inputValueEmail, inputValuePassword))
-        navigate("/content");
+        console.log('loading after dispath', isloading);
+        
+        if (isloading === 'ok') {
+            console.log("navigate > content");
+            
+            navigate("/content");
+        }
     }
 
     const toggleInputTypeFunc = () => {

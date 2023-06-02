@@ -10,7 +10,7 @@ interface IEventsProps {
 export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
 
     const [openDetailList, setOpenDetailList] = useState(false)
-
+    const date = new Date(item.created_at);
     return (
         <>
             <li className={openDetailList ?
@@ -39,7 +39,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                 Sale type
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
-                                {item.detail.Sale_type}
+                                {item.detail.sale_type}
                             </div>
                         </li>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
@@ -47,7 +47,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                 Deal amount
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
-                                {item.detail.Deal_amount}
+                                {item.detail.deal_amount}
                             </div>
                         </li>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
@@ -55,7 +55,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                 Your commission
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
-                                {item.detail.Your_commission}
+                                {item.detail.your_commission}
                             </div>
                         </li>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
@@ -63,7 +63,19 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                 Reference code
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
-                                {item.detail.Reference_code}
+                                {item.detail.reference_code}
+                            </div>
+                        </li>
+                        <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
+                            <div className={style.tabsYourFurniActivityItem__name}>
+                                Created at
+                            </div>
+                            <div className={style.tabsYourFurniActivityItem__item}>
+                                {date.getFullYear()}
+                                /{date.getMonth() + 1}
+                                /{date.getDate()}&nbsp;
+                                {date.getHours()}:
+                                {date.getMinutes()}
                             </div>
                         </li>
                     </ul> : null

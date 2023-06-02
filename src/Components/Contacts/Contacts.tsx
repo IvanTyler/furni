@@ -21,6 +21,7 @@ interface IContactsProps {
 export const Contacts: React.FC<IContactsProps> = ({ img }) => {
 
     const { filterBy, isloading } = useTypeSelector(state => state.data)
+    console.log('contacts loading', isloading);
 
     const contacts = useTypeSelector(contactsSelector)
     const grandTotal = useTypeSelector(grandTotalSelector)

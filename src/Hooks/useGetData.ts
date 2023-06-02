@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 export const useGetData = () => {
 
 
-    let { codeCopied, isloading, error, contacts } = useTypeSelector(state => state.data)
+    let { codeCopied, error, contacts } = useTypeSelector(state => state.data)
     const dispath = useAppDispath()
 
 
@@ -26,7 +26,6 @@ export const useGetData = () => {
         myDataContacts,
         // myDataEvents,
         codeCopied,
-        isloading,
         error,
         contacts
     }

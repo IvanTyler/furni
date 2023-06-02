@@ -5,8 +5,8 @@ export interface IDetailContacts {
 }
 
 export interface IDetailEvents {
-    Sale_type: string;
-    Deal_amount: number;
-    Your_commission: number;
-    Reference_code: string,
+    sale_type: string;
+    deal_amount: number;
+    your_commission: number;
+    reference_code: string,
 }

@@ -21,20 +21,25 @@ export const dataAction = (email: string, password: string) => async (dispath: A
             'api/auth',
             { email, password })
             .then(response => {
-                console.log(response);
-
+                console.log('responseToken>>>', response);
+                if (response.status !== 200) {
+                    dispath(getDataFetchError('Ошибка, данных нет'))
+                    return
+                }
                 token = response.data.token
                 localStorage.setItem('token', JSON.stringify({
                     refresh_token: response.data.refresh_token,
                     token: response.data.token
                 }))
+                dispath(getDataFetchingSuccessToken())
 
             })
             .catch(error => {
                 console.log(error)
+                dispath(getDataFetchError('Ошибка, данных нет'))
+
             })
 
-        dispath(getDataFetchingSuccessToken())
     } catch (error) {
         dispath(getDataFetchError('Ошибка, данных нет'))
     }
