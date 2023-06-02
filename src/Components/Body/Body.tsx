@@ -8,21 +8,21 @@ import { useGetData } from '../../Hooks/useGetData'
 import { Content } from '../Content/Content'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { useEffect } from 'react'
+import cx from 'classnames'
 
 export const Body: React.FC = () => {
 
     let location = useLocation();
-    // const { isloading } = useGetData()
     const history = useNavigate()
     const { status, isloading } = useTypeSelector(state => state.data)
 
     useEffect(() => {
 
-    }, [status])
+    }, [location])
 
     console.log('loading>>>>', isloading);
 
-    if (isloading === 'loading')
+    if (status)
         return (
             <div className={style.preloaderWrapper} >
                 <Preloader />
@@ -30,7 +30,14 @@ export const Body: React.FC = () => {
         )
 
     return (
-        <div className={style.containerBody}>
+        <div className={
+            window.location.href === 'http://localhost:3000/' ?
+                cx(style.containerBody, style.mainPageHeight) :
+                window.location.href === 'http://localhost:3000/content' ?
+                cx(style.containerBody, style.mainPageHeight) :
+                style.containerBody
+        }
+        >
             <>
                 <Routes>
                     <Route path='/' element={<MainPage />} />

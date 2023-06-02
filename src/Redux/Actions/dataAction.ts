@@ -39,6 +39,7 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                 dispath(getDataFetchError('Ошибка, данных нет'))
 
             })
+            dispath(getDataFetchingSuccessToken())
 
     } catch (error) {
         dispath(getDataFetchError('Ошибка, данных нет'))
