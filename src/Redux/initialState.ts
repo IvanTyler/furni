@@ -6,6 +6,8 @@ export interface IInitialState {
     contacts: IGetDataContacts[];
     events: IGetDataEvents[];
     isloading: string;
+    isLoadingContent: string;
+    isLoadingAuth: boolean;
     filterBy: null | string;
     error: null | string;
     status: boolean;
@@ -14,6 +16,8 @@ export interface IInitialState {
 export const initialState: IInitialState = {
     codeCopied: false,
     isloading: '',
+    isLoadingContent: '',
+    isLoadingAuth: false,
     contacts: [],
     events: [],
     filterBy: null,

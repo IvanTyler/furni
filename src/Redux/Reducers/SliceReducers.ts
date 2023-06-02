@@ -11,10 +11,13 @@ export const dataSlice = createSlice({
         getDataFetchingToken(state) {
             state.status = true
             state.isloading = 'loading';
+            state.isLoadingContent = 'loading'
         },
         getDataFetchingSuccessToken(state) {
             // state.status = false
             state.isloading = 'ok';
+            state.isLoadingContent = 'ok'
+            state.isLoadingAuth = true
         },
         getDataLoadingContacts(state) {
             state.isloading = 'loading';

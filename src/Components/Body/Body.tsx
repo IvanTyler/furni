@@ -14,15 +14,15 @@ export const Body: React.FC = () => {
 
     let location = useLocation();
     const history = useNavigate()
-    const { status, isloading } = useTypeSelector(state => state.data)
+    const { status, isLoadingContent } = useTypeSelector(state => state.data)
 
     useEffect(() => {
 
     }, [location])
 
-    console.log('loading>>>>', isloading);
+    console.log('isLoadingContent>>>>', isLoadingContent);
 
-    if (status)
+    if (isLoadingContent === 'loading')
         return (
             <div className={style.preloaderWrapper} >
                 <Preloader />

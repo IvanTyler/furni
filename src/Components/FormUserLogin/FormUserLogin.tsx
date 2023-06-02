@@ -3,12 +3,10 @@ import logoFurni from '../../assets/icon/logo.svg'
 import { Input } from '../Input/Input'
 import React, { useState } from 'react'
 import axios from 'axios'
-import { IDataApi } from '../../Interfaces/DataApi'
 import { Link, useNavigate } from 'react-router-dom'
 import cx from 'classnames'
 import { useDispatch } from 'react-redux'
 import { dataAction } from '../../Redux/Actions/dataAction'
-import { useGetData } from '../../Hooks/useGetData'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 
 interface IFormUserLoginProps {
@@ -19,7 +17,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     { isShowElement }
 ) => {
     const navigate = useNavigate()
-    const { isloading } = useTypeSelector(state => state.data)
+    const { isloading, isLoadingAuth } = useTypeSelector(state => state.data)
     console.log('login loading', isloading);
 
     const dispath = useDispatch<any>()
@@ -43,9 +41,9 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
 
     const fetchData = async () => {
         await dispath(dataAction(inputValueEmail, inputValuePassword))
-        console.log('loading after dispath', isloading);
+        console.log('isLoadingAuth after dispath', isLoadingAuth);
         
-        if (isloading === 'ok') {
+        if (isLoadingAuth) {
             console.log("navigate > content");
             
             navigate("/content");
