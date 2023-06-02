@@ -8,6 +8,9 @@ export const dataSlice = createSlice({
     name: 'getData',
     initialState,
     reducers: {
+        getReferalCode(state, action: PayloadAction<any>) {
+            state.referal_code = action.payload
+        },
         getDataFetchingToken(state) {
             state.isloading = 'loading';
             state.isLoadingContent = 'loading'
@@ -27,7 +30,7 @@ export const dataSlice = createSlice({
             state.isloading = 'loading';
         },
         codeCopiedActiveReducer(state) {
-            state.codeCopied = true 
+            state.codeCopied = true
         },
         codeCopiedNotActiveReducer(state) {
             state.codeCopied = false
@@ -57,15 +60,14 @@ const contacts = (state: RootState) => state.data.contacts
 const filterBy = (state: RootState) => state.data.filterBy
 
 export const contactsSelector = createSelector([contacts, filterBy], (contacts, filterBy) => {
-    
     if (filterBy) {
-        contacts = contacts.filter((el: any) => el.detail[filterBy] > 0)
-        // return contacts.map((el: IGetDataContacts | any) => {
-        //     return {
-        //         ...el,
-        //         titleTotal: Object.values(el.detail[filterBy]).reduce((acc: number, el: any) => acc + el, 0)
-        //     }
-        // })
+        return contacts = contacts.filter((el: any) => el.detail[filterBy] > 0)
+            .map((el: IGetDataContacts | any) => {
+                return {
+                    ...el,
+                    titleTotal: el.detail[filterBy]
+                }
+            })
     }
     return contacts.map((el: IGetDataContacts) => {
         return {
@@ -77,18 +79,6 @@ export const contactsSelector = createSelector([contacts, filterBy], (contacts, 
 
 export const grandTotalSelector = createSelector([contactsSelector], (contactsSelector) => {
     return contactsSelector.reduce((acc: any, el) => acc + el.titleTotal, 0)
-})
-
-export const totalDirectSales = createSelector([contactsSelector], (contactsSelector) => {
-    return contactsSelector.reduce((acc: any, el) => acc + el.detail.direct_sales, 0)
-})
-
-export const totalViaPartners = createSelector([contactsSelector], (contactsSelector) => {
-    return contactsSelector.reduce((acc: any, el) => acc + el.detail.via_partners, 0)
-})
-
-export const totalViaSubPartners = createSelector([contactsSelector], (contactsSelector) => {
-    return contactsSelector.reduce((acc: any, el) => acc + el.detail.via_subpartners, 0)
 })
 
 export default dataSlice.reducer
@@ -104,4 +94,5 @@ export const {
     getDataFetchEvents,
     getDataLoadingContacts,
     setAuth,
+    getReferalCode,
 } = dataSlice.actions

@@ -7,7 +7,8 @@ import {
     getDataFetchingSuccessToken,
     getDataFetchingToken,
     getDataLoadingContacts,
-    getDataLoadingEvents
+    getDataLoadingEvents,
+    getReferalCode
 } from "../Reducers/SliceReducers";
 import { AppDispatch } from "../Store/Store";
 
@@ -21,7 +22,6 @@ export const dataAction = (email: string, password: string) => async (dispath: A
             'api/auth',
             { email, password })
             .then(response => {
-                console.log('responseToken>>>', response);
                 if (response.status !== 200) {
                     dispath(getDataFetchError('Ошибка, данных нет'))
                     return
@@ -37,9 +37,7 @@ export const dataAction = (email: string, password: string) => async (dispath: A
 
             })
             .catch(error => {
-                console.log(error)
                 dispath(getDataFetchError('Ошибка, данных нет'))
-
             })
 
     } catch (error) {
@@ -63,7 +61,6 @@ export const dataActionContacts = () => async (dispath: AppDispatch) => {
                 }
             )
                 .then(response => {
-                    console.log(response);
 
                     const res = getData
 
@@ -98,7 +95,6 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
                 }
             )
                 .then(response => {
-                    console.log(response);
 
                     const res = getData
 
@@ -107,6 +103,31 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
                 })
                 .catch(error => console.log(error))
 
+        }
+
+    } catch (error) {
+        dispath(getDataFetchError('Ошибка, данных нет'))
+    }
+}
+
+export const getDataReferalCode = () => async (dispath: AppDispatch) => {
+    try {
+        const getTokenSessionStorage = localStorage.getItem('token')
+        if (getTokenSessionStorage !== null) {
+            const getTokenSessionStorageParse = JSON.parse(getTokenSessionStorage)
+            const response = await axios.get<any>(
+                `api/user/overview`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${getTokenSessionStorageParse.token}`
+                    }
+                }
+            )
+                .then(response => {
+
+                    dispath(getReferalCode(response.data.from_lead_id))
+                })
+                .catch(error => console.log(error))
         }
 
     } catch (error) {

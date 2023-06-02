@@ -19,21 +19,6 @@ export const ContactsItem: React.FC<IClientsProps> = (
 
     const [openDetailList, setOpenDetailList] = useState(false)
 
-    function setGrandTitleContacts() {
-        switch (filterBy) {
-            case null:
-                return item.titleTotal
-            case 'direct_sales':
-                return item.detail.direct_sales
-            case 'via_partners':
-                return item.detail.via_partners
-            case 'via_subpartners':
-                return item.detail.via_subpartners
-            default:
-                return item.titleTotal
-        }
-    }
-
     return (
         <>
             <li className={openDetailList ?
@@ -51,7 +36,7 @@ export const ContactsItem: React.FC<IClientsProps> = (
                     {item.name}
                 </div>
                 <div className={style.tabsYourFurniActivityItem__item}>
-                    {setGrandTitleContacts()}
+                    {item.titleTotal}
                 </div>
             </li>
             {

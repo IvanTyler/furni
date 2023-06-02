@@ -9,6 +9,7 @@ export interface IInitialState {
     isLoadingContent: string;
     isLoadingAuth: boolean;
     filterBy: null | string;
+    referal_code: number;
     error: null | string;
 }
 
@@ -20,5 +21,6 @@ export const initialState: IInitialState = {
     contacts: [],
     events: [],
     filterBy: null,
+    referal_code: 0,
     error: '',
 }

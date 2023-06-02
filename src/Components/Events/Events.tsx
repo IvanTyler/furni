@@ -20,14 +20,12 @@ interface IPartnersProps {
 export const Events: React.FC<IPartnersProps> = ({ statsEvents, img }) => {
 
     const { events, isloading } = useTypeSelector(state => state.data)
-    console.log('events loading', isloading);
 
     const dispath = useAppDispath()
 
     useEffect(() => {
         dispath(dataActionEvents())
     }, [])
-
 
     if (isloading === 'loading')
         return (

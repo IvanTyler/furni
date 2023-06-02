@@ -11,7 +11,7 @@ import { OpenFilterContacts } from '../OpenFilterContacts/OpenFilterContacts'
 import { FilterContacts } from '../FilterContacts/FilterContacts'
 import { dataActionContacts } from '../../Redux/Actions/dataAction'
 import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
-import { contactsSelector, grandTotalSelector, totalDirectSales, totalViaPartners, totalViaSubPartners } from '../../Redux/Reducers/SliceReducers'
+import { contactsSelector, grandTotalSelector } from '../../Redux/Reducers/SliceReducers'
 import { Preloader } from '../Preloader/Preloader'
 
 interface IContactsProps {
@@ -20,14 +20,10 @@ interface IContactsProps {
 
 export const Contacts: React.FC<IContactsProps> = ({ img }) => {
 
-    const { filterBy, isloading } = useTypeSelector(state => state.data)
-    console.log('contacts loading', isloading);
+    const { isloading } = useTypeSelector(state => state.data)
 
     const contacts = useTypeSelector(contactsSelector)
     const grandTotal = useTypeSelector(grandTotalSelector)
-    const totalClients = useTypeSelector(totalDirectSales)
-    const totalPartners = useTypeSelector(totalViaPartners)
-    const totalSubPartners = useTypeSelector(totalViaSubPartners)
 
     const dispath = useAppDispath()
 
@@ -35,31 +31,15 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
         dispath(dataActionContacts())
     }, [])
 
-    function setGrandTotalContacts() {
-        switch (filterBy) {
-            case null:
-                return grandTotal
-            case 'direct_sales':
-                return totalClients
-            case 'via_partners':
-                return totalPartners
-            case 'via_subpartners':
-                return totalSubPartners
-            default:
-                return grandTotal
-        }
-    }
-
     const [isFilterContactsActive, setIsFilterContactsActive] = useState(false)
     const [titleContacts, setTitleContacts] = useState('All contacts')
-
 
     if (isloading === 'loading')
         return (
             <Preloader />
         )
 
-    else if (isloading === 'ok' && contacts.length) {
+    else if (isloading === 'ok') {
         return (
             <>
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>
@@ -96,7 +76,7 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
                                     Total
                                 </div>
                                 <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    {setGrandTotalContacts()}
+                                    {grandTotal}
                                 </div>
                             </li>
                         </ul>

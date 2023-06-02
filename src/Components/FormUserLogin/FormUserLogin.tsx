@@ -45,9 +45,6 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
 
     const fetchData = async () => {
         await dispath(dataAction(inputValueEmail, inputValuePassword))
-        console.log('isLoadingAuth after dispath', isLoadingAuth);
-        
-        
     }
 
     const toggleInputTypeFunc = () => {

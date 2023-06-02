@@ -1,4 +1,4 @@
-import { dataActionContacts } from "../Redux/Actions/dataAction";
+import { getDataReferalCode } from "../Redux/Actions/dataAction"
 import { useAppDispath, useTypeSelector } from "./useTypeSelector"
 import { useEffect, useState } from "react"
 
@@ -6,27 +6,14 @@ import { useEffect, useState } from "react"
 export const useGetData = () => {
 
 
-    let { codeCopied, error, contacts } = useTypeSelector(state => state.data)
+    let { codeCopied } = useTypeSelector(state => state.data)
     const dispath = useAppDispath()
 
-
-    function getDataContactsEventsDto<T>(array: T[]): T[] {
-        return array.map((el: any) => {
-            return {
-                ...el,
-                active: false,
-            }
-        })
-    }
-
-    // const myDataEvents = getDataContactsEventsDto(data.events)
-    const myDataContacts = getDataContactsEventsDto(contacts)
+    useEffect(() => {
+        dispath(getDataReferalCode())
+    }, [])
 
     return {
-        myDataContacts,
-        // myDataEvents,
         codeCopied,
-        error,
-        contacts
     }
 }

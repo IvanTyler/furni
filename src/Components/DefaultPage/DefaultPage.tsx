@@ -8,12 +8,15 @@ import { useDispatch } from 'react-redux';
 import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied';
 import { useEffect, useState } from 'react';
 import { copyReferalCodeMobile } from '../../assets/Functions/copyReferalCodeMobile';
+import { useTypeSelector } from '../../Hooks/useTypeSelector';
 
 interface IDefaultPageProps {
     img: string;
 }
 
 export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
+    const { referal_code } = useTypeSelector(state => state.data)
+
     const dispath = useDispatch<any>()
 
     const [dimensionWindowbrowser, setdimensionWindowbrowser] = useState<number>(window.innerWidth)
@@ -29,10 +32,10 @@ export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
 
     const copyReferalCode = () => {
         if (dimensionWindowbrowser > 400) {
-            navigator.clipboard.writeText(code)
+            navigator.clipboard.writeText(referal_code.toString())
             dispath(codeCopiedAction())
         } else {
-            copyReferalCodeMobile(code)
+            copyReferalCodeMobile(referal_code.toString())
         }
     }
 
@@ -50,7 +53,7 @@ export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
                     icon={iconArrowRight}
                     borderForCode={style.borderForCode}
                     bgColorArrow={style.bgColorArrow}
-                    code={code}
+                    code={referal_code}
                 />
             </div>
             <img className={style.sectionDefaultPage__contentImg}
