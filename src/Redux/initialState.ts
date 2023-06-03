@@ -10,6 +10,7 @@ export interface IInitialState {
     isLoadingAuth: boolean;
     filterBy: null | string;
     referal_code: number;
+    you_have_earned: number;
     error: null | string;
 }
 
@@ -22,5 +23,6 @@ export const initialState: IInitialState = {
     events: [],
     filterBy: null,
     referal_code: 0,
+    you_have_earned: 0,
     error: '',
 }

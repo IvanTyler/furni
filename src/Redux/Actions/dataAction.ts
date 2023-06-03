@@ -8,7 +8,8 @@ import {
     getDataFetchingToken,
     getDataLoadingContacts,
     getDataLoadingEvents,
-    getReferalCode
+    getReferalCode,
+    getYouHaveEarned
 } from "../Reducers/SliceReducers";
 import { AppDispatch } from "../Store/Store";
 
@@ -124,8 +125,8 @@ export const getDataReferalCode = () => async (dispath: AppDispatch) => {
                 }
             )
                 .then(response => {
-
                     dispath(getReferalCode(response.data.lead_id))
+                    dispath(getYouHaveEarned(response.data.earning_total))
                 })
                 .catch(error => console.log(error))
         }

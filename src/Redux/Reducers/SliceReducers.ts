@@ -11,6 +11,9 @@ export const dataSlice = createSlice({
         getReferalCode(state, action: PayloadAction<any>) {
             state.referal_code = action.payload
         },
+        getYouHaveEarned(state, action: PayloadAction<any>) {
+            state.you_have_earned = Math.round(action.payload/100) // as the backend gives these numbers not in AED by multiplied by 100
+        },
         getDataFetchingToken(state) {
             state.isloading = 'loading';
             state.isLoadingContent = 'loading'
@@ -95,4 +98,5 @@ export const {
     getDataLoadingContacts,
     setAuth,
     getReferalCode,
+    getYouHaveEarned
 } = dataSlice.actions
