@@ -125,7 +125,7 @@ export const getDataReferalCode = () => async (dispath: AppDispatch) => {
             )
                 .then(response => {
 
-                    dispath(getReferalCode(response.data.from_lead_id))
+                    dispath(getReferalCode(response.data.lead_id))
                 })
                 .catch(error => console.log(error))
         }
