@@ -6,15 +6,17 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 import { Registration } from '../Registration/Registration'
 import { useGetData } from '../../Hooks/useGetData'
 import { Content } from '../Content/Content'
-import { useTypeSelector } from '../../Hooks/useTypeSelector'
+import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
 import { useEffect } from 'react'
 import cx from 'classnames'
 import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute'
 
 export const Body: React.FC = () => {
+    const dispath = useAppDispath()
 
-    const { isLoadingContent } = useTypeSelector(state => state.data)
+    const { isLoadingContent, referal_code } = useTypeSelector(state => state.data)
 
+    console.log(referal_code);
     if (isLoadingContent === 'loading')
         return (
             <div className={style.preloaderWrapper} >

@@ -52,7 +52,6 @@ export const FilterContacts: React.FC<IFilterContactsProps> = (
 
     const [filterContactsItem, setFilterContactsItem] = useState<IFilterContacts[]>(filterContactsItems)
 
-
     const itemFilterContactsEditHandler = (id: number, filter: any, name: string) => {
         setIsFilterContactsActive(false)
         setTitleContacts(name)

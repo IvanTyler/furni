@@ -28,25 +28,7 @@
         background-color: #323540;
     }
 
-    &:first-of-type {
-        background-color: #323540;
-        border-radius: 12px 12px 0 0;
-        font-size: 12px;
-        line-height: 15px;
-        cursor: default;
-
-        div:not(:first-child) {
-            width: 110px;
-            text-align: right;
-        }
-
-        div:first-child {}
-
-        div:not(:last-child) {
-            display: flex;
-            margin-right: 33px;
-        }
-    }
+    
 
     &:last-of-type {
         position: sticky;
@@ -59,9 +41,9 @@
             text-align: right;
         }
 
-        div:first-child {
-            flex: 1 1 auto;
-        }
+        // div:first-child {
+        //     flex: 1 1 auto;
+        // }
 
         div:not(:last-child) {
             // margin-right: 33px;
@@ -119,6 +101,22 @@
             border-right: none;
             border-bottom: none;
             transform: rotate(45deg);
+            top: 2px;
+        }
+    }
+}
+
+.tabsYourFurniActivityItem.header {
+    &:first-of-type {
+        background-color: #323540;
+        border-radius: 12px 12px 0 0;
+        font-size: 12px;
+        line-height: 15px;
+        cursor: default;
+
+        div:not(:last-child) {
+            display: flex;
+            margin-right: 33px;
         }
     }
 }

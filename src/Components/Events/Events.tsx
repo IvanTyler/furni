@@ -35,18 +35,17 @@ export const Events: React.FC<IPartnersProps> = ({ statsEvents, img }) => {
     else if (isloading === 'ok' && events.length) {
         return (
             <>
+                <div className={cx(styleClientsItem.tabsYourFurniActivityItem, styleClientsItem.header)}>
+                    <div className={cx(styleClientsItem.tabsYourFurniActivityItem__title, styleClientsItem.name)}>
+                        Contact
+                    </div>
+                    <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
+                        What’s new
+                    </div>
+                </div>
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>
                     <div className={styleClients.tabsYourFurniActivityList__content}>
                         <ul className={styleClients.tabsYourFurniActivityList}>
-                            <li className={styleClientsItem.tabsYourFurniActivityItem}>
-                                <div className={cx(styleClientsItem.tabsYourFurniActivityItem__title, styleClientsItem.name)}>
-                                    Contact
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    What’s new
-                                </div>
-                            </li>
-
                             <List
                                 items={events}
                                 renderItem={(item: IGetDataEvents, index: number) => <EventsItem

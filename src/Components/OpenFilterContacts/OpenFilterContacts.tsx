@@ -17,9 +17,15 @@ export const OpenFilterContacts: React.FC<IFilterContactsProps> = (
     }
 ) => {
 
+    const documentBody = document
+    documentBody.addEventListener('click', (e) => setIsFilterContactsActive((prev: any) => prev = false))
+
     return (
         <div
-            onClick={() => setIsFilterContactsActive((prev: boolean) => prev = !prev)}
+            onClick={(e) => {
+                setIsFilterContactsActive((prev: boolean) => prev = !prev)
+                e.stopPropagation()
+            }}
             className={
                 active ?
                     cx(style.openfilterContacts, style.active) :

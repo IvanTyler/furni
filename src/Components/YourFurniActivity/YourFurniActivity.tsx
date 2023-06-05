@@ -23,6 +23,9 @@ export const YourFurniActivity: React.FC = () => {
 
     const { codeCopied } = useGetData()
 
+    const getYouHaveEarnedLocalStorage = localStorage.getItem('youHaveEarned')
+
+
     return (
         <>
             <section className={
@@ -33,7 +36,11 @@ export const YourFurniActivity: React.FC = () => {
                         you’ve earned with Furni
                     </h2>
                     <h2 className={style.sectionYourFurniActivity__title}>
-                        {you_have_earned} AED
+                        {
+                            getYouHaveEarnedLocalStorage !== null ?
+                                getYouHaveEarnedLocalStorage :
+                                you_have_earned
+                        } AED
                     </h2>
                     <img className={style.sectionYourFurniActivity__imgMoney} src={imgMoney} alt="" />
                 </div>

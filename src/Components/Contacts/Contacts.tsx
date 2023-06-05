@@ -42,6 +42,18 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
     else if (isloading === 'ok' && contacts.length) {
         return (
             <>
+                <div className={cx(styleClientsItem.tabsYourFurniActivityItem, styleClientsItem.header)}>
+                    <div className={cx(styleClientsItem.tabsYourFurniActivityItem__title, styleClientsItem.name)}>
+                        <OpenFilterContacts
+                            active={isFilterContactsActive}
+                            setIsFilterContactsActive={setIsFilterContactsActive}
+                        />
+                        {titleContacts}
+                    </div>
+                    <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
+                        Your earnings, AED
+                    </div>
+                </div>
                 <div className={styleClients.tabsYourFurniActivityList__wrapper}>
                     <FilterContacts
                         isFilterContactsActive={isFilterContactsActive}
@@ -50,18 +62,6 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
                     />
                     <div className={styleClients.tabsYourFurniActivityList__content}>
                         <ul className={styleClients.tabsYourFurniActivityList}>
-                            <li className={styleClientsItem.tabsYourFurniActivityItem}>
-                                <div className={cx(styleClientsItem.tabsYourFurniActivityItem__title, styleClientsItem.name)}>
-                                    <OpenFilterContacts
-                                        active={isFilterContactsActive}
-                                        setIsFilterContactsActive={setIsFilterContactsActive}
-                                    />
-                                    {titleContacts}
-                                </div>
-                                <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
-                                    Your earnings, AED
-                                </div>
-                            </li>
 
                             <List
                                 items={contacts}
