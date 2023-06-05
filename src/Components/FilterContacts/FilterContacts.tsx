@@ -55,7 +55,7 @@ export const FilterContacts: React.FC<IFilterContactsProps> = (
 
     const itemFilterContactsEditHandler = (id: number, filter: any, name: string) => {
         setIsFilterContactsActive(false)
-
+        setTitleContacts(name)
         dispath(setfilterBy(filter))
 
         setFilterContactsItem((prev: any) => {

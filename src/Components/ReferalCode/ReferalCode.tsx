@@ -10,7 +10,7 @@ interface IReferalCodeProps {
     sizeCode?: string;
     alignItems?: string;
     referalCode?: string;
-    code?: number;
+    code?: number | string;
 }
 
 export const ReferalCode: React.FC<IReferalCodeProps> = (

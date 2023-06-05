@@ -27,7 +27,7 @@ export const Body: React.FC = () => {
             <>
                 <Routes>
                     <Route path='/' element={<MainPage />} />
-                    <Route path='/logIn' element={<FormUserLogin
+                    <Route path='/login' element={<FormUserLogin
                         isShowElement={false}
                     />} />
                     <Route path='/registr' element={<Registration

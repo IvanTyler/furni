@@ -7,7 +7,9 @@ import {
     getDataFetchingSuccessToken,
     getDataFetchingToken,
     getDataLoadingContacts,
+    getDataLoadingContactsError,
     getDataLoadingEvents,
+    getDataLoadingEventsError,
     getReferalCode,
     getYouHaveEarned
 } from "../Reducers/SliceReducers";
@@ -23,6 +25,7 @@ export const dataAction = (email: string, password: string) => async (dispath: A
             'api/auth',
             { email, password })
             .then(response => {
+
                 if (response.status !== 200) {
                     dispath(getDataFetchError('Ошибка, данных нет'))
                     return
@@ -63,7 +66,10 @@ export const dataActionContacts = () => async (dispath: AppDispatch) => {
             )
                 .then(response => {
 
-                    const res = getData
+                    if (!response.data) {
+                        dispath(getDataLoadingContactsError())
+                        return
+                    }
 
                     dispath(getDataFetchContacts(response.data))
 
@@ -71,7 +77,6 @@ export const dataActionContacts = () => async (dispath: AppDispatch) => {
                 .catch(error => {
                     console.log(error)
                     dispath(getDataFetchError('Ошибка, данных нет'))
-
                 })
         }
 
@@ -87,7 +92,7 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
 
             dispath(getDataLoadingEvents())
             const getTokenSessionStorageParse = JSON.parse(getTokenSessionStorage)
-            const response = await axios.get<any>(
+            await axios.get<any>(
                 `api/user/events`,
                 {
                     headers: {
@@ -96,14 +101,14 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
                 }
             )
                 .then(response => {
-
-                    const res = getData
+                    if (!response.data) {
+                        dispath(getDataLoadingEventsError())
+                        return
+                    }
 
                     dispath(getDataFetchEvents(response.data))
-
                 })
                 .catch(error => console.log(error))
-
         }
 
     } catch (error) {
@@ -113,10 +118,10 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
 
 export const getDataReferalCode = () => async (dispath: AppDispatch) => {
     try {
-        const getTokenSessionStorage = localStorage.getItem('token')
-        if (getTokenSessionStorage !== null) {
-            const getTokenSessionStorageParse = JSON.parse(getTokenSessionStorage)
-            const response = await axios.get<any>(
+        const getTokenLocalStorage = localStorage.getItem('token')
+        if (getTokenLocalStorage !== null) {
+            const getTokenSessionStorageParse = JSON.parse(getTokenLocalStorage)
+            await axios.get<any>(
                 `api/user/overview`,
                 {
                     headers: {
@@ -125,7 +130,10 @@ export const getDataReferalCode = () => async (dispath: AppDispatch) => {
                 }
             )
                 .then(response => {
-                    dispath(getReferalCode(response.data.lead_id))
+                    if (response.data.lead_id) {
+                        dispath(getReferalCode(response.data.lead_id))
+                        localStorage.setItem('lead_id', JSON.stringify(response.data.lead_id))
+                    }
                     dispath(getYouHaveEarned(response.data.earning_total))
                 })
                 .catch(error => console.log(error))

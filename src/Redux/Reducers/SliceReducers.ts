@@ -12,7 +12,7 @@ export const dataSlice = createSlice({
             state.referal_code = action.payload
         },
         getYouHaveEarned(state, action: PayloadAction<any>) {
-            state.you_have_earned = Math.round(action.payload/100) // as the backend gives these numbers not in AED by multiplied by 100
+            state.you_have_earned = Math.round(action.payload / 100) // as the backend gives these numbers not in AED by multiplied by 100
         },
         getDataFetchingToken(state) {
             state.isloading = 'loading';
@@ -29,8 +29,14 @@ export const dataSlice = createSlice({
         getDataLoadingContacts(state) {
             state.isloading = 'loading';
         },
+        getDataLoadingContactsError(state) {
+            state.isloading = 'error';
+        },
         getDataLoadingEvents(state) {
             state.isloading = 'loading';
+        },
+        getDataLoadingEventsError(state) {
+            state.isloading = 'error';
         },
         codeCopiedActiveReducer(state) {
             state.codeCopied = true
@@ -98,5 +104,7 @@ export const {
     getDataLoadingContacts,
     setAuth,
     getReferalCode,
-    getYouHaveEarned
+    getYouHaveEarned,
+    getDataLoadingContactsError,
+    getDataLoadingEventsError,
 } = dataSlice.actions

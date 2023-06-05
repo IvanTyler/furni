@@ -11,16 +11,18 @@ import { setAuth } from '../../Redux/Reducers/SliceReducers'
 
 export const Header: React.FC = () => {
     const { referal_code } = useTypeSelector(state => state.data)
+    const getReferalCodeLocalStorage = localStorage.getItem('lead_id')
 
     const dispath = useAppDispath()
 
     function logOut() {
         localStorage.removeItem('token')
+        localStorage.removeItem('refresh_token')
+        localStorage.removeItem('lead_id')
         dispath(setAuth(false))
     }
 
     const [isShowSocialMedia, setIsSocialMedia] = useState(false)
-    const code = '9462865'
 
     const documentBody = document
     documentBody.addEventListener('click', (e) => setIsSocialMedia((prev: any) => prev = false))
@@ -45,10 +47,17 @@ export const Header: React.FC = () => {
                         sizeCode={style.sizeCode}
                         alignItems={style.alignItems}
                         referalCode={style.referalCode}
-                        code={referal_code}
+                        code={
+                            getReferalCodeLocalStorage !== null ?
+                                getReferalCodeLocalStorage :
+                                referal_code}
                     />
                 </div>
-                {isShowSocialMedia && <SocialMedia code={referal_code} />}
+                {isShowSocialMedia && <SocialMedia code={
+                    getReferalCodeLocalStorage !== null ?
+                        getReferalCodeLocalStorage :
+                        referal_code}
+                />}
             </div>
             <span className={style.header__logOut} onClick={() => logOut()}>
                 Log out
