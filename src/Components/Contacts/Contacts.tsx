@@ -110,7 +110,7 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
                     <div className={styleClients.tabsYourFurniActivityList__content}>
                         <ul className={styleClients.tabsYourFurniActivityList}>
                             <li className={styleClientsItem.tabsYourFurniActivityItem}>
-                                Данных нет.
+                                No data
                             </li>
                         </ul>
                     </div>
