@@ -28,7 +28,11 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                     {item.name}
                 </div>
                 <div className={cx(style.tabsYourFurniActivityItem__item, style[item.event_type])}>
-                    {item.event_text}
+                    {
+                        item.event_type === "new_partner" && item.detail.sale_type === "self"
+                            ? 'welcome' :
+                            item.event_text
+                    }
                 </div>
             </li>
             {

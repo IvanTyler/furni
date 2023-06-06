@@ -147,7 +147,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
             <Input
                 type='text'
                 name='Email'
-                placeholder='Email'
+                placeholder='Partner ID'
                 valueInput={inputValueEmail}
                 error={errorInputEmail}
                 onChangeInput={inputChangeEmail}
