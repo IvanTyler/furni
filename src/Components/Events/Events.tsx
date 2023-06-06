@@ -60,14 +60,6 @@ export const Events: React.FC<IPartnersProps> = ({ statsEvents, img }) => {
         )
     }
 
-    else if (!events) {
-        return (
-            <>
-                <DefaultPage img={img} />
-            </>
-        )
-    }
-
     return (
         <>
             <DefaultPage img={img} />

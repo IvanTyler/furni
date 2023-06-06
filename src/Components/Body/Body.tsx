@@ -37,7 +37,6 @@ export const Body: React.FC = () => {
                             </ProtectedRoute>
                         }
                     />
-
                 </Routes>
             </>
         </div>

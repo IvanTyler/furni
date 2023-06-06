@@ -1,0 +1,61 @@
+.contactRolesList {
+    display: grid;
+    grid-template-areas:
+        "title transitionChapter"
+        "count";
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 96px);
+    margin-top: 16px;
+    gap: 12px;
+
+    &__title {
+        grid-area: title;
+    }
+
+    &__title,
+    &__count {
+        font-family: 'FuturaPT';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: #F0F0F0;
+    }
+
+    &__count {
+        grid-area: count;
+    }
+
+    &__item {
+        padding: 20px 16px;
+        height: 96px;
+        background-color: #262830;
+        border: 2px solid #323540;
+        border-radius: 12px;
+    }
+
+    &__transitionChapter {
+        grid-area: transitionChapter;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+
+        &::after {
+            content: "";
+            display: inline-block;
+            position: relative;
+            top: -1px;
+            width: 5px;
+            height: 5px;
+            border: 2px solid #E0E0E0;
+            border-right: none;
+            border-bottom: none;
+            transform: rotate(135deg);
+            transition: 0.2s;
+        }
+    }
+}

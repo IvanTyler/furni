@@ -3,7 +3,6 @@ import { ITabs } from '../../Interfaces/Tabs'
 import { List } from '../List/List'
 import { TabsListItem } from '../TabsItem/TabsListItem'
 import style from './TabsList.module.scss'
-import { dataActionContacts } from '../../Redux/Actions/dataAction'
 import { useDispatch } from 'react-redux'
 
 interface ITabsListProps {

@@ -1,8 +1,9 @@
 import style from './TimeUnits.module.scss'
 
 import calendarIcon from '../../assets/icon/common/calendar.svg'
-import { useState } from 'react'
+import openTimeUnitsIcon from '../../assets/icon/overview/openTimeunits.svg'
 
+import { useState } from 'react'
 
 export const TimeUnits: React.FC = () => {
 
@@ -10,13 +11,11 @@ export const TimeUnits: React.FC = () => {
 
     return (
         <section className={style.sectionTimeUnits}>
-            <img src={calendarIcon} alt="calendar" />
+            <img className={style.sectionTimeUnits__iconCalendar} src={calendarIcon} alt="calendar" />
             <h3 className={style.sectionTimeUnits__title}>
                 {currentTimeUnit}
             </h3>
-            <span className={style.sectionTimeUnits__openListTimeUnits}>
-
-            </span>
+            <img className={style.sectionTimeUnits__iconOpenTimeUnits} src={openTimeUnitsIcon} alt="openTimeUnits" />
         </section>
     )
 }

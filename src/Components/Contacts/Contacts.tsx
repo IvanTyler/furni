@@ -86,6 +86,39 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
         )
     }
 
+    else if (isloading === 'ok' && !contacts.length) {
+        return (
+            <>
+                <div className={cx(styleClientsItem.tabsYourFurniActivityItem, styleClientsItem.header)}>
+                    <div className={cx(styleClientsItem.tabsYourFurniActivityItem__title, styleClientsItem.name)}>
+                        <OpenFilterContacts
+                            active={isFilterContactsActive}
+                            setIsFilterContactsActive={setIsFilterContactsActive}
+                        />
+                        {titleContacts}
+                    </div>
+                    <div className={styleClientsItem.tabsYourFurniActivityItem__title}>
+                        Your earnings, AED
+                    </div>
+                </div>
+                <div className={styleClients.tabsYourFurniActivityList__wrapper}>
+                    <FilterContacts
+                        isFilterContactsActive={isFilterContactsActive}
+                        setIsFilterContactsActive={setIsFilterContactsActive}
+                        setTitleContacts={setTitleContacts}
+                    />
+                    <div className={styleClients.tabsYourFurniActivityList__content}>
+                        <ul className={styleClients.tabsYourFurniActivityList}>
+                            <li className={styleClientsItem.tabsYourFurniActivityItem}>
+                                Данных нет.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </>
+        )
+    }
+
     return (
         <>
             <DefaultPage img={img} />

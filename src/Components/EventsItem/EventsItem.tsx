@@ -11,6 +11,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
 
     const [openDetailList, setOpenDetailList] = useState(false)
     const date = new Date(item.created_at);
+
     return (
         <>
             <li className={openDetailList ?
@@ -76,10 +77,23 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
                                 {date.getFullYear()}
-                                /{date.getMonth() + 1}
-                                /{date.getDate()}&nbsp;
-                                {date.getHours()}:
-                                {date.getMinutes()}
+                                /{
+                                    date.getMonth() + 1 >= 10 ?
+                                        date.getMonth() + 1 :
+                                        `0${date.getMonth() + 1}`
+                                }
+                                /{
+                                    date.getDate() + 1 >= 10 ?
+                                        date.getDate() + 1 :
+                                        `0${date.getDate() + 1}`
+                                }&nbsp;
+                                {date.getHours() >= 10 ?
+                                    date.getHours() :
+                                    `0${date.getHours()}`
+                                }:
+                                {date.getMinutes() >= 10 ?
+                                    date.getHours() :
+                                    `0${date.getHours()}`}
                             </div>
                         </li>
                     </ul> : null
