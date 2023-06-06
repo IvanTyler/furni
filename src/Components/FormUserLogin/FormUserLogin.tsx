@@ -221,7 +221,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
                     </span>
                     :
                     <span> Forgot password? Call us <a href="tel:+97143102096">+971-431-02096</a>
-                        &nbsp; Don’t have an account? <span className={style.formUserLogin__registr}></span> Register
+                        {/* &nbsp; Don’t have an account? <span className={style.formUserLogin__registr}></span> Register */}
                     </span>
                 }
             </div>
