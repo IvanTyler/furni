@@ -1,8 +1,5 @@
 .contactRolesList {
     display: grid;
-    grid-template-areas:
-        "title transitionChapter"
-        "count";
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 96px);
     margin-top: 16px;
@@ -23,10 +20,16 @@
     }
 
     &__count {
-        grid-area: count;
+        grid-area: myCount;
+        align-self: end;
     }
 
     &__item {
+        display: grid;
+        grid-template-areas:
+            "title transitionChapter"
+            "myCount myCount";
+        grid-template-columns: 113px 1fr;
         padding: 20px 16px;
         height: 96px;
         background-color: #262830;
@@ -39,6 +42,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        justify-self: end;
         width: 20px;
         height: 20px;
         border-radius: 50%;
