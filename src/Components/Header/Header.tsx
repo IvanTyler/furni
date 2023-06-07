@@ -5,7 +5,6 @@ import { ReferalCode } from '../ReferalCode/ReferalCode'
 import iconArrowRight from '../../assets/icon/common/arrow-right-gray.svg'
 import { SocialMedia } from '../SocialMedia/SocialMedia'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
 import { setAuth } from '../../Redux/Reducers/SliceReducers'
 

@@ -11,7 +11,6 @@ import {
     getDataLoadingEvents,
     getDataLoadingEventsError,
     getReferalCode,
-    getReferalCodeSuccess,
     getYouHaveEarned
 } from "../Reducers/SliceReducers";
 import { AppDispatch } from "../Store/Store";
@@ -21,7 +20,6 @@ export const dataAction = (email: string, password: string) => async (dispath: A
     try {
         dispath(getDataFetchingToken())
 
-        let token = ''
         await axios.post<any>(
             'api/auth',
             { email, password })
@@ -31,7 +29,6 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                     dispath(getDataFetchError('Ошибка, данных нет'))
                     return
                 }
-                token = response.data.token
                 localStorage.setItem('token', JSON.stringify({
                     token: response.data.token
                 }))
@@ -76,16 +73,17 @@ export const dataAction = (email: string, password: string) => async (dispath: A
 
 export const dataActionContacts = () => async (dispath: AppDispatch) => {
     try {
-        const getTokenSessionStorage = localStorage.getItem('token')
-        if (getTokenSessionStorage !== null) {
-            const getTokenSessionStorageParse = JSON.parse(getTokenSessionStorage)
+        const getTokenLocalStorage = localStorage.getItem('token')
+
+        if (getTokenLocalStorage !== null) {
+            const getTokenLocalStorageParse = JSON.parse(getTokenLocalStorage)
             dispath(getDataLoadingContacts())
 
             await axios.get<any>(
                 `api/user/contacts`,
                 {
                     headers: {
-                        'Authorization': `Bearer ${getTokenSessionStorageParse.token}`
+                        'Authorization': `Bearer ${getTokenLocalStorageParse.token}`
                     }
                 }
             )
@@ -99,9 +97,51 @@ export const dataActionContacts = () => async (dispath: AppDispatch) => {
                     dispath(getDataFetchContacts(response.data))
 
                 })
-                .catch(error => {
+                .catch(async error => {
                     console.log(error)
                     dispath(getDataFetchError('Ошибка, данных нет'))
+                    localStorage.removeItem('lead_id')
+
+                    const getRefreshTokenLocalStorage = localStorage.getItem('refresh_token')
+                    const getTokenLocalStorage = localStorage.getItem('token')
+
+                    // if (getRefreshTokenLocalStorage !== null && getTokenLocalStorage !== null) {
+
+                    //     const getRefreshTokenLocalStorageParse = JSON.parse(getRefreshTokenLocalStorage)
+                    //     const getTokenLocalStorageParse = JSON.parse(getTokenLocalStorage)
+
+                    //     await axios.post<any>(
+                    //         'api/refresh',
+                    //         {
+                    //             refresh_token: getRefreshTokenLocalStorageParse.refresh_token,
+                    //             token: getTokenLocalStorageParse.token
+                    //         })
+                    //         .then(async response => {
+
+                    //             console.log(response);
+
+
+                    //             if (response.status !== 200) {
+                    //                 dispath(getDataFetchError('Ошибка, данных нет'))
+                    //                 return
+                    //             }
+                    //             // localStorage.setItem('token', JSON.stringify({
+                    //             //     token: response.data.token
+                    //             // }))
+                    //             // localStorage.setItem('refresh_token', JSON.stringify({
+                    //             //     refresh_token: response.data.refresh_token,
+                    //             // }))
+
+                    //             // const getTokenLocalStorage = localStorage.getItem('token')
+
+                    //             dispath(getDataFetchContacts(response.data))
+
+
+                    //         })
+                    //         .catch(error => {
+                    //             dispath(getDataFetchError('Ошибка, данных нет'))
+                    //         })
+                    // }
                 })
         }
 
@@ -133,7 +173,12 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
 
                     dispath(getDataFetchEvents(response.data))
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                    console.log(error)
+                    dispath(getDataFetchError('Ошибка, данных нет'))
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('lead_id')
+                })
         }
 
     } catch (error) {
