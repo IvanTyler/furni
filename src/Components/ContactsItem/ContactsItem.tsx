@@ -12,8 +12,6 @@ export const ContactsItem: React.FC<IClientsProps> = (
     { item }
 ) => {
 
-    const { filterBy } = useTypeSelector(state => state.data)
-
     const total = Object.values(item.detail)
         .reduce((acc: number, el: number) => acc + el, 0)
 

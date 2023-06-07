@@ -1,4 +1,4 @@
-import style from './FilterContacts.module.scss'
+import style from '../../assets/styles/filterList.module.scss'
 import { useState } from 'react'
 import { IFilterContacts } from '../../Interfaces/FilterContacts'
 import { List } from '../List/List'
@@ -10,7 +10,7 @@ import { setfilterBy } from '../../Redux/Reducers/SliceReducers'
 interface IFilterContactsProps {
     isFilterContactsActive: boolean
     setIsFilterContactsActive: (item: boolean) => void
-    setTitleContacts:( item: string) => void
+    setTitleContacts: (item: string) => void
 }
 
 export const FilterContacts: React.FC<IFilterContactsProps> = (
@@ -78,8 +78,8 @@ export const FilterContacts: React.FC<IFilterContactsProps> = (
     return (
         <ul className={
             isFilterContactsActive ?
-                style.FilterContactsList :
-                cx(style.FilterContactsList, style.hide)
+                style.FilterList :
+                cx(style.FilterList, style.hide)
         }>
             <List
                 items={filterContactsItem}

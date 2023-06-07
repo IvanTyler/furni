@@ -17,6 +17,11 @@
         font-size: 16px;
         line-height: 19px;
         color: #F0F0F0;
+
+        @media (max-width: 360px) {
+            font-size: 14px;
+            line-height: 17px;
+        }
     }
 
     &__count {
@@ -29,12 +34,16 @@
         grid-template-areas:
             "title transitionChapter"
             "myCount myCount";
-        grid-template-columns: 113px 1fr;
+        grid-template-columns: 1fr 1fr;
         padding: 20px 16px;
         height: 96px;
         background-color: #262830;
         border: 2px solid #323540;
         border-radius: 12px;
+
+        @media (max-width: 360px) {
+            padding: 15px 12px;
+        }
     }
 
     &__transitionChapter {
@@ -53,9 +62,10 @@
             display: inline-block;
             position: relative;
             top: -1px;
-            width: 5px;
-            height: 5px;
-            border: 2px solid #E0E0E0;
+            right: 1px;
+            width: 5.5px;
+            height: 5.5px;
+            border: 1.5px solid #E0E0E0;
             border-right: none;
             border-bottom: none;
             transform: rotate(135deg);

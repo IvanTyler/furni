@@ -1,22 +1,16 @@
-import { IFilterContacts } from '../../Interfaces/FilterContacts'
 import style from '../../assets/styles/filterListItem.module.scss'
 
 import selectedFilterIcon from '../../assets/icon/common/selected-green.svg'
+import { IFilterTimeUnits } from '../../Interfaces/IFilterTimeUnits'
 
 interface IFilterContactsItemProps {
-    item: IFilterContacts
-    itemFilterContactsEditHandler: (id: number, filter: string, name: string) => void
+    item: IFilterTimeUnits
+    setTimeUnitTitle: (id: number, name: string) => void
 }
 
-export const FilterContactsItem: React.FC<IFilterContactsItemProps> = (
-    {
-        item,
-        itemFilterContactsEditHandler
-    }
-) => {
+export const TimeUnitsFilterItems: React.FC<IFilterContactsItemProps> = ({ item, setTimeUnitTitle }) => {
     return (
-        <li
-            onClick={() => itemFilterContactsEditHandler(item.id, item.filter, item.name)}
+        <li onClick={() => setTimeUnitTitle(item.id, item.name)}
             className={style.FilterListItem}>
             {
                 item.active &&
