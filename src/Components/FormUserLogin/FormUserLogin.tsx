@@ -17,7 +17,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     { isShowElement }
 ) => {
     const navigate = useNavigate()
-    const { isloading, isLoadingAuth } = useTypeSelector(state => state.data)
+    const { isLoadingAuth } = useTypeSelector(state => state.data)
     
 
     useEffect(() => {
@@ -217,7 +217,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
                 {isShowElement ?
                     <span>
                         Already have an account?&nbsp;
-                        <Link className={style.formUserLogin__link} to='/logIn'>Log In</Link>
+                        <Link className={style.formUserLogin__link} to='/logIn'>LogIn</Link>
                     </span>
                     :
                     <span> Forgot password? Call us <a href="tel:+97143102096">+971-431-02096</a>

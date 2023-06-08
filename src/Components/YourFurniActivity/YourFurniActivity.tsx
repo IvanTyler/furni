@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Contacts } from '../Contacts/Contacts'
 import { Events } from '../Events/Events'
 import { TabsList } from '../Tabs/TabsList'
 import { tabsYourFurniActivityListEnum } from '../../Enums/tabsYourFurniActivityListEnum'
@@ -15,6 +14,7 @@ import imgMoney from '../../assets/images/money.png'
 
 import { useGetData } from '../../Hooks/useGetData'
 import { useTypeSelector } from '../../Hooks/useTypeSelector';
+import Contacts from '../Contacts/Contacts'
 
 export const YourFurniActivity: React.FC = () => {
     const { you_have_earned } = useTypeSelector(state => state.data)

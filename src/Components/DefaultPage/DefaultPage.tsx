@@ -12,7 +12,7 @@ import { TimeUnits } from '../TimeUnits/TimeUnits';
 import { OverviewContent } from '../OverviewContent/OverviewContent';
 
 interface IDefaultPageProps {
-    img: string;
+    img?: string;
 }
 
 export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {

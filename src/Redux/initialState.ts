@@ -7,6 +7,8 @@ export interface IInitialState {
     events: IGetDataEvents[];
     isloading: string;
     isLoadingContent: string;
+    isLoadingContacts: boolean;
+    isRefresh_token: boolean;
     isLoadingAuth: boolean;
     filterBy: null | string;
     referal_code: number;
@@ -18,7 +20,9 @@ export const initialState: IInitialState = {
     codeCopied: false,
     isloading: '',
     isLoadingContent: '',
+    isLoadingContacts: false,
     isLoadingAuth: false,
+    isRefresh_token: false,
     contacts: [],
     events: [],
     filterBy: null,

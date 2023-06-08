@@ -9,8 +9,8 @@ import { DefaultPage } from '../DefaultPage/DefaultPage'
 import { useEffect } from 'react'
 import { IGetDataEvents } from '../../Interfaces/Events'
 import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
-import { dataActionEvents } from '../../Redux/Actions/dataAction'
 import { Preloader } from '../Preloader/Preloader'
+import { dataActionEvents } from '../../Redux/Actions/dataActionEvents'
 
 interface IPartnersProps {
     statsEvents?: any;

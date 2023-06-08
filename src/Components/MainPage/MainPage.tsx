@@ -32,7 +32,7 @@ export const MainPage: React.FC = () => {
                     </ul>
                     <nav className={style.sectionMainPageNavigation}>
                         {/* <Link className={style.sectionMainPageNavigation__link} to='/registr'>Registr</Link> */}
-                        <Link className={style.sectionMainPageNavigation__link} to='/login'>Log In</Link>
+                        <Link className={style.sectionMainPageNavigation__link} to='/login'>LogIn</Link>
                     </nav>
                 </li>
                 <li className={style.listDescriptionWorksFurni__item}>

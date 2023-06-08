@@ -9,18 +9,19 @@ import { useEffect, useState } from 'react'
 import { DefaultPage } from '../DefaultPage/DefaultPage'
 import { OpenFilterContacts } from '../OpenFilterContacts/OpenFilterContacts'
 import { FilterContacts } from '../FilterContacts/FilterContacts'
-import { dataActionContacts } from '../../Redux/Actions/dataAction'
 import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
 import { contactsSelector, grandTotalSelector } from '../../Redux/Reducers/SliceReducers'
 import { Preloader } from '../Preloader/Preloader'
+import React from 'react'
+import { dataActionContacts } from '../../Redux/Actions/dataActionContacts'
 
 interface IContactsProps {
     img: string;
 }
 
-export const Contacts: React.FC<IContactsProps> = ({ img }) => {
+function Contacts({ img }: IContactsProps) {
 
-    const { isloading } = useTypeSelector(state => state.data)
+    const { isloading, isRefresh_token } = useTypeSelector(state => state.data)
 
     const contacts = useTypeSelector(contactsSelector)
     const grandTotal = useTypeSelector(grandTotalSelector)
@@ -28,6 +29,7 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
     const dispath = useAppDispath()
 
     useEffect(() => {
+        console.log('render')
         dispath(dataActionContacts())
     }, [])
 
@@ -126,3 +128,5 @@ export const Contacts: React.FC<IContactsProps> = ({ img }) => {
     )
 
 }
+
+export default React.memo(Contacts)

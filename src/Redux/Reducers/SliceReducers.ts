@@ -26,6 +26,10 @@ export const dataSlice = createSlice({
             state.isloading = 'ok';
             state.isLoadingContent = 'ok'
             state.isLoadingAuth = true
+            state.isRefresh_token = false
+        },
+        getDataFetchingSuccessRefreshToken(state) {
+            state.isRefresh_token = true
         },
         setAuth(state, action: PayloadAction<any>) {
             state.isLoadingAuth = action.payload
@@ -112,4 +116,5 @@ export const {
     getDataLoadingContactsError,
     getDataLoadingEventsError,
     getReferalCodeSuccess,
+    getDataFetchingSuccessRefreshToken
 } = dataSlice.actions
