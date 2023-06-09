@@ -7,10 +7,9 @@ import iconTelergam from '../../assets/icon/social-media/telegram.svg'
 import iconLinkedin from '../../assets/icon/social-media/Linkedin.svg'
 import { useGetData } from '../../Hooks/useGetData'
 import { useDispatch } from 'react-redux'
-import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied'
 import { useEffect, useState } from 'react'
 import { copyReferalCodeMobile } from '../../assets/Functions/copyReferalCodeMobile'
-
+import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied'
 
 interface ISocialMediaProps {
     code?: any;

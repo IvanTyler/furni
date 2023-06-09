@@ -1,7 +1,5 @@
 import axios from "axios";
 
-// export const API_URL = 'https://partner.furni.ae'
-
 const $api = axios.create({
     withCredentials: true,
 })
@@ -27,7 +25,7 @@ $api.interceptors.response.use(
                 localStorage.setItem('refresh_token', response.data.refresh_token);
                 return $api.request(originalRequest);
             } catch (err) {
-                console.log('Пользователь не авторизован');
+                console.log(err);
             }
         }
 

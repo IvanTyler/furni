@@ -18,6 +18,8 @@ export const Header: React.FC = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('refresh_token')
         localStorage.removeItem('lead_id')
+        localStorage.removeItem('youHaveEarned')
+
         dispath(setAuth(false))
     }
 

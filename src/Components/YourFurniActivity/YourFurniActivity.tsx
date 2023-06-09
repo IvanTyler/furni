@@ -18,10 +18,9 @@ import Contacts from '../Contacts/Contacts'
 
 export const YourFurniActivity: React.FC = () => {
     const { you_have_earned } = useTypeSelector(state => state.data)
+    const { codeCopied } = useTypeSelector(state => state.copyCopied)
 
     const [tabElement, setTabElement] = useState('Overview')
-
-    const { codeCopied } = useGetData()
 
     const getYouHaveEarnedLocalStorage = localStorage.getItem('youHaveEarned')
 

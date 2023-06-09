@@ -20,16 +20,12 @@ export const dataSlice = createSlice({
         },
         getDataFetchingToken(state) {
             state.isloading = 'loading';
-            state.isLoadingContent = 'loading'
+            state.isLoadingContent = true
         },
         getDataFetchingSuccessToken(state) {
             state.isloading = 'ok';
-            state.isLoadingContent = 'ok'
+            state.isLoadingContent = false
             state.isLoadingAuth = true
-            state.isRefresh_token = false
-        },
-        getDataFetchingSuccessRefreshToken(state) {
-            state.isRefresh_token = true
         },
         setAuth(state, action: PayloadAction<any>) {
             state.isLoadingAuth = action.payload
@@ -46,17 +42,10 @@ export const dataSlice = createSlice({
         getDataLoadingEventsError(state) {
             state.isloading = 'error';
         },
-        codeCopiedActiveReducer(state) {
-            state.codeCopied = true
-        },
-        codeCopiedNotActiveReducer(state) {
-            state.codeCopied = false
-        },
         getDataFetchError(state, action: PayloadAction<string>) {
-            state.isloading = 'error';
             state.error = action.payload
             state.isLoadingAuth = false
-            state.isLoadingContent = 'error'
+            state.isLoadingContent = false
         },
         getDataFetchContacts(state, action: PayloadAction<any>) {
             state.contacts = action.payload
@@ -100,8 +89,6 @@ export const grandTotalSelector = createSelector([contactsSelector], (contactsSe
 
 export default dataSlice.reducer
 export const {
-    codeCopiedActiveReducer,
-    codeCopiedNotActiveReducer,
     getDataFetchingToken,
     getDataFetchingSuccessToken,
     getDataFetchError,
@@ -116,5 +103,4 @@ export const {
     getDataLoadingContactsError,
     getDataLoadingEventsError,
     getReferalCodeSuccess,
-    getDataFetchingSuccessRefreshToken
 } = dataSlice.actions

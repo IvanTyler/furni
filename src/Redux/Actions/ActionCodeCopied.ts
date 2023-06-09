@@ -1,4 +1,4 @@
-import { codeCopiedActiveReducer, codeCopiedNotActiveReducer } from "../Reducers/SliceReducers";
+import { codeCopiedActiveReducer, codeCopiedNotActiveReducer } from "../Reducers/codeCopiedReducer";
 import { AppDispatch } from "../Store/Store";
 
 export const codeCopiedAction = () => (dispath: AppDispatch) => {

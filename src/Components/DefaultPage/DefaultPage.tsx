@@ -3,24 +3,27 @@ import style from './DefaultPage.module.scss'
 import iconArrowRight from '../../assets/icon/common/arrow-right.svg'
 import imgOverview from '../../assets/images/overview.png'
 import { ReferalCode } from '../ReferalCode/ReferalCode';
-import { useDispatch } from 'react-redux';
-import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied';
 import { useEffect, useState } from 'react';
 import { copyReferalCodeMobile } from '../../assets/Functions/copyReferalCodeMobile';
 import { useTypeSelector } from '../../Hooks/useTypeSelector';
-import { TimeUnits } from '../TimeUnits/TimeUnits';
-import { OverviewContent } from '../OverviewContent/OverviewContent';
+import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied';
+import { useAppDispatch } from '../../Redux/Store/Store';
 
 interface IDefaultPageProps {
-    img?: string;
+    img: string;
 }
 
 export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
+
+    const dispath = useAppDispatch()
     const { referal_code } = useTypeSelector(state => state.data)
 
     const getReferalCodeLocalStorage = localStorage.getItem('lead_id')
-
-    const dispath = useDispatch<any>()
+    const getReferalCodeLocalStorageJSON = JSON.stringify(getReferalCodeLocalStorage);
+    const getReferalCodeLocalStorageJSONFilter = getReferalCodeLocalStorageJSON
+        .split('')
+        .filter(el => el !== '"')
+        .join('')
 
     const [dimensionWindowbrowser, setdimensionWindowbrowser] = useState<number>(window.innerWidth)
 
@@ -33,10 +36,10 @@ export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
 
     const copyReferalCode = () => {
         if (dimensionWindowbrowser > 400) {
-            navigator.clipboard.writeText(referal_code.toString())
+            navigator.clipboard.writeText(getReferalCodeLocalStorageJSONFilter.toString())
             dispath(codeCopiedAction())
         } else {
-            copyReferalCodeMobile(referal_code.toString())
+            copyReferalCodeMobile(getReferalCodeLocalStorageJSONFilter.toString())
         }
     }
 

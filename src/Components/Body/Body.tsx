@@ -13,7 +13,7 @@ export const Body: React.FC = () => {
 
     const { isLoadingContent } = useTypeSelector(state => state.data)
 
-    if (isLoadingContent === 'loading')
+    if (isLoadingContent)
         return (
             <div className={style.preloaderWrapper}>
                 <Preloader />

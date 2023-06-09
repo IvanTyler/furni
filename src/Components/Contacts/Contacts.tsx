@@ -21,7 +21,7 @@ interface IContactsProps {
 
 function Contacts({ img }: IContactsProps) {
 
-    const { isloading, isRefresh_token } = useTypeSelector(state => state.data)
+    const { isloading } = useTypeSelector(state => state.data)
 
     const contacts = useTypeSelector(contactsSelector)
     const grandTotal = useTypeSelector(grandTotalSelector)

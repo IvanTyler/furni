@@ -18,19 +18,17 @@ export const dataActionContacts = () => (dispath: AppDispatch) => {
     )
         .then(response => {
 
-            // if (!response.data) {
-            //     // dispath(getDataLoadingContactsError())
-            //     return
-            // }
+            if (!response.data) {
+                dispath(getDataLoadingContactsError())
+                return
+            }
             dispath(getDataFetchContacts(response.data))
 
         })
         .catch(error => {
             console.log(error)
-            // dispath(getDataFetchError('Ошибка, данных нет'))
-            localStorage.removeItem('lead_id')
-            localStorage.removeItem('token')
+            dispath(getDataLoadingContactsError())
+            // localStorage.removeItem('lead_id')
+            // localStorage.removeItem('token')
         })
-
-    // dispath(getDataFetchError('Ошибка, данных нет'))
 }
