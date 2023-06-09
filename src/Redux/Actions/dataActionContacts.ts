@@ -27,7 +27,7 @@ export const dataActionContacts = () => (dispath: AppDispatch) => {
         })
         .catch(error => {
             console.log(error)
-            dispath(getDataFetchError('Ошибка, данных нет'))
+            // dispath(getDataFetchError('Ошибка, данных нет'))
             localStorage.removeItem('lead_id')
             localStorage.removeItem('token')
         })

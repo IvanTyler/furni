@@ -17,16 +17,16 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
         `api/user/events`
     )
         .then(response => {
-            if (!response.data) {
-                dispath(getDataLoadingEventsError())
-                return
-            }
+            // if (!response.data) {
+            //     dispath(getDataLoadingEventsError())
+            //     return
+            // }
 
             dispath(getDataFetchEvents(response.data))
         })
         .catch(error => {
             console.log(error)
-            dispath(getDataFetchError('Ошибка, данных нет'))
+            // dispath(getDataFetchError('Ошибка, данных нет'))
             localStorage.removeItem('token')
             localStorage.removeItem('lead_id')
         })
