@@ -7,39 +7,29 @@ import {
     getDataLoadingEventsError,
 } from "../Reducers/SliceReducers";
 import { AppDispatch } from "../Store/Store";
+import $api from "../http/http";
 
 export const dataActionEvents = () => async (dispath: AppDispatch) => {
-    try {
-        const getTokenSessionStorage = localStorage.getItem('token')
-        if (getTokenSessionStorage !== null) {
 
-            dispath(getDataLoadingEvents())
-            const getTokenSessionStorageParse = JSON.parse(getTokenSessionStorage)
-            await axios.get<any>(
-                `api/user/events`,
-                {
-                    headers: {
-                        'Authorization': `Bearer ${getTokenSessionStorageParse}`
-                    }
-                }
-            )
-                .then(response => {
-                    if (!response.data) {
-                        dispath(getDataLoadingEventsError())
-                        return
-                    }
 
-                    dispath(getDataFetchEvents(response.data))
-                })
-                .catch(error => {
-                    console.log(error)
-                    dispath(getDataFetchError('Ошибка, данных нет'))
-                    localStorage.removeItem('token')
-                    localStorage.removeItem('lead_id')
-                })
-        }
+    dispath(getDataLoadingEvents())
+    await $api.get<any>(
+        `api/user/events`
+    )
+        .then(response => {
+            if (!response.data) {
+                dispath(getDataLoadingEventsError())
+                return
+            }
 
-    } catch (error) {
-        dispath(getDataFetchError('Ошибка, данных нет'))
-    }
+            dispath(getDataFetchEvents(response.data))
+        })
+        .catch(error => {
+            console.log(error)
+            dispath(getDataFetchError('Ошибка, данных нет'))
+            localStorage.removeItem('token')
+            localStorage.removeItem('lead_id')
+        })
+
+    // dispath(getDataFetchError('Ошибка, данных нет'))
 }
