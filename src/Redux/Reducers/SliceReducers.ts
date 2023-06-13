@@ -3,29 +3,15 @@ import { RootState } from "../Store/Store";
 import { IGetDataContacts } from "../../Interfaces/contacts";
 import { initialState } from '../initialState'
 
-
 export const dataSlice = createSlice({
     name: 'getData',
     initialState,
     reducers: {
         getReferalCode(state, action: PayloadAction<any>) {
             state.referal_code = action.payload
-            state.isloading = 'loading';
-        },
-        getReferalCodeSuccess(state) {
-            state.isloading = 'ok';
         },
         getYouHaveEarned(state, action: PayloadAction<any>) {
             state.you_have_earned = Math.round(action.payload / 100) // as the backend gives these numbers not in AED by multiplied by 100
-        },
-        getDataFetchingToken(state) {
-            state.isloading = 'loading';
-            state.isLoadingContent = true
-        },
-        getDataFetchingSuccessToken(state) {
-            state.isloading = 'ok';
-            state.isLoadingContent = false
-            state.isLoadingAuth = true
         },
         setAuth(state, action: PayloadAction<any>) {
             state.isLoadingAuth = action.payload
@@ -89,8 +75,6 @@ export const grandTotalSelector = createSelector([contactsSelector], (contactsSe
 
 export default dataSlice.reducer
 export const {
-    getDataFetchingToken,
-    getDataFetchingSuccessToken,
     getDataFetchError,
     getDataFetchContacts,
     getDataLoadingEvents,
@@ -102,5 +86,4 @@ export const {
     getYouHaveEarned,
     getDataLoadingContactsError,
     getDataLoadingEventsError,
-    getReferalCodeSuccess,
 } = dataSlice.actions

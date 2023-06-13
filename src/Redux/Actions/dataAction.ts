@@ -1,25 +1,21 @@
-import axios from "axios";
-import { getData } from "../../MockData/MockData";
 import {
     getDataFetchError,
-    getDataFetchingSuccessToken,
-    getDataFetchingToken,
     getReferalCode,
     getYouHaveEarned
 } from "../Reducers/SliceReducers";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
-
+import { IGetDataTokens } from "../../Interfaces/IGetDataTokens";
+import { getDataFetchingSuccessToken, getDataFetchingToken } from "../Reducers/getDataTokensReducer";
 
 export const dataAction = (email: string, password: string) => async (dispath: AppDispatch) => {
     try {
         dispath(getDataFetchingToken())
 
-        await $api.post<any>(
+        await $api.post<IGetDataTokens>(
             'api/auth',
             { email, password })
             .then(async response => {
-                console.log('auth', response);
 
                 if (response.status !== 200) {
                     dispath(getDataFetchError('Ошибка, данных нет'))

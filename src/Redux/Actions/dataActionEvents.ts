@@ -1,7 +1,5 @@
-import axios from "axios";
-import { getData } from "../../MockData/MockData";
+import { IGetDataEvents } from "../../Interfaces/Events";
 import {
-    getDataFetchError,
     getDataFetchEvents,
     getDataLoadingEvents,
     getDataLoadingEventsError,
@@ -11,9 +9,8 @@ import $api from "../http/http";
 
 export const dataActionEvents = () => async (dispath: AppDispatch) => {
 
-
     dispath(getDataLoadingEvents())
-    await $api.get<any>(
+    await $api.get<IGetDataEvents[]>(
         `api/user/events`
     )
         .then(response => {
@@ -25,11 +22,6 @@ export const dataActionEvents = () => async (dispath: AppDispatch) => {
             dispath(getDataFetchEvents(response.data))
         })
         .catch(error => {
-            console.log(error)
             dispath(getDataLoadingEventsError())
-            // localStorage.removeItem('token')
-            // localStorage.removeItem('lead_id')
         })
-
-    // dispath(getDataFetchError('Ошибка, данных нет'))
 }

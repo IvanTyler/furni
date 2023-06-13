@@ -1,22 +1,20 @@
-import axios from "axios";
+import { IgetDataContactsDto } from "../../Interfaces/getDataDto";
 import {
     getDataFetchContacts,
-    getDataFetchError,
     getDataLoadingContacts,
     getDataLoadingContactsError,
 } from "../Reducers/SliceReducers";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
 
-
 export const dataActionContacts = () => (dispath: AppDispatch) => {
-
     dispath(getDataLoadingContacts())
 
-    $api.get<any>(
+    $api.get<IgetDataContactsDto[]>(
         `api/user/contacts`,
     )
         .then(response => {
+            console.log(response);
 
             if (!response.data) {
                 dispath(getDataLoadingContactsError())
@@ -26,9 +24,6 @@ export const dataActionContacts = () => (dispath: AppDispatch) => {
 
         })
         .catch(error => {
-            console.log(error)
             dispath(getDataLoadingContactsError())
-            // localStorage.removeItem('lead_id')
-            // localStorage.removeItem('token')
         })
 }

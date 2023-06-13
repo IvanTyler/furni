@@ -17,7 +17,7 @@ interface IPartnersProps {
     img: string;
 }
 
-export const Events: React.FC<IPartnersProps> = ({ statsEvents, img }) => {
+export const Events: React.FC<IPartnersProps> = ({ img }) => {
 
     const { events, isloading } = useTypeSelector(state => state.data)
 

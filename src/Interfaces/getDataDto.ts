@@ -1,22 +1,10 @@
-import { IDetailContacts, IDetailEvents } from "./Detail";
-
-export interface IgetDataDto {
-    contacts: IgetDataContactsDto[];
-    events: IGetDataEventsDto[];
-}
+import { IDetailContacts } from "./Detail";
 
 export interface IgetDataContactsDto {
     id: number;
     name: string;
+    created_at: string;
     detail: IDetailContacts
-}
-
-export interface IGetDataEventsDto {
-    id: number;
-    name: string;
-    event_type: string;
-    event: string;
-    detail: IDetailEvents
 }
 
 
