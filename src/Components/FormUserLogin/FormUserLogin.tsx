@@ -185,14 +185,14 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
             setErrorInputPhone(prev => prev = false)
 
         if (isShowInputReferalCodeState) {
-            inputValueReferalCode.trim().length < 8 ?
+            inputValueReferalCode.trim().length < 4 ?
                 setErrorInputReferalCode(prev => prev = true) :
                 setErrorInputReferalCode(prev => prev = false)
         }
 
         if (inputValueFullName.trim().length >= 1
             && inputValuePhone.trim().length >= 8 ||
-            inputValueReferalCode.trim().length >= 8
+            inputValueReferalCode.trim().length >= 4
         ) {
             setErrorInputFullName(prev => prev = false)
             setErrorInputPasswordValue(prev => prev = false)
@@ -276,7 +276,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
             </div>}
             {isShowInputEmail && <div className={style.formUserLogin__inputWrapper}>
                 <Input
-                    type='text'
+                    type='email'
                     name='email'
                     placeholder='Email'
                     valueInput={inputValueEmail}
@@ -318,7 +318,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
                 <div className={style.formUserLogin__inputWrapper}>
                     <Input
                         type='phone'
-                        name='referralCode'
+                        name='number'
                         placeholder='Referral code'
                         valueInput={inputValueReferalCode}
                         error={errorInputReferalCode}
