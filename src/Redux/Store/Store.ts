@@ -4,10 +4,10 @@ import getCopyCopied from '../Reducers/codeCopiedReducer'
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-// const rootReducer = combineReducers({
-//     data: getData,
-//     copyCopied: getCopyCopied,
-// })
+const rootReducer = combineReducers({
+    data: getData,
+    copyCopied: getCopyCopied,
+})
 
 export const store = configureStore({
     reducer: {

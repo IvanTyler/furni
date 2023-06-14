@@ -8,9 +8,8 @@ import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
 
 export const dataActionContacts = () => (dispath: AppDispatch) => {
-    dispath(getDataLoadingContacts())
 
-    $api.get<IgetDataContactsDto[]>(
+    $api.get<any>(
         `api/user/contacts`,
     )
         .then(response => {

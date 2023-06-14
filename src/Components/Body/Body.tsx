@@ -2,12 +2,12 @@ import { FormUserLogin } from '../FormUserLogin/FormUserLogin'
 import { Preloader } from '../Preloader/Preloader'
 import style from './Body.module.scss'
 import { MainPage } from '../MainPage/MainPage'
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import { Registration } from '../Registration/Registration'
-import { useGetData } from '../../Hooks/useGetData'
+import { Route, Routes } from 'react-router-dom'
+import { LetsGetStartedForm } from '../LetsGetStartedForm/LetsGetStartedForm'
 import { Content } from '../Content/Content'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute'
+import { YourDetailsForm } from '../YourDetailsForm/YourDetailsForm'
 
 export const Body: React.FC = () => {
 
@@ -26,9 +26,15 @@ export const Body: React.FC = () => {
                 <Routes>
                     <Route path='/' element={<MainPage />} />
                     <Route path='/login' element={<FormUserLogin
+                        title={'Login to your partner’s account'}
                         isShowElement={false}
+                        isShowInputPartnerID={true}
+                        isShowInputPassword={true}
+                        textButton={'Login'}
                     />} />
-                    <Route path='/registr' element={<Registration
+                    <Route path='/letsGetStartedRegistr' element={<LetsGetStartedForm
+                    />} />
+                    <Route path='/yourDetailsFormRegistr' element={<YourDetailsForm
                     />} />
                     <Route path='/content'
                         element={

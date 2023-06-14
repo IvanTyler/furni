@@ -1,6 +1,7 @@
 .formUserLogin {
     position: relative;
-    max-width: 400px;
+    width: 400px;
+    max-width: 100%;
     margin: 0 auto;
     text-align: center;
 
@@ -42,9 +43,23 @@
         }
     }
 
+    &__haveReferralCode {
+        display: inline-block;
+        margin: 30px auto;
+        font-family: 'FuturaPT';
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #8B8B9E;
+        cursor: pointer;
+    }
+
     &__inputWrapper {
-        margin-top: 20px;
         position: relative;
+
+        &:not(:first-of-type) {
+            margin-top: 20px;
+        }
     }
 
     &__toggleTypeInput {

@@ -2,7 +2,6 @@ import style from './FormUserLogin.module.scss'
 import logoFurni from '../../assets/icon/logo.svg'
 import { Input } from '../Input/Input'
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import cx from 'classnames'
 import { useDispatch } from 'react-redux'
@@ -10,15 +9,36 @@ import { dataAction } from '../../Redux/Actions/dataAction'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 
 interface IFormUserLoginProps {
+    title: string;
+    textButton: string;
     isShowElement: boolean;
+    isShowInput?: boolean;
+    isShowInputPartnerID?: boolean;
+    isShowInputPassword?: boolean;
+    isShowInputEmail?: boolean;
+    isShowInputFullName?: boolean;
+    isShowInputPhoneNumber?: boolean;
+    isShowTextHaveReferralCode?: boolean;
+    isShowInputReferalCode?: boolean;
 }
 
 export const FormUserLogin: React.FC<IFormUserLoginProps> = (
-    { isShowElement }
+    {
+        isShowElement,
+        isShowInputPartnerID,
+        isShowInputPassword,
+        isShowInputEmail,
+        textButton,
+        isShowInputFullName,
+        isShowInputPhoneNumber,
+        isShowTextHaveReferralCode,
+        isShowInputReferalCode,
+        title,
+    }
 ) => {
     const navigate = useNavigate()
     const { isLoadingAuth } = useTypeSelector(state => state.data)
-    
+
 
     useEffect(() => {
         if (isLoadingAuth) navigate("/content");
@@ -26,25 +46,43 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
 
     const dispath = useDispatch<any>()
 
+    const [isShowTextHaveReferralCodeState, setIsShowTexthaveReferralCodeState] = useState(isShowTextHaveReferralCode)
+    const [isShowInputReferalCodeState, setIsShowInputReferalState] = useState(isShowInputReferalCode)
+
     const [toggleTypeInput, setToggleTypeInput] = useState(false)
 
     const [errorInputLoginValue, setErrorInputLoginValue] = useState(false)
     const [errorInputPasswordValue, setErrorInputPasswordValue] = useState(false)
-    const [errorInputFirstName, setErrorInputFirstName] = useState(false)
+    const [errorInputFullName, setErrorInputFullName] = useState(false)
     const [errorInputLastName, setErrorInputLastName] = useState(false)
     const [errorInputPhone, setErrorInputPhone] = useState(false)
     const [errorInputEmail, setErrorInputEmail] = useState(false)
+    const [errorInputPartnerId, setErrorInputPartnerId] = useState(false)
+    const [errorInputReferalCode, setErrorInputReferalCode] = useState(false)
+
 
     const [inputValueLogin, setInputValueLogin] = useState('')
     const [inputValuePassword, setInputValuePassword] = useState('')
-    const [inputValueFirstName, setInputValueFirstName] = useState('')
+    const [inputValueFullName, setInputValueFullName] = useState('')
     const [inputValueLastName, setInputValueLastName] = useState('')
     const [inputValuePhone, setInputValuePhone] = useState('')
     const [inputValueEmail, setInputValueEmail] = useState('')
+    const [inputValuePartnerId, setInputValuePartnerId] = useState('')
+    const [inputValueReferalCode, setInputValueReferalCode] = useState('')
 
 
-    const fetchData = async () => {
-        await dispath(dataAction(inputValueEmail, inputValuePassword))
+    const fetchDataAuth = async () => {
+        await dispath(dataAction(inputValuePartnerId, inputValuePassword))
+    }
+
+    const fetchDataRegistration = async () => {
+        // await dispath(
+        //     dataAction(
+        //         inputValueEmail,
+        //         inputValuePassword,
+        //         inputValueFullName,
+        //         inputValuePhone,
+        //     ))
     }
 
     const toggleInputTypeFunc = () => {
@@ -57,19 +95,17 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
 
     const inputChangeLoginValue = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value.length > 30) event.target.value = event.target.value.slice(0, 30);
-
         setInputValueLogin(event.target.value)
     }
 
     const inputChangePasswordValue = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value.length > 30) event.target.value = event.target.value.slice(0, 30);
-
         setInputValuePassword(event.target.value)
     }
 
-    const inputChangeFirstName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputChangeFullName = (event: React.ChangeEvent<HTMLInputElement>) => {
         sliceInputText(event)
-        setInputValueFirstName(event.target.value)
+        setInputValueFullName(event.target.value)
     }
 
     const inputChangeLastName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,113 +123,176 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
         setInputValueEmail(event.target.value)
     }
 
-    const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    const inputChangePartnerId = (event: React.ChangeEvent<HTMLInputElement>) => {
+        sliceInputText(event)
+        setInputValuePartnerId(event.target.value)
+    }
+
+    const inputChangeReferalCode = (event: React.ChangeEvent<HTMLInputElement>) => {
+        sliceInputText(event)
+        setInputValueReferalCode(event.target.value)
+    }
+
+    const submitHandleryourDetailsFormRegistrForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        // if (inputValueFirstName.trim().length === 0 ||
-        //     inputValueLastName.trim().length === 0 ||
-        //     inputValuePhone.trim().length === 0 ||
-        //     inputValueEmail.trim().length === 0) {
-        //     setErrorInputFirstName(prev => prev = true)
-        //     setErrorInputLastName(prev => prev = true)
-        //     setErrorInputPhone(prev => prev = true)
-        //     setErrorInputEmail(prev => prev = true)
-        // } else {
-        //     setErrorInputFirstName(prev => prev = false)
-        //     setErrorInputLastName(prev => prev = false)
-        //     setErrorInputPhone(prev => prev = false)
-        //     setErrorInputEmail(prev => prev = false)
-        // }
+        inputValueFullName.trim().length === 0 ?
+            setErrorInputFullName(prev => prev = true) :
+            setErrorInputFullName(prev => prev = false)
 
-        // if (inputValueLogin.trim().length === 0) {
-        //     setErrorInputLoginValue(prev => prev = true)
-        // } else {
-        //     setErrorInputLoginValue(prev => prev = false)
-        // }
+        inputValuePhone.trim().length < 8 ?
+            setErrorInputPhone(prev => prev = true) :
+            setErrorInputPhone(prev => prev = false)
 
-        if (inputValueEmail.trim().length === 0) {
-            setErrorInputEmail(prev => prev = true)
-        } else {
-            setErrorInputEmail(prev => prev = false)
+        if (isShowInputReferalCodeState) {
+            inputValueReferalCode.trim().length < 8 ?
+                setErrorInputReferalCode(prev => prev = true) :
+                setErrorInputReferalCode(prev => prev = false)
         }
 
-        if (inputValuePassword.trim().length < 8) {
-            setErrorInputPasswordValue(prev => prev = true)
-        } else {
-            setErrorInputPasswordValue(prev => prev = false)
-        }
-
-        if (inputValueEmail.trim().length >= 1
-            && inputValuePassword.trim().length >= 8
-            // && inputValueLogin.toLowerCase() === 'demo'
-            // && inputValuePassword.toLowerCase() === 'demodemo'
+        if (inputValueFullName.trim().length >= 1
+            && inputValuePhone.trim().length >= 8 ||
+            inputValueReferalCode.trim().length >= 8
         ) {
-            setErrorInputLoginValue(prev => prev = false)
+            setErrorInputFullName(prev => prev = false)
             setErrorInputPasswordValue(prev => prev = false)
-            fetchData()
-            setInputValueLogin('')
-            setInputValuePassword('')
-
+            setInputValueFullName('')
+            setInputValuePhone('')
+            if (isShowInputReferalCodeState) setInputValueReferalCode('')
         }
     }
 
+    const submitHandlerLetsGetStartedForm = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        inputValueEmail.trim().length === 0 ?
+            setErrorInputEmail(prev => prev = true) :
+            setErrorInputEmail(prev => prev = false)
+
+        inputValuePassword.trim().length < 8 ?
+            setErrorInputPasswordValue(prev => prev = true) :
+            setErrorInputPasswordValue(prev => prev = false)
+
+        if (inputValueEmail.trim().length >= 1
+            && inputValuePassword.trim().length >= 8
+        ) {
+            navigate("/yourDetailsFormRegistr");
+            setErrorInputEmail(prev => prev = false)
+            setErrorInputPasswordValue(prev => prev = false)
+            setInputValueEmail('')
+            setInputValuePassword('')
+        }
+    }
+
+    const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        inputValuePartnerId.trim().length === 0 ?
+            setErrorInputPartnerId(prev => prev = true) :
+            setErrorInputPartnerId(prev => prev = false)
+
+        inputValuePassword.trim().length < 8 ?
+            setErrorInputPasswordValue(prev => prev = true) :
+            setErrorInputPasswordValue(prev => prev = false)
+
+        if (inputValuePartnerId.trim().length >= 1
+            && inputValuePassword.trim().length >= 8
+        ) {
+            setErrorInputPartnerId(prev => prev = false)
+            setErrorInputPasswordValue(prev => prev = false)
+            fetchDataAuth()
+            setInputValuePartnerId('')
+            setInputValuePassword('')
+        }
+    }
+
+    const isShowInputReferaalCodeFunc = () => {
+        setIsShowTexthaveReferralCodeState(false)
+        setIsShowInputReferalState(true)
+    }
+
     return (
-        <form onSubmit={submitHandler} action="" className={style.formUserLogin}>
+        <form onSubmit={
+            textButton === 'Continue' ? submitHandlerLetsGetStartedForm :
+                textButton === 'Create account' ? submitHandleryourDetailsFormRegistrForm :
+                    submitHandler
+        } action="" className={style.formUserLogin}>
             <img src={logoFurni} alt="logo furni" />
             <h1 className={style.formUserLogin__title}>
-                Login to your
-                partner’s account
+                {title}
             </h1>
-            <Input
-                type='text'
-                name='Email'
-                placeholder='Partner ID'
-                valueInput={inputValueEmail}
-                error={errorInputEmail}
-                onChangeInput={inputChangeEmail}
-            />
-            {isShowElement && <div className={style.formUserLogin__inputWrapper}>
+            {isShowInputPartnerID && <div className={style.formUserLogin__inputWrapper}>
                 <Input
                     type='text'
-                    name='name'
-                    placeholder='First name'
-                    valueInput={inputValueFirstName}
-                    error={errorInputFirstName}
-                    onChangeInput={inputChangeFirstName}
+                    name='PartnerID'
+                    placeholder='Partner ID'
+                    valueInput={inputValuePartnerId}
+                    error={errorInputPartnerId}
+                    onChangeInput={inputChangePartnerId}
+                />
+            </div>}
+            {isShowInputEmail && <div className={style.formUserLogin__inputWrapper}>
+                <Input
+                    type='text'
+                    name='email'
+                    placeholder='Email'
+                    valueInput={inputValueEmail}
+                    error={errorInputEmail}
+                    onChangeInput={inputChangeEmail}
+                />
+            </div>}
+            {isShowInputFullName && <div className={style.formUserLogin__inputWrapper}>
+                <Input
+                    type='text'
+                    name='fullName'
+                    placeholder='Full name'
+                    valueInput={inputValueFullName}
+                    error={errorInputFullName}
+                    onChangeInput={inputChangeFullName}
                 />
             </div>}
             {isShowElement && <div className={style.formUserLogin__inputWrapper}>
                 <Input
                     type='text'
-                    name='name'
+                    name='lastName'
                     placeholder='Last name'
                     valueInput={inputValueLastName}
                     error={errorInputLastName}
                     onChangeInput={inputChangeLastName}
                 />
             </div>}
-            {isShowElement && <div className={style.formUserLogin__inputWrapper}>
+            {isShowInputPhoneNumber && <div className={style.formUserLogin__inputWrapper}>
                 <Input
                     type='phone'
-                    name='name'
+                    name='phoneNumber'
                     placeholder='Phone number'
                     valueInput={inputValuePhone}
                     error={errorInputPhone}
                     onChangeInput={inputChangePhone}
                 />
             </div>}
+            {isShowInputReferalCodeState &&
+                <div className={style.formUserLogin__inputWrapper}>
+                    <Input
+                        type='phone'
+                        name='referralCode'
+                        placeholder='Referral code'
+                        valueInput={inputValueReferalCode}
+                        error={errorInputReferalCode}
+                        onChangeInput={inputChangeReferalCode}
+                    />
+                </div>}
             {isShowElement && <div className={style.formUserLogin__inputWrapper}>
                 <Input
                     type='text'
-                    name='name'
+                    name='username'
                     placeholder='Username'
                     valueInput={inputValueLogin}
                     error={errorInputLoginValue}
                     onChangeInput={inputChangeLoginValue}
                 />
-            </div>
-            }
-            <div className={style.formUserLogin__inputWrapper}>
+            </div>}
+            {isShowInputPassword && <div className={style.formUserLogin__inputWrapper}>
                 <Input
                     type={toggleTypeInput ? 'text' : 'password'}
                     name='password'
@@ -205,9 +304,13 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
                 <span onClick={() => toggleInputTypeFunc()} className={style.formUserLogin__toggleTypeInput}>
                     {toggleTypeInput ? 'Hide' : 'Show'}
                 </span>
-            </div>
-            <button className={style.formUserLogin__submit} >
-                {isShowElement ? 'Create account' : 'Login'}
+            </div>}
+            {isShowTextHaveReferralCodeState &&
+                <span onClick={() => isShowInputReferaalCodeFunc()} className={style.formUserLogin__haveReferralCode}>
+                    I have referral code
+                </span>}
+            <button className={style.formUserLogin__submit}>
+                {textButton}
             </button>
 
             <div className={isShowElement ?

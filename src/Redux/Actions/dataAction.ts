@@ -1,12 +1,13 @@
 import {
     getDataFetchError,
+    getDataFetchingSuccessToken,
+    getDataFetchingToken,
     getReferalCode,
     getYouHaveEarned
 } from "../Reducers/SliceReducers";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
 import { IGetDataTokens } from "../../Interfaces/IGetDataTokens";
-import { getDataFetchingSuccessToken, getDataFetchingToken } from "../Reducers/getDataTokensReducer";
 
 export const dataAction = (email: string, password: string) => async (dispath: AppDispatch) => {
     try {
