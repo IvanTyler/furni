@@ -1,6 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import getData from '../Reducers/SliceReducers'
 import getCopyCopied from '../Reducers/codeCopiedReducer'
+import getDataUsers from '../Reducers/registrationReducer'
+
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
@@ -13,6 +15,7 @@ export const store = configureStore({
     reducer: {
         data: getData,
         copyCopied: getCopyCopied,
+        dataUsers: getDataUsers,
     },
 })
 

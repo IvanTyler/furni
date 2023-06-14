@@ -14,7 +14,6 @@ export const dataActionContacts = () => (dispath: AppDispatch) => {
         `api/user/contacts`,
     )
         .then(response => {
-            console.log(response);
             
             if (!response.data) {
                 dispath(getDataLoadingContactsError())

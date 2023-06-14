@@ -7,6 +7,7 @@ import cx from 'classnames'
 import { useDispatch } from 'react-redux'
 import { dataAction } from '../../Redux/Actions/dataAction'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
+import { dataActionFormLetsGetStarted, dataActionFormYourDetails, dataActionUsers } from '../../Redux/Actions/dataActionRegistration'
 
 interface IFormUserLoginProps {
     title: string;
@@ -36,15 +37,41 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
         title,
     }
 ) => {
+    const dispath = useDispatch<any>()
+
     const navigate = useNavigate()
+
     const { isLoadingAuth } = useTypeSelector(state => state.data)
+    const {
+        email,
+        password,
+        fullName,
+        phone,
+        referalCode
+    } = useTypeSelector(state => state.dataUsers)
+
+
+    if (email.length &&
+        password.length &&
+        fullName.length &&
+        phone.length &&
+        referalCode.length) {
+
+        dispath(dataActionUsers(
+            email,
+            password,
+            fullName,
+            phone,
+            +referalCode
+        ))
+    }
+
 
 
     useEffect(() => {
         if (isLoadingAuth) navigate("/content");
     }, [isLoadingAuth])
 
-    const dispath = useDispatch<any>()
 
     const [isShowTextHaveReferralCodeState, setIsShowTexthaveReferralCodeState] = useState(isShowTextHaveReferralCode)
     const [isShowInputReferalCodeState, setIsShowInputReferalState] = useState(isShowInputReferalCode)
@@ -75,14 +102,27 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
         await dispath(dataAction(inputValuePartnerId, inputValuePassword))
     }
 
-    const fetchDataRegistration = async () => {
-        // await dispath(
-        //     dataAction(
-        //         inputValueEmail,
-        //         inputValuePassword,
-        //         inputValueFullName,
-        //         inputValuePhone,
-        //     ))
+
+    const fetchDataUsers = () => {
+
+
+    }
+
+    const fetchDataLetsGetStarted = async () => {
+        await dispath(
+            dataActionFormLetsGetStarted(
+                inputValueEmail,
+                inputValuePassword,
+            ))
+    }
+
+    const fetchDataLetsYourDetails = async () => {
+        await dispath(
+            dataActionFormYourDetails(
+                inputValueFullName,
+                inputValuePhone,
+                inputValueReferalCode
+            ))
     }
 
     const toggleInputTypeFunc = () => {
@@ -133,7 +173,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
         setInputValueReferalCode(event.target.value)
     }
 
-    const submitHandleryourDetailsFormRegistrForm = (event: React.FormEvent<HTMLFormElement>) => {
+    const submitHandlerYourDetailsFormRegistrForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         inputValueFullName.trim().length === 0 ?
@@ -158,12 +198,16 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
             setErrorInputPasswordValue(prev => prev = false)
             setInputValueFullName('')
             setInputValuePhone('')
+            fetchDataLetsYourDetails()
             if (isShowInputReferalCodeState) setInputValueReferalCode('')
         }
     }
 
     const submitHandlerLetsGetStartedForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+
+
 
         inputValueEmail.trim().length === 0 ?
             setErrorInputEmail(prev => prev = true) :
@@ -179,8 +223,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
             navigate("/yourDetailsFormRegistr");
             setErrorInputEmail(prev => prev = false)
             setErrorInputPasswordValue(prev => prev = false)
-            setInputValueEmail('')
-            setInputValuePassword('')
+            fetchDataLetsGetStarted()
         }
     }
 
@@ -214,7 +257,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     return (
         <form onSubmit={
             textButton === 'Continue' ? submitHandlerLetsGetStartedForm :
-                textButton === 'Create account' ? submitHandleryourDetailsFormRegistrForm :
+                textButton === 'Create account' ? submitHandlerYourDetailsFormRegistrForm :
                     submitHandler
         } action="" className={style.formUserLogin}>
             <img src={logoFurni} alt="logo furni" />
