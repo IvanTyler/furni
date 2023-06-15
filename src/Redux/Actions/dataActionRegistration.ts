@@ -5,9 +5,9 @@ import {
     getDataLoadingContacts,
     getDataLoadingContactsError,
 } from "../Reducers/SliceReducers";
-import { clearDataUser, getDataLetsStarted, getDataYourDetails } from "../Reducers/registrationReducer";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
+import { dataAction } from "./dataAction";
 
 export const dataActionUsers = (
     email: string,
@@ -17,11 +17,18 @@ export const dataActionUsers = (
     referalCode?: number
 ) => (dispath: AppDispatch) => {
 
+    console.log(
+        email,
+        password,
+        fullName,
+        phone,
+        referalCode);
+
     $api.post<any>(
         `api/users`,
-        { 
+        {
             conditions: 'v1',
-            email, 
+            email,
             from_lead_id: referalCode,
             name: fullName,
             password,
@@ -31,32 +38,16 @@ export const dataActionUsers = (
     )
         .then(response => {
             console.log(response);
+            dispath(dataAction(email, password))
 
             // if (!response.data) {
             //     dispath(getDataLoadingContactsError())
             //     return
             // }
             // dispath(getDataFetchContacts(response.data))
-            dispath(clearDataUser())
         })
         .catch(error => {
             console.log(error);
 
-            dispath(clearDataUser())
         })
-}
-
-export const dataActionFormLetsGetStarted = (
-    email: string,
-    password: string
-) => (dispath: AppDispatch) => {
-    dispath(getDataLetsStarted({ email, password }))
-}
-
-export const dataActionFormYourDetails = (
-    fullName: string,
-    phoneNumber: string,
-    referalCode: string,
-) => (dispath: AppDispatch) => {
-    dispath(getDataYourDetails({ fullName, phoneNumber, referalCode }))
 }

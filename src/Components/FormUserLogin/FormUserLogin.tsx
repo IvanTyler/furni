@@ -8,7 +8,7 @@ import cx from 'classnames'
 import { useDispatch } from 'react-redux'
 import { dataAction } from '../../Redux/Actions/dataAction'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
-import { dataActionFormLetsGetStarted, dataActionFormYourDetails, dataActionUsers } from '../../Redux/Actions/dataActionRegistration'
+import { dataActionUsers } from '../../Redux/Actions/dataActionRegistration'
 
 interface IFormUserLoginProps {
     isShowElement: boolean;
@@ -16,8 +16,6 @@ interface IFormUserLoginProps {
     isShowInputPartnerID?: boolean;
     isShowInputPassword?: boolean;
     isShowInputEmail?: boolean;
-    isShowInputFullName?: boolean;
-    isShowInputPhoneNumber?: boolean;
     isShowTextHaveReferralCode?: boolean;
     isShowInputReferalCode?: boolean;
 }
@@ -28,8 +26,6 @@ function FormUserLogin(
         isShowInputPartnerID,
         isShowInputPassword,
         isShowInputEmail,
-        isShowInputFullName,
-        isShowInputPhoneNumber,
         isShowTextHaveReferralCode,
         isShowInputReferalCode,
     }: IFormUserLoginProps
@@ -40,31 +36,6 @@ function FormUserLogin(
     const navigate = useNavigate()
 
     const { isLoadingAuth } = useTypeSelector(state => state.data)
-    // const {
-    //     email,
-    //     password,
-    //     fullName,
-    //     phone,
-    //     referalCode,
-    //     isLoadingRegistration
-    // } = useTypeSelector(state => state.dataUsers)
-
-
-    // if (
-    //     email.length &&
-    //     password.length &&
-    //     fullName.length &&
-    //     phone.length
-    // ) {
-    //     dispath(
-    //         dataActionUsers(
-    //             email,
-    //             password,
-    //             fullName,
-    //             phone,
-    //             +referalCode
-    //         ))
-    // }
 
 
     useEffect(() => {
@@ -77,6 +48,7 @@ function FormUserLogin(
 
     const [isShowRegistrationElements, setIsShowRegistrationElements] = useState(false)
     const [isShowReferalCode, setIsShowReferalCode] = useState(false)
+    const [isShowReferalCodeText, setIsShowReferalCodeText] = useState(false)
 
 
     const [toggleTypeInput, setToggleTypeInput] = useState(false)
@@ -105,20 +77,14 @@ function FormUserLogin(
         await dispath(dataAction(inputValuePartnerId, inputValuePassword))
     }
 
-    const fetchDataLetsGetStarted = async () => {
+    const fetchDataRegistration = async () => {
         await dispath(
-            dataActionFormLetsGetStarted(
+            dataActionUsers(
                 inputValueEmail,
                 inputValuePassword,
-            ))
-    }
-
-    const fetchDataLetsYourDetails = async () => {
-        await dispath(
-            dataActionFormYourDetails(
                 inputValueFullName,
                 inputValuePhone,
-                inputValueReferalCode
+                +inputValueReferalCode
             ))
     }
 
@@ -166,7 +132,7 @@ function FormUserLogin(
     }
 
     const inputChangeReferalCode = (event: React.ChangeEvent<HTMLInputElement>) => {
-        sliceInputText(event)
+        if (event.target.value.length > 8) event.target.value = event.target.value.slice(0, 8);
         setInputValueReferalCode(event.target.value)
     }
 
@@ -177,19 +143,21 @@ function FormUserLogin(
             setErrorInputFullName(prev => prev = true) :
             setErrorInputFullName(prev => prev = false)
 
-        inputValuePhone.trim().length < 8 ?
+        inputValuePhone.trim().length < 12 ?
             setErrorInputPhone(prev => prev = true) :
             setErrorInputPhone(prev => prev = false)
 
         if (inputValueFullName.trim().length >= 1
-            && inputValuePhone.trim().length >= 8
+            && inputValuePhone.trim().length >= 12
         ) {
             setErrorInputFullName(prev => prev = false)
             setErrorInputPasswordValue(prev => prev = false)
             setInputValueFullName('')
             setInputValuePhone('')
-            fetchDataLetsYourDetails()
             setInputValueReferalCode('')
+            setInputValuePassword('')
+            setInputValueEmail('')
+            fetchDataRegistration()
         }
     }
 
@@ -207,10 +175,10 @@ function FormUserLogin(
         if (inputValueEmail.trim().length >= 1
             && inputValuePassword.trim().length >= 8
         ) {
-            navigate("/yourDetailsFormRegistr");
             setErrorInputEmail(prev => prev = false)
             setErrorInputPasswordValue(prev => prev = false)
-            fetchDataLetsGetStarted()
+            setIsShowRegistrationElements(true)
+            setIsShowReferalCodeText(true)
         }
     }
 
@@ -236,18 +204,20 @@ function FormUserLogin(
         }
     }
 
-    const isShowInputReferaalCodeFunc = () => {
-        setIsShowTexthaveReferralCodeState(false)
-        setIsShowInputReferalState(true)
-    }
-
     return (
         <>
-            {isShowRegistrationElements &&
-                <img className={style.backIcon} src={arrowBackIcon} alt="" />
+            {
+                isShowRegistrationElements &&
+                <img onClick={() => {
+                    setIsShowRegistrationElements(false)
+                    setIsShowReferalCode(false)
+                }}
+                    className={style.backIcon} src={arrowBackIcon} alt="back" />
             }
             <form onSubmit={
-                submitHandler
+                isShowRegistrationElements ? submitHandlerYourDetailsFormRegistrForm :
+                    !isShowRegistrationElements ? submitHandlerLetsGetStartedForm :
+                        submitHandler
             } action="" className={style.formUserLogin}>
                 <img src={logoFurni} alt="logo furni" />
                 <h1 className={style.formUserLogin__title}>
@@ -342,9 +312,16 @@ function FormUserLogin(
                     />
                 </div>}
 
-                {isShowRegistrationElements && <span onClick={() => isShowInputReferaalCodeFunc()} className={style.formUserLogin__haveReferralCode}>
-                    I have referral code
-                </span>}
+                {isShowReferalCodeText &&
+                    <span
+                        onClick={() => {
+                            setIsShowReferalCode(true)
+                            setIsShowReferalCodeText(false)
+                        }}
+                        className={style.formUserLogin__haveReferralCode}
+                    >
+                        I have referral code
+                    </span>}
                 <button className={style.formUserLogin__submit}>
                     {
                         isShowRegistrationElements ? 'Create account' :
