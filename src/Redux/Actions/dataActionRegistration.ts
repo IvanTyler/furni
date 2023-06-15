@@ -5,7 +5,7 @@ import {
     getDataLoadingContacts,
     getDataLoadingContactsError,
 } from "../Reducers/SliceReducers";
-import { getDataLetsStarted, getDataYourDetails } from "../Reducers/registrationReducer";
+import { clearDataUser, getDataLetsStarted, getDataYourDetails } from "../Reducers/registrationReducer";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
 
@@ -16,15 +16,6 @@ export const dataActionUsers = (
     phone: string,
     referalCode?: number
 ) => (dispath: AppDispatch) => {
-    console.log(
-        'dataActionUsers',
-        email,
-        password,
-        fullName,
-        phone,
-        referalCode
-    );
-
 
     $api.post<any>(
         `api/users`,
@@ -46,12 +37,12 @@ export const dataActionUsers = (
             //     return
             // }
             // dispath(getDataFetchContacts(response.data))
-
+            dispath(clearDataUser())
         })
         .catch(error => {
             console.log(error);
 
-            // dispath(getDataLoadingContactsError())
+            dispath(clearDataUser())
         })
 }
 

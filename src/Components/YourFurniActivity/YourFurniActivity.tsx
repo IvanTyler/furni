@@ -24,7 +24,6 @@ export const YourFurniActivity: React.FC = () => {
 
     const getYouHaveEarnedLocalStorage = localStorage.getItem('youHaveEarned')
 
-
     return (
         <>
             <section className={

@@ -1,3 +1,4 @@
+import arrowBackIcon from '../../assets/icon/common/arrow-back.svg'
 import style from './FormUserLogin.module.scss'
 import logoFurni from '../../assets/icon/logo.svg'
 import { Input } from '../Input/Input'
@@ -10,8 +11,6 @@ import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { dataActionFormLetsGetStarted, dataActionFormYourDetails, dataActionUsers } from '../../Redux/Actions/dataActionRegistration'
 
 interface IFormUserLoginProps {
-    title: string;
-    textButton: string;
     isShowElement: boolean;
     isShowInput?: boolean;
     isShowInputPartnerID?: boolean;
@@ -23,49 +22,49 @@ interface IFormUserLoginProps {
     isShowInputReferalCode?: boolean;
 }
 
-export const FormUserLogin: React.FC<IFormUserLoginProps> = (
+function FormUserLogin(
     {
         isShowElement,
         isShowInputPartnerID,
         isShowInputPassword,
         isShowInputEmail,
-        textButton,
         isShowInputFullName,
         isShowInputPhoneNumber,
         isShowTextHaveReferralCode,
         isShowInputReferalCode,
-        title,
-    }
-) => {
+    }: IFormUserLoginProps
+) {
+
     const dispath = useDispatch<any>()
 
     const navigate = useNavigate()
 
     const { isLoadingAuth } = useTypeSelector(state => state.data)
-    const {
-        email,
-        password,
-        fullName,
-        phone,
-        referalCode
-    } = useTypeSelector(state => state.dataUsers)
+    // const {
+    //     email,
+    //     password,
+    //     fullName,
+    //     phone,
+    //     referalCode,
+    //     isLoadingRegistration
+    // } = useTypeSelector(state => state.dataUsers)
 
 
-    if (email.length &&
-        password.length &&
-        fullName.length &&
-        phone.length &&
-        referalCode.length) {
-
-        dispath(dataActionUsers(
-            email,
-            password,
-            fullName,
-            phone,
-            +referalCode
-        ))
-    }
-
+    // if (
+    //     email.length &&
+    //     password.length &&
+    //     fullName.length &&
+    //     phone.length
+    // ) {
+    //     dispath(
+    //         dataActionUsers(
+    //             email,
+    //             password,
+    //             fullName,
+    //             phone,
+    //             +referalCode
+    //         ))
+    // }
 
 
     useEffect(() => {
@@ -75,6 +74,10 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
 
     const [isShowTextHaveReferralCodeState, setIsShowTexthaveReferralCodeState] = useState(isShowTextHaveReferralCode)
     const [isShowInputReferalCodeState, setIsShowInputReferalState] = useState(isShowInputReferalCode)
+
+    const [isShowRegistrationElements, setIsShowRegistrationElements] = useState(false)
+    const [isShowReferalCode, setIsShowReferalCode] = useState(false)
+
 
     const [toggleTypeInput, setToggleTypeInput] = useState(false)
 
@@ -100,12 +103,6 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
 
     const fetchDataAuth = async () => {
         await dispath(dataAction(inputValuePartnerId, inputValuePassword))
-    }
-
-
-    const fetchDataUsers = () => {
-
-
     }
 
     const fetchDataLetsGetStarted = async () => {
@@ -154,7 +151,7 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     }
 
     const inputChangePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
-        sliceInputText(event)
+        if (event.target.value.length > 12) event.target.value = event.target.value.slice(0, 12);
         setInputValuePhone(event.target.value)
     }
 
@@ -184,30 +181,20 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
             setErrorInputPhone(prev => prev = true) :
             setErrorInputPhone(prev => prev = false)
 
-        if (isShowInputReferalCodeState) {
-            inputValueReferalCode.trim().length < 4 ?
-                setErrorInputReferalCode(prev => prev = true) :
-                setErrorInputReferalCode(prev => prev = false)
-        }
-
         if (inputValueFullName.trim().length >= 1
-            && inputValuePhone.trim().length >= 8 ||
-            inputValueReferalCode.trim().length >= 4
+            && inputValuePhone.trim().length >= 8
         ) {
             setErrorInputFullName(prev => prev = false)
             setErrorInputPasswordValue(prev => prev = false)
             setInputValueFullName('')
             setInputValuePhone('')
             fetchDataLetsYourDetails()
-            if (isShowInputReferalCodeState) setInputValueReferalCode('')
+            setInputValueReferalCode('')
         }
     }
 
     const submitHandlerLetsGetStartedForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-
-
-
 
         inputValueEmail.trim().length === 0 ?
             setErrorInputEmail(prev => prev = true) :
@@ -255,69 +242,88 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
     }
 
     return (
-        <form onSubmit={
-            textButton === 'Continue' ? submitHandlerLetsGetStartedForm :
-                textButton === 'Create account' ? submitHandlerYourDetailsFormRegistrForm :
-                    submitHandler
-        } action="" className={style.formUserLogin}>
-            <img src={logoFurni} alt="logo furni" />
-            <h1 className={style.formUserLogin__title}>
-                {title}
-            </h1>
-            {isShowInputPartnerID && <div className={style.formUserLogin__inputWrapper}>
-                <Input
-                    type='text'
-                    name='PartnerID'
-                    placeholder='Partner ID'
-                    valueInput={inputValuePartnerId}
-                    error={errorInputPartnerId}
-                    onChangeInput={inputChangePartnerId}
-                />
-            </div>}
-            {isShowInputEmail && <div className={style.formUserLogin__inputWrapper}>
-                <Input
-                    type='email'
-                    name='email'
-                    placeholder='Email'
-                    valueInput={inputValueEmail}
-                    error={errorInputEmail}
-                    onChangeInput={inputChangeEmail}
-                />
-            </div>}
-            {isShowInputFullName && <div className={style.formUserLogin__inputWrapper}>
-                <Input
-                    type='text'
-                    name='fullName'
-                    placeholder='Full name'
-                    valueInput={inputValueFullName}
-                    error={errorInputFullName}
-                    onChangeInput={inputChangeFullName}
-                />
-            </div>}
-            {isShowElement && <div className={style.formUserLogin__inputWrapper}>
-                <Input
-                    type='text'
-                    name='lastName'
-                    placeholder='Last name'
-                    valueInput={inputValueLastName}
-                    error={errorInputLastName}
-                    onChangeInput={inputChangeLastName}
-                />
-            </div>}
-            {isShowInputPhoneNumber && <div className={style.formUserLogin__inputWrapper}>
-                <Input
-                    type='phone'
-                    name='phoneNumber'
-                    placeholder='Phone number'
-                    valueInput={inputValuePhone}
-                    error={errorInputPhone}
-                    onChangeInput={inputChangePhone}
-                />
-            </div>}
-            {isShowInputReferalCodeState &&
-                <div className={style.formUserLogin__inputWrapper}>
+        <>
+            {isShowRegistrationElements &&
+                <img className={style.backIcon} src={arrowBackIcon} alt="" />
+            }
+            <form onSubmit={
+                submitHandler
+            } action="" className={style.formUserLogin}>
+                <img src={logoFurni} alt="logo furni" />
+                <h1 className={style.formUserLogin__title}>
+                    {
+                        isShowRegistrationElements ? 'Your details' :
+                            !isShowRegistrationElements ? 'Let’s get started' :
+                                'Login to your partner’s account'
+                    }
+                </h1>
+                {isShowInputPartnerID && <div className={style.formUserLogin__inputWrapper}>
                     <Input
-                        type='phone'
+                        type='text'
+                        name='PartnerID'
+                        placeholder='Partner ID'
+                        valueInput={inputValuePartnerId}
+                        error={errorInputPartnerId}
+                        onChangeInput={inputChangePartnerId}
+                    />
+                </div>}
+                {isShowInputEmail && !isShowRegistrationElements && <div className={style.formUserLogin__inputWrapper}>
+                    <Input
+                        type='email'
+                        name='email'
+                        placeholder='Email'
+                        valueInput={inputValueEmail}
+                        error={errorInputEmail}
+                        onChangeInput={inputChangeEmail}
+                    />
+                </div>}
+                {isShowInputPassword && !isShowRegistrationElements && <div className={style.formUserLogin__inputWrapper}>
+                    <Input
+                        type={toggleTypeInput ? 'text' : 'password'}
+                        name='password'
+                        placeholder='Password'
+                        valueInput={inputValuePassword}
+                        error={errorInputPasswordValue}
+                        onChangeInput={inputChangePasswordValue}
+                    />
+                    <span onClick={() => toggleInputTypeFunc()} className={style.formUserLogin__toggleTypeInput}>
+                        {toggleTypeInput ? 'Hide' : 'Show'}
+                    </span>
+                </div>}
+                {isShowRegistrationElements && <div className={style.formUserLogin__inputWrapper}>
+                    <Input
+                        type='text'
+                        name='fullName'
+                        placeholder='Full name'
+                        valueInput={inputValueFullName}
+                        error={errorInputFullName}
+                        onChangeInput={inputChangeFullName}
+                    />
+                </div>}
+                {isShowRegistrationElements && <div className={style.formUserLogin__inputWrapper}>
+                    <Input
+                        type='tel'
+                        name='phoneNumber'
+                        placeholder='Phone number'
+                        valueInput={inputValuePhone}
+                        error={errorInputPhone}
+                        onChangeInput={inputChangePhone}
+                    />
+                </div>}
+                {isShowElement && <div className={style.formUserLogin__inputWrapper}>
+                    <Input
+                        type='text'
+                        name='lastName'
+                        placeholder='Last name'
+                        valueInput={inputValueLastName}
+                        error={errorInputLastName}
+                        onChangeInput={inputChangeLastName}
+                    />
+                </div>}
+
+                {isShowReferalCode && <div className={style.formUserLogin__inputWrapper}>
+                    <Input
+                        type='number'
                         name='number'
                         placeholder='Referral code'
                         valueInput={inputValueReferalCode}
@@ -325,60 +331,55 @@ export const FormUserLogin: React.FC<IFormUserLoginProps> = (
                         onChangeInput={inputChangeReferalCode}
                     />
                 </div>}
-            {isShowElement && <div className={style.formUserLogin__inputWrapper}>
-                <Input
-                    type='text'
-                    name='username'
-                    placeholder='Username'
-                    valueInput={inputValueLogin}
-                    error={errorInputLoginValue}
-                    onChangeInput={inputChangeLoginValue}
-                />
-            </div>}
-            {isShowInputPassword && <div className={style.formUserLogin__inputWrapper}>
-                <Input
-                    type={toggleTypeInput ? 'text' : 'password'}
-                    name='password'
-                    placeholder='Password'
-                    valueInput={inputValuePassword}
-                    error={errorInputPasswordValue}
-                    onChangeInput={inputChangePasswordValue}
-                />
-                <span onClick={() => toggleInputTypeFunc()} className={style.formUserLogin__toggleTypeInput}>
-                    {toggleTypeInput ? 'Hide' : 'Show'}
-                </span>
-            </div>}
-            {isShowTextHaveReferralCodeState &&
-                <span onClick={() => isShowInputReferaalCodeFunc()} className={style.formUserLogin__haveReferralCode}>
+                {isShowElement && <div className={style.formUserLogin__inputWrapper}>
+                    <Input
+                        type='text'
+                        name='username'
+                        placeholder='Username'
+                        valueInput={inputValueLogin}
+                        error={errorInputLoginValue}
+                        onChangeInput={inputChangeLoginValue}
+                    />
+                </div>}
+
+                {isShowRegistrationElements && <span onClick={() => isShowInputReferaalCodeFunc()} className={style.formUserLogin__haveReferralCode}>
                     I have referral code
                 </span>}
-            <button className={style.formUserLogin__submit}>
-                {textButton}
-            </button>
+                <button className={style.formUserLogin__submit}>
+                    {
+                        isShowRegistrationElements ? 'Create account' :
+                            !isShowRegistrationElements ? 'Continue' :
+                                'Login'
+                    }
+                </button>
 
-            <div className={isShowElement ?
-                cx(style.formUserLogin__signature, style.alreadyAccount) :
-                style.formUserLogin__signature
-            }>
-                {isShowElement ?
-                    <span>
-                        Already have an account?&nbsp;
-                        <Link className={style.formUserLogin__link} to='/logIn'>LogIn</Link>
-                    </span>
-                    :
-                    <span> Forgot password? Call us <a href="tel:+97143102096">+971-431-02096</a>
-                        {/* &nbsp; Don’t have an account? <span className={style.formUserLogin__registr}></span> Register */}
-                    </span>
+                <div className={isShowElement ?
+                    cx(style.formUserLogin__signature, style.alreadyAccount) :
+                    style.formUserLogin__signature
+                }>
+                    {isShowElement ?
+                        <span>
+                            Already have an account?&nbsp;
+                            <Link className={style.formUserLogin__link} to='/logIn'>LogIn</Link>
+                        </span>
+                        :
+                        <span> Forgot password? Call us <a href="tel:+97143102096">+971-431-02096</a>
+                            {/* &nbsp; Don’t have an account? <span className={style.formUserLogin__registr}></span> Register */}
+                        </span>
+                    }
+                </div>
+
+                {
+                    errorInputLoginValue || errorInputPasswordValue ?
+                        <span className={style.formUserLogin__messageErrorEnterRequiredFields}>
+                            Enter required fields
+                        </span>
+                        : null
                 }
-            </div>
+            </form>
+        </>
 
-            {
-                errorInputLoginValue || errorInputPasswordValue ?
-                    <span className={style.formUserLogin__messageErrorEnterRequiredFields}>
-                        Enter required fields
-                    </span>
-                    : null
-            }
-        </form>
     )
 }
+
+export default React.memo(FormUserLogin)

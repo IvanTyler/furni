@@ -8,6 +8,7 @@ interface IInputProps {
     valueInput: string;
     onChangeInput(inputChangeValue: React.ChangeEvent<HTMLInputElement>): void;
     error?: boolean;
+    pattern?: string
 }
 
 export const Input: React.FC<IInputProps> = (
@@ -17,13 +18,15 @@ export const Input: React.FC<IInputProps> = (
         placeholder,
         onChangeInput,
         valueInput,
-        error }
+        error,
+        pattern }
 ) => {
     return (
         <input
             className={error ? cx(style.input, style.error) : style.input}
             type={type}
             name={name}
+            pattern={pattern}
             placeholder={placeholder}
             value={valueInput}
             onChange={onChangeInput}

@@ -29,7 +29,6 @@ function Contacts({ img }: IContactsProps) {
     const dispath = useAppDispath()
 
     useEffect(() => {
-        console.log('render')
         dispath(dataActionContacts())
     }, [])
 

@@ -7,6 +7,7 @@ export interface IInitialState {
     fullName: string;
     phone: string;
     referalCode: string;
+    isLoadingRegistration: boolean;
 }
 
 export const initialState: IInitialState = {
@@ -16,6 +17,7 @@ export const initialState: IInitialState = {
     fullName: '',
     phone: '',
     referalCode: '',
+    isLoadingRegistration: false,
 }
 
 
@@ -34,6 +36,13 @@ export const dataSlice = createSlice({
             state.fullName = action.payload.fullName
             state.phone = action.payload.phoneNumber
             state.referalCode = action.payload.referalCode
+        },
+        clearDataUser(state) {
+            state.email = ''
+            state.password = ''
+            state.fullName = ''
+            state.phone = ''
+            state.referalCode = ''
         }
     }
 })
@@ -44,4 +53,5 @@ export const {
     getDataFetchUsers,
     getDataLetsStarted,
     getDataYourDetails,
+    clearDataUser,
 } = dataSlice.actions

@@ -1,13 +1,12 @@
-import { FormUserLogin } from '../FormUserLogin/FormUserLogin'
 import { Preloader } from '../Preloader/Preloader'
 import style from './Body.module.scss'
 import { MainPage } from '../MainPage/MainPage'
 import { Route, Routes } from 'react-router-dom'
-import { LetsGetStartedForm } from '../LetsGetStartedForm/LetsGetStartedForm'
+import { Registration } from '../Registration/Registration'
 import { Content } from '../Content/Content'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute'
-import { YourDetailsForm } from '../YourDetailsForm/YourDetailsForm'
+import FormUserLogin from '../FormUserLogin/FormUserLogin'
 
 export const Body: React.FC = () => {
 
@@ -25,17 +24,16 @@ export const Body: React.FC = () => {
             <>
                 <Routes>
                     <Route path='/' element={<MainPage />} />
-                    <Route path='/login' element={<FormUserLogin
-                        title={'Login to your partner’s account'}
-                        isShowElement={false}
-                        isShowInputPartnerID={true}
-                        isShowInputPassword={true}
-                        textButton={'Login'}
+                    <Route path='/login' element={
+                        <FormUserLogin
+                            isShowElement={false}
+                            isShowInputPartnerID={true}
+                            isShowInputPassword={true}
+                        />} />
+                    <Route path='/registration' element={<Registration
                     />} />
-                    <Route path='/letsGetStartedRegistr' element={<LetsGetStartedForm
-                    />} />
-                    <Route path='/yourDetailsFormRegistr' element={<YourDetailsForm
-                    />} />
+                    {/* <Route path='/yourDetailsFormRegistr' element={<YourDetailsForm
+                    />} /> */}
                     <Route path='/content'
                         element={
                             <ProtectedRoute>
