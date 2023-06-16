@@ -104,7 +104,7 @@ function FormUserLogin(
     }
 
     const inputChangeLoginValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value.length > 30) event.target.value = event.target.value.slice(0, 30);
+        if (event.target.value.length > 50) event.target.value = event.target.value.slice(0, 50);
         setInputValueLogin(event.target.value)
     }
 
