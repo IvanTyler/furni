@@ -16,8 +16,6 @@ interface IFormUserLoginProps {
     isShowInputPartnerID?: boolean;
     isShowInputPassword?: boolean;
     isShowInputEmail?: boolean;
-    isShowTextHaveReferralCode?: boolean;
-    isShowInputReferalCode?: boolean;
 }
 
 function FormUserLogin(
@@ -26,8 +24,6 @@ function FormUserLogin(
         isShowInputPartnerID,
         isShowInputPassword,
         isShowInputEmail,
-        isShowTextHaveReferralCode,
-        isShowInputReferalCode,
     }: IFormUserLoginProps
 ) {
 
@@ -36,20 +32,31 @@ function FormUserLogin(
     const navigate = useNavigate()
 
     const { isLoadingAuth } = useTypeSelector(state => state.data)
+    const { responseMessageError } = useTypeSelector(state => state.dataUsers)
 
 
     useEffect(() => {
         if (isLoadingAuth) navigate("/content");
-    }, [isLoadingAuth])
+        if (responseMessageError === 'duplicate entry') {
+            setFormValidationErrorMessage('This email is already connected to an account. Login to your account')
+            setErrorInputEmail(true)
+            setIsShowRegistrationElements(false)
+            setIsShowReferalCode(false)
+            setIsShowReferalCodeText(false)
+        }
+        if (responseMessageError === 'couldn\'t find invited lead') {
+            setFormValidationErrorMessage('This referral code doesn’t exist. Check the code and try again')
+            setErrorInputReferalCode(true)
+        }
+    }, [isLoadingAuth, responseMessageError])
 
-
-    const [isShowTextHaveReferralCodeState, setIsShowTexthaveReferralCodeState] = useState(isShowTextHaveReferralCode)
-    const [isShowInputReferalCodeState, setIsShowInputReferalState] = useState(isShowInputReferalCode)
 
     const [isShowRegistrationElements, setIsShowRegistrationElements] = useState(false)
     const [isShowReferalCode, setIsShowReferalCode] = useState(false)
     const [isShowReferalCodeText, setIsShowReferalCodeText] = useState(false)
 
+    const [formValidationErrorMessage, setFormValidationErrorMessage] = useState('')
+    const [isFormValidationError, setIsFormValidationError] = useState(false)
 
     const [toggleTypeInput, setToggleTypeInput] = useState(false)
 
@@ -139,13 +146,25 @@ function FormUserLogin(
     const submitHandlerYourDetailsFormRegistrForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        inputValueFullName.trim().length === 0 ?
-            setErrorInputFullName(prev => prev = true) :
-            setErrorInputFullName(prev => prev = false)
+        if (inputValueFullName.trim().length === 0) {
+            setErrorInputFullName(true)
+            setFormValidationErrorMessage('Enter fullName')
+        } else {
+            setErrorInputFullName(false)
+        }
 
-        inputValuePhone.trim().length < 12 ?
-            setErrorInputPhone(prev => prev = true) :
-            setErrorInputPhone(prev => prev = false)
+        if (inputValuePhone.trim().length < 12) {
+            setErrorInputPhone(true)
+            setFormValidationErrorMessage('Enter phone number')
+        } else {
+            setErrorInputPhone(false)
+        }
+
+        if (inputValueFullName.trim().length === 0
+            && inputValuePhone.trim().length < 12
+        ) {
+            setFormValidationErrorMessage('Enter required fields')
+        }
 
         if (inputValueFullName.trim().length >= 1
             && inputValuePhone.trim().length >= 12
@@ -161,47 +180,82 @@ function FormUserLogin(
         }
     }
 
+
     const submitHandlerLetsGetStartedForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        inputValueEmail.trim().length === 0 ?
-            setErrorInputEmail(prev => prev = true) :
-            setErrorInputEmail(prev => prev = false)
+        if (inputValueEmail.trim().length === 0) {
+            setErrorInputEmail(true)
+            setFormValidationErrorMessage('Enter email')
+        } else {
+            setErrorInputEmail(false)
+        }
 
-        inputValuePassword.trim().length < 8 ?
-            setErrorInputPasswordValue(prev => prev = true) :
-            setErrorInputPasswordValue(prev => prev = false)
+        if (inputValuePassword.trim().length < 8) {
+            setErrorInputPasswordValue(true)
+            setFormValidationErrorMessage('Enter password')
+        } else {
+            setErrorInputPasswordValue(false)
+        }
+
+        if (inputValueEmail.trim().length === 0 &&
+            inputValuePassword.trim().length < 8
+        ) {
+            setFormValidationErrorMessage('Enter required fields')
+        }
 
         if (inputValueEmail.trim().length >= 1
             && inputValuePassword.trim().length >= 8
         ) {
-            setErrorInputEmail(prev => prev = false)
-            setErrorInputPasswordValue(prev => prev = false)
+            setErrorInputEmail(false)
+            setErrorInputPasswordValue(false)
             setIsShowRegistrationElements(true)
             setIsShowReferalCodeText(true)
+            setIsFormValidationError(false)
         }
     }
 
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        inputValuePartnerId.trim().length === 0 ?
-            setErrorInputPartnerId(prev => prev = true) :
-            setErrorInputPartnerId(prev => prev = false)
+        if (inputValuePartnerId.trim().length === 0) {
+            setErrorInputPartnerId(true)
+            setFormValidationErrorMessage('Incorrect Partner ID')
+        } else {
+            setErrorInputPartnerId(false)
+        }
 
-        inputValuePassword.trim().length < 8 ?
-            setErrorInputPasswordValue(prev => prev = true) :
-            setErrorInputPasswordValue(prev => prev = false)
+        if (inputValuePassword.trim().length < 8) {
+            setFormValidationErrorMessage('Enter password')
+            setErrorInputPasswordValue(true)
+        } else {
+            setErrorInputPasswordValue(false)
+        }
+
+        if (inputValuePartnerId.trim().length === 0 &&
+            inputValuePassword.trim().length < 8
+        ) {
+            setFormValidationErrorMessage('Enter required fields')
+        }
 
         if (inputValuePartnerId.trim().length >= 1
             && inputValuePassword.trim().length >= 8
         ) {
-            setErrorInputPartnerId(prev => prev = false)
-            setErrorInputPasswordValue(prev => prev = false)
+            setErrorInputPartnerId(false)
+            setErrorInputPasswordValue(false)
+            setIsFormValidationError(false)
             fetchDataAuth()
             setInputValuePartnerId('')
             setInputValuePassword('')
         }
+    }
+
+    const backFirstForm = () => {
+        setIsShowRegistrationElements(false)
+        setIsShowReferalCode(false)
+        setErrorInputFullName(false)
+        setErrorInputPartnerId(false)
+        setErrorInputReferalCode(false)
     }
 
     return (
@@ -209,8 +263,7 @@ function FormUserLogin(
             {
                 isShowRegistrationElements &&
                 <img onClick={() => {
-                    setIsShowRegistrationElements(false)
-                    setIsShowReferalCode(false)
+                    backFirstForm()
                 }}
                     className={style.backIcon} src={arrowBackIcon} alt="back" />
             }
@@ -320,7 +373,7 @@ function FormUserLogin(
                         }}
                         className={style.formUserLogin__haveReferralCode}
                     >
-                        I have referral code
+                        I have a referral code
                     </span>}
                 <button className={style.formUserLogin__submit}>
                     {
@@ -347,9 +400,14 @@ function FormUserLogin(
                 </div>
 
                 {
-                    errorInputLoginValue || errorInputPasswordValue ?
+                    errorInputEmail ||
+                        errorInputPasswordValue ||
+                        errorInputPartnerId ||
+                        errorInputFullName ||
+                        errorInputPhone ||
+                        errorInputReferalCode ?
                         <span className={style.formUserLogin__messageErrorEnterRequiredFields}>
-                            Enter required fields
+                            {formValidationErrorMessage}
                         </span>
                         : null
                 }

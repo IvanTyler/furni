@@ -77,9 +77,8 @@
     &__messageErrorEnterRequiredFields {
         position: absolute;
         left: calc(50% - 67.5px);
-        bottom: 0;
+        top: -150px;
         display: inline-block;
-        height: 31px;
         padding: 9px 20px;
         background-color: #C40F24;
         border-radius: 12px;

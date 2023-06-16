@@ -2,20 +2,21 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface IInitialState {
     isLoadingRegistration: boolean;
-    responseMessage: string;
+    responseMessageError: string;
 }
 
 export const initialState: IInitialState = {
     isLoadingRegistration: false,
-    responseMessage: '',
+    responseMessageError: '',
 }
-
 
 export const dataSlice = createSlice({
     name: 'getDataUsers',
     initialState,
     reducers: {
-        
+        getResponseErrorMessage(state, action: PayloadAction<any>) {
+            state.responseMessageError = action.payload
+        },
         
     }
 })
@@ -23,4 +24,5 @@ export const dataSlice = createSlice({
 
 export default dataSlice.reducer
 export const {
+    getResponseErrorMessage
 } = dataSlice.actions

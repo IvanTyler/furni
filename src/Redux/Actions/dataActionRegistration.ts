@@ -5,6 +5,7 @@ import {
     getDataLoadingContacts,
     getDataLoadingContactsError,
 } from "../Reducers/SliceReducers";
+import { getResponseErrorMessage } from "../Reducers/registrationReducer";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
 import { dataAction } from "./dataAction";
@@ -32,7 +33,7 @@ export const dataActionUsers = (
             from_lead_id: referalCode,
             name: fullName,
             password,
-            phone,
+            phone: phone ? phone : 0,
             repeat_password: password
         }
     )
@@ -48,6 +49,6 @@ export const dataActionUsers = (
         })
         .catch(error => {
             console.log(error);
-
+            dispath(getResponseErrorMessage(error.response.data.message))
         })
 }
