@@ -3,12 +3,12 @@ import style from './FormUserLogin.module.scss'
 import logoFurni from '../../assets/icon/logo.svg'
 import { Input } from '../Input/Input'
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import cx from 'classnames'
-import { useDispatch } from 'react-redux'
 import { dataAction } from '../../Redux/Actions/dataAction'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { dataActionUsers } from '../../Redux/Actions/dataActionRegistration'
+import { useAppDispatch } from '../../Redux/Store/Store'
 
 interface IFormUserLoginProps {
     isShowElement: boolean;
@@ -27,8 +27,8 @@ function FormUserLogin(
     }: IFormUserLoginProps
 ) {
 
-    const dispath = useDispatch<any>()
-
+    const dispath = useAppDispatch()
+    const location = useLocation();
     const navigate = useNavigate()
 
     const { isLoadingAuth } = useTypeSelector(state => state.data)
@@ -48,7 +48,7 @@ function FormUserLogin(
             setFormValidationErrorMessage('This referral code doesn’t exist. Check the code and try again')
             setErrorInputReferalCode(true)
         }
-    }, [isLoadingAuth, responseMessageError])
+    }, [isLoadingAuth, responseMessageError, location])
 
 
     const [isShowRegistrationElements, setIsShowRegistrationElements] = useState(false)
@@ -84,8 +84,8 @@ function FormUserLogin(
         await dispath(dataAction(inputValuePartnerId, inputValuePassword))
     }
 
-    const fetchDataRegistration = async () => {
-        await dispath(
+    const fetchDataRegistration = () => {
+        dispath(
             dataActionUsers(
                 inputValueEmail,
                 inputValuePassword,
@@ -268,16 +268,18 @@ function FormUserLogin(
                     className={style.backIcon} src={arrowBackIcon} alt="back" />
             }
             <form onSubmit={
-                isShowRegistrationElements ? submitHandlerYourDetailsFormRegistrForm :
-                    !isShowRegistrationElements ? submitHandlerLetsGetStartedForm :
-                        submitHandler
+                isShowRegistrationElements && window.location.href === 'http://localhost:3000/registration' ? submitHandlerYourDetailsFormRegistrForm :
+                    !isShowRegistrationElements && window.location.href === 'http://localhost:3000/registration' ? submitHandlerLetsGetStartedForm :
+                        window.location.href === 'http://localhost:3000/login' ? submitHandler :
+                            submitHandler
             } action="" className={style.formUserLogin}>
                 <img src={logoFurni} alt="logo furni" />
                 <h1 className={style.formUserLogin__title}>
                     {
-                        isShowRegistrationElements ? 'Your details' :
-                            !isShowRegistrationElements ? 'Let’s get started' :
-                                'Login to your partner’s account'
+                        isShowRegistrationElements && window.location.href === 'http://localhost:3000/registration' ? 'Your details' :
+                            !isShowRegistrationElements && window.location.href === 'http://localhost:3000/registration' ? 'Let’s get started' :
+                                window.location.href === 'http://localhost:3000/login' ? 'Login to your partner’s account' :
+                                    null
                     }
                 </h1>
                 {isShowInputPartnerID && <div className={style.formUserLogin__inputWrapper}>

@@ -1,5 +1,9 @@
 .formUserLogin {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 400px;
     max-width: 100%;
     margin: 0 auto;
@@ -56,6 +60,7 @@
 
     &__inputWrapper {
         position: relative;
+        width: 100%;
 
         &:not(:first-of-type) {
             margin-top: 20px;
@@ -76,7 +81,6 @@
 
     &__messageErrorEnterRequiredFields {
         position: absolute;
-        left: calc(50% - 67.5px);
         top: -150px;
         display: inline-block;
         padding: 9px 20px;
