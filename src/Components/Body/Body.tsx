@@ -26,14 +26,13 @@ export const Body: React.FC = () => {
                     <Route path='/' element={<MainPage />} />
                     <Route path='/login' element={
                         <FormUserLogin
+                            alreadyHaveAnAccount={false}
                             isShowElement={false}
                             isShowInputPartnerID={true}
                             isShowInputPassword={true}
                         />} />
                     <Route path='/registration' element={<Registration
                     />} />
-                    {/* <Route path='/yourDetailsFormRegistr' element={<YourDetailsForm
-                    />} /> */}
                     <Route path='/content'
                         element={
                             <ProtectedRoute>

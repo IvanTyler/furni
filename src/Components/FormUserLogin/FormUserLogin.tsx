@@ -12,6 +12,7 @@ import { useAppDispatch } from '../../Redux/Store/Store'
 
 interface IFormUserLoginProps {
     isShowElement: boolean;
+    alreadyHaveAnAccount: boolean;
     isShowInput?: boolean;
     isShowInputPartnerID?: boolean;
     isShowInputPassword?: boolean;
@@ -24,6 +25,7 @@ function FormUserLogin(
         isShowInputPartnerID,
         isShowInputPassword,
         isShowInputEmail,
+        alreadyHaveAnAccount,
     }: IFormUserLoginProps
 ) {
 
@@ -34,11 +36,12 @@ function FormUserLogin(
     const { isLoadingAuth } = useTypeSelector(state => state.data)
     const { responseMessageError } = useTypeSelector(state => state.dataUsers)
 
+    const Login = <Link className={style.formUserLogin__link} to='/logIn'>LogIn</Link>
 
     useEffect(() => {
         if (isLoadingAuth) navigate("/content");
         if (responseMessageError === 'duplicate entry') {
-            setFormValidationErrorMessage('This email is already connected to an account. Login to your account')
+            setFormValidationErrorMessage(`This email is already connected to an account. Login to your account`)
             setErrorInputEmail(true)
             setIsShowRegistrationElements(false)
             setIsShowReferalCode(false)
@@ -68,7 +71,6 @@ function FormUserLogin(
     const [errorInputEmail, setErrorInputEmail] = useState(false)
     const [errorInputPartnerId, setErrorInputPartnerId] = useState(false)
     const [errorInputReferalCode, setErrorInputReferalCode] = useState(false)
-
 
     const [inputValueLogin, setInputValueLogin] = useState('')
     const [inputValuePassword, setInputValuePassword] = useState('')
@@ -114,7 +116,14 @@ function FormUserLogin(
     }
 
     const inputChangeFullName = (event: React.ChangeEvent<HTMLInputElement>) => {
-        sliceInputText(event)
+        if (event.target.value.length > 50) event.target.value = event.target.value.slice(0, 50);
+        if (event.target.value.length >= 50) {
+            setErrorInputFullName(true)
+            setFormValidationErrorMessage('Full name must be up to 50 characters')
+        } else {
+            setErrorInputFullName(false)
+        }
+
         setInputValueFullName(event.target.value)
     }
 
@@ -179,7 +188,6 @@ function FormUserLogin(
             fetchDataRegistration()
         }
     }
-
 
     const submitHandlerLetsGetStartedForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -389,15 +397,15 @@ function FormUserLogin(
                     cx(style.formUserLogin__signature, style.alreadyAccount) :
                     style.formUserLogin__signature
                 }>
-                    {isShowElement ?
-                        <span>
-                            Already have an account?&nbsp;
-                            <Link className={style.formUserLogin__link} to='/logIn'>LogIn</Link>
-                        </span>
-                        :
-                        <span> Forgot password? Call us <a href="tel:+97143102096">+971-431-02096</a>
-                            {/* &nbsp; Don’t have an account? <span className={style.formUserLogin__registr}></span> Register */}
-                        </span>
+                    {
+                        alreadyHaveAnAccount ?
+                            <span>
+                                Already have an account?&nbsp;
+                                <Link className={style.formUserLogin__link} to='/logIn'>LogIn</Link>
+                            </span> :
+                            <span> Forgot password? Call us <a href="tel:+97143102096">+971-431-02096</a>
+                                {/* &nbsp; Don’t have an account? <Link className={style.formUserLogin__link} to='/registration'>Register</Link> */}
+                            </span>
                     }
                 </div>
 
