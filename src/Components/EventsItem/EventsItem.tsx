@@ -11,7 +11,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
 
     const [openDetailList, setOpenDetailList] = useState(false)
     const date = new Date(item.created_at);
-
+    
     return (
         <>
             <li className={openDetailList ?

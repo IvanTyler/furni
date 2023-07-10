@@ -8,6 +8,7 @@ import { copyReferalCodeMobile } from '../../assets/Functions/copyReferalCodeMob
 import { useTypeSelector } from '../../Hooks/useTypeSelector';
 import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied';
 import { useAppDispatch } from '../../Redux/Store/Store';
+import { OverviewContent } from '../OverviewContent/OverviewContent';
 
 interface IDefaultPageProps {
     img: string;
