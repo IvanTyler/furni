@@ -31,7 +31,7 @@ export const MainPage: React.FC = () => {
                         </li>
                     </ul>
                     <nav className={style.sectionMainPageNavigation}>
-                        <Link className={style.sectionMainPageNavigation__link} to='/registration'>Registr</Link>
+                        <Link className={style.sectionMainPageNavigation__link} to='/registration'>Register</Link>
                         <Link className={style.sectionMainPageNavigation__link} to='/login'>LogIn</Link>
                     </nav>
                 </li>

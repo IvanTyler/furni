@@ -11,6 +11,9 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
 
     const [openDetailList, setOpenDetailList] = useState(false)
     const date = new Date(item.created_at);
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Now', 'Dec']
+    console.log(monthNames[date.getMonth()]);
+    console.log(item.created_at, date.getHours());
     
     return (
         <>
@@ -76,24 +79,20 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                 Created at
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
-                                {date.getFullYear()}
-                                /{
-                                    date.getMonth() + 1 >= 10 ?
-                                        date.getMonth() + 1 :
-                                        `0${date.getMonth() + 1}`
-                                }
-                                /{
-                                    date.getDate() + 1 >= 10 ?
-                                        date.getDate() + 1 :
-                                        `0${date.getDate() + 1}`
-                                }&nbsp;
-                                {date.getHours() >= 10 ?
-                                    date.getHours() :
-                                    `0${date.getHours()}`
+                                {monthNames[date.getMonth()]}&nbsp;
+                                {
+                                    date.getDate() >= 10 ?
+                                        date.getDate() :
+                                        `0${date.getDate()}`
+                                },&nbsp;
+                                {date.getFullYear()},&nbsp;
+                                {date.getHours() + 1 >= 10 ?
+                                    date.getHours() + 1 :
+                                    `0${date.getHours() + 1}`
                                 }:
                                 {date.getMinutes() >= 10 ?
-                                    date.getHours() :
-                                    `0${date.getHours()}`}
+                                    date.getMinutes() :
+                                    `0${date.getMinutes()}`}
                             </div>
                         </li>
                     </ul> : null

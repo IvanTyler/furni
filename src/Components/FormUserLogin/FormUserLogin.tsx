@@ -33,13 +33,18 @@ function FormUserLogin(
     const location = useLocation();
     const navigate = useNavigate()
 
-    const { isLoadingAuth } = useTypeSelector(state => state.data)
+    const { isLoadingAuth, isLoadingContent, error } = useTypeSelector(state => state.data)
     const { responseMessageError } = useTypeSelector(state => state.dataUsers)
 
     const Login = <Link className={style.formUserLogin__link} to='/logIn'>LogIn</Link>
 
     useEffect(() => {
         if (isLoadingAuth) navigate("/content");
+        if (error === 'Ошибка, данных нет') {
+            setFormValidationErrorMessage('Partner ID or password error')
+            setErrorInputPasswordValue(true)
+            setErrorInputPartnerId(true)
+        }
         if (responseMessageError === 'duplicate entry') {
             setFormValidationErrorMessage(`This email is already connected to an account. Login to your account`)
             setErrorInputEmail(true)
@@ -188,6 +193,7 @@ function FormUserLogin(
             fetchDataRegistration()
         }
     }
+console.log(isLoadingContent);
 
     const submitHandlerLetsGetStartedForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -201,7 +207,7 @@ function FormUserLogin(
 
         if (inputValuePassword.trim().length < 8) {
             setErrorInputPasswordValue(true)
-            setFormValidationErrorMessage('Enter password')
+            setFormValidationErrorMessage('The password is too short')
         } else {
             setErrorInputPasswordValue(false)
         }
@@ -234,7 +240,7 @@ function FormUserLogin(
         }
 
         if (inputValuePassword.trim().length < 8) {
-            setFormValidationErrorMessage('Enter password')
+            setFormValidationErrorMessage('The password is too short')
             setErrorInputPasswordValue(true)
         } else {
             setErrorInputPasswordValue(false)

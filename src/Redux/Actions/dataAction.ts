@@ -19,6 +19,8 @@ export const dataAction = (email: string, password: string) => async (dispath: A
             .then(async response => {
 
                 if (response.status !== 200) {
+                    console.log(response);
+                    
                     dispath(getDataFetchError('Ошибка, данных нет'))
                     return
                 }
@@ -41,10 +43,13 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                 dispath(getDataFetchingSuccessToken())
             })
             .catch(error => {
+        console.log(error);
+
                 dispath(getDataFetchError('Ошибка, данных нет'))
             })
 
     } catch (error) {
+
         dispath(getDataFetchError('Ошибка, данных нет'))
     }
 }
