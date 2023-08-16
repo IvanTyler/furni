@@ -3,8 +3,7 @@ import {
     getDataFetchingSuccessToken,
     getDataFetchingToken,
     getReferalCode,
-    getYouHaveEarned,
-    setAuth
+    getYouHaveEarned
 } from "../Reducers/SliceReducers";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
@@ -20,7 +19,8 @@ export const dataAction = (email: string, password: string) => async (dispath: A
             .then(async response => {
 
                 if (response.status !== 200) {
-
+                    console.log(response);
+                    
                     dispath(getDataFetchError('Ошибка, данных нет'))
                     return
                 }
@@ -34,10 +34,6 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                         if (response.data.lead_id) {
                             dispath(getReferalCode(response.data.lead_id))
                             localStorage.setItem('lead_id', response.data.lead_id)
-                        } else if (!response.data.lead_id || response.data.lead_id === 0) {
-                            console.log('error lead_id');
-                            dispath(setAuth(false))
-
                         }
                         dispath(getYouHaveEarned(response.data.earning_total))
                         localStorage.setItem('youHaveEarned', response.data.earning_total)
@@ -47,7 +43,7 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                 dispath(getDataFetchingSuccessToken())
             })
             .catch(error => {
-                console.log(error);
+        console.log(error);
 
                 dispath(getDataFetchError('Ошибка, данных нет'))
             })
