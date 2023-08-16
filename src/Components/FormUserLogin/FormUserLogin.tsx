@@ -281,17 +281,17 @@ function FormUserLogin(
                     className={style.backIcon} src={arrowBackIcon} alt="back" />
             }
             <form onSubmit={
-                isShowRegistrationElements && window.location.href === 'http://localhost:3000/registration' ? submitHandlerYourDetailsFormRegistrForm :
-                    !isShowRegistrationElements && window.location.href === 'http://localhost:3000/registration' ? submitHandlerLetsGetStartedForm :
-                        window.location.href === 'http://localhost:3000/login' ? submitHandler :
+                isShowRegistrationElements && window.location.pathname === '/registration' ? submitHandlerYourDetailsFormRegistrForm :
+                    !isShowRegistrationElements && window.location.pathname === '/registration' ? submitHandlerLetsGetStartedForm :
+                        window.location.pathname === '/login' ? submitHandler :
                             submitHandler
             } action="" className={style.formUserLogin}>
                 <img src={logoFurni} alt="logo furni" />
                 <h1 className={style.formUserLogin__title}>
                     {
-                        isShowRegistrationElements && window.location.href === 'http://localhost:3000/registration' ? 'Your details' :
-                            !isShowRegistrationElements && window.location.href === 'http://localhost:3000/registration' ? 'Let’s get started' :
-                                window.location.href === 'http://localhost:3000/login' ? 'Login to your partner’s account' :
+                        isShowRegistrationElements && window.location.pathname === '/registration' ? 'Your details' :
+                            !isShowRegistrationElements && window.location.pathname === '/registration' ? 'Let’s get started' :
+                                window.location.pathname === '/login' ? 'Login to your partner’s account' :
                                     null
                     }
                 </h1>
