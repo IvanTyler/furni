@@ -193,7 +193,6 @@ function FormUserLogin(
             fetchDataRegistration()
         }
     }
-console.log(isLoadingContent);
 
     const submitHandlerLetsGetStartedForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
