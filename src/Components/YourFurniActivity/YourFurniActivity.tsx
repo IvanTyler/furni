@@ -15,6 +15,7 @@ import imgMoney from '../../assets/images/money.png'
 import { useGetData } from '../../Hooks/useGetData'
 import { useTypeSelector } from '../../Hooks/useTypeSelector';
 import Contacts from '../Contacts/Contacts'
+import { log } from 'console'
 
 export const YourFurniActivity: React.FC = () => {
     const { you_have_earned } = useTypeSelector(state => state.data)

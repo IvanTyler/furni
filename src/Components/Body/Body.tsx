@@ -7,6 +7,7 @@ import { Content } from '../Content/Content'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute'
 import FormUserLogin from '../FormUserLogin/FormUserLogin'
+import { Welcome } from '../Welcome/Welcome'
 
 export const Body: React.FC = () => {
 
@@ -24,6 +25,8 @@ export const Body: React.FC = () => {
             <>
                 <Routes>
                     <Route path='/' element={<MainPage />} />
+                    <Route path='/welcome' element={<Welcome />} />
+
                     <Route path='/login' element={
                         <FormUserLogin
                             alreadyHaveAnAccount={false}

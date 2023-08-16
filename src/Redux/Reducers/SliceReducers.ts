@@ -10,7 +10,7 @@ export const dataSlice = createSlice({
     reducers: {
         getReferalCode(state, action: PayloadAction<any>) {
             state.referal_code = action.payload
-            state.isloading = 'loading';
+            state.isloading = 'ok';
         },
         getReferalCodeSuccess(state) {
             state.isloading = 'ok';
@@ -37,6 +37,9 @@ export const dataSlice = createSlice({
             state.isloading = 'error';
         },
         getDataLoadingEvents(state) {
+            state.isloading = 'loading';
+        },
+        getDataLoadingOverview(state) {
             state.isloading = 'loading';
         },
         getDataLoadingEventsError(state) {
@@ -103,4 +106,5 @@ export const {
     getDataLoadingContactsError,
     getDataLoadingEventsError,
     getReferalCodeSuccess,
+    getDataLoadingOverview,
 } = dataSlice.actions
