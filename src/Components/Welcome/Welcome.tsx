@@ -8,18 +8,9 @@ import { useNavigate } from 'react-router-dom'
 
 export const Welcome: React.FC = () => {
     const dispath = useAppDispath()
-    const navigate = useNavigate()
 
     useEffect(() => {
-        setTimeout(() => {
-            dispath(dataActionOverview())
-            const getTokenSessionStorage = localStorage.getItem('token')
-
-            if (getTokenSessionStorage !== null) {
-                dispath(setAuth(true))
-                navigate("/content")
-            }
-        }, 5000)
+        setTimeout(() => dispath(dataActionOverview()), 5000)
     }, [])
 
     return (

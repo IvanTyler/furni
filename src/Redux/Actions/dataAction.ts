@@ -2,12 +2,17 @@ import {
     getDataFetchError,
     getDataFetchingSuccessToken,
     getDataFetchingToken,
+    getDataLoadingErrorLeadId,
+    getDataLoadingLoadingLeadId,
+    getDataLoadingSuccessLeadId,
     getReferalCode,
-    getYouHaveEarned
+    getYouHaveEarned,
+    setAuth
 } from "../Reducers/SliceReducers";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
 import { IGetDataTokens } from "../../Interfaces/IGetDataTokens";
+import { dataActionOverview } from "./dataActionOverview";
 
 export const dataAction = (email: string, password: string) => async (dispath: AppDispatch) => {
     try {
@@ -19,31 +24,26 @@ export const dataAction = (email: string, password: string) => async (dispath: A
             .then(async response => {
 
                 if (response.status !== 200) {
-                    console.log(response);
-                    
+
                     dispath(getDataFetchError('Ошибка, данных нет'))
                     return
                 }
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('refresh_token', response.data.refresh_token)
+                dispath(getDataFetchingSuccessToken())
 
                 await $api.get<any>(
                     `api/user/overview`
                 )
                     .then(response => {
-                        if (response.data.lead_id) {
-                            dispath(getReferalCode(response.data.lead_id))
-                            localStorage.setItem('lead_id', response.data.lead_id)
-                        }
+                        dataActionOverview()
                         dispath(getYouHaveEarned(response.data.earning_total))
                         localStorage.setItem('youHaveEarned', response.data.earning_total)
-
                     })
                     .catch(error => console.log(error))
-                dispath(getDataFetchingSuccessToken())
             })
             .catch(error => {
-        console.log(error);
+                console.log(error);
 
                 dispath(getDataFetchError('Ошибка, данных нет'))
             })

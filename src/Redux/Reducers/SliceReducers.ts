@@ -42,6 +42,15 @@ export const dataSlice = createSlice({
         getDataLoadingOverview(state) {
             state.isloading = 'loading';
         },
+        getDataLoadingSuccessLeadId(state) {
+            state.isloadingId = 'ok';
+        },
+        getDataLoadingLoadingLeadId(state) {
+            state.isloadingId = 'loading';
+        },
+        getDataLoadingErrorLeadId(state) {
+            state.isloadingId = 'error';
+        },
         getDataLoadingEventsError(state) {
             state.isloading = 'error';
         },
@@ -107,4 +116,7 @@ export const {
     getDataLoadingEventsError,
     getReferalCodeSuccess,
     getDataLoadingOverview,
+    getDataLoadingErrorLeadId,
+    getDataLoadingSuccessLeadId,
+    getDataLoadingLoadingLeadId
 } = dataSlice.actions
