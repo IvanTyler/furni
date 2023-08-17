@@ -32,15 +32,7 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                 localStorage.setItem('refresh_token', response.data.refresh_token)
                 dispath(getDataFetchingSuccessToken())
 
-                await $api.get<any>(
-                    `api/user/overview`
-                )
-                    .then(response => {
-                        dataActionOverview()
-                        dispath(getYouHaveEarned(response.data.earning_total))
-                        localStorage.setItem('youHaveEarned', response.data.earning_total)
-                    })
-                    .catch(error => console.log(error))
+                dataActionOverview()
             })
             .catch(error => {
                 console.log(error);
