@@ -55,6 +55,8 @@ function FormUserLogin(
         if (responseMessageError === 'couldn\'t find invited lead') {
             setFormValidationErrorMessage('This referral code doesn’t exist. Check the code and try again')
             setErrorInputReferalCode(true)
+            setErrorInputFullName(true)
+            setErrorInputPhone(true)
         }
     }, [isLoadingAuth, responseMessageError, location])
 
