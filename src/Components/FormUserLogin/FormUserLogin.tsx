@@ -361,7 +361,7 @@ function FormUserLogin(
                     <Input
                         type='number'
                         name='number'
-                        placeholder='Referral code'
+                        placeholder='Referral code (optional)'
                         valueInput={inputValueReferalCode}
                         error={errorInputReferalCode}
                         onChangeInput={inputChangeReferalCode}
@@ -386,7 +386,7 @@ function FormUserLogin(
                         }}
                         className={style.formUserLogin__haveReferralCode}
                     >
-                        I have a referral code
+                        I have a referral code  
                     </span>}
                 <button className={style.formUserLogin__submit}>
                     {
