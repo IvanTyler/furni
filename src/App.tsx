@@ -4,11 +4,12 @@ import { Body } from './Components/Body/Body';
 import { Container } from './Components/Container/Container';
 import './normalize.css'
 import { BrowserRouter } from 'react-router-dom';
-import { useAppDispath } from './Hooks/useTypeSelector';
+import { useAppDispath, useTypeSelector } from './Hooks/useTypeSelector';
 import { setAuth } from './Redux/Reducers/SliceReducers';
 
 function App() {
   const dispath = useAppDispath()
+  const { isloadingId, referal_code } = useTypeSelector(state => state.data)
 
   useEffect(() => {
     const getTokenSessionStorage = localStorage.getItem('token')

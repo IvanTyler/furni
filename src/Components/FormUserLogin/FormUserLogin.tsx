@@ -39,6 +39,7 @@ function FormUserLogin(
     const Login = <Link className={style.formUserLogin__link} to='/logIn'>LogIn</Link>
 
     useEffect(() => {
+        
         if (isLoadingAuth) navigate("/content");
         if (error === 'Ошибка, данных нет') {
             setFormValidationErrorMessage('Partner ID or password error')
@@ -186,9 +187,8 @@ function FormUserLogin(
             setErrorInputFullName(prev => prev = false)
             setErrorInputPasswordValue(prev => prev = false)
             setInputValueReferalCode('')
-            setInputValuePassword('')
-            setInputValueEmail('')
             fetchDataRegistration()
+            setErrorInputReferalCode(false)
         }
     }
 
@@ -256,8 +256,6 @@ function FormUserLogin(
             setErrorInputPasswordValue(false)
             setIsFormValidationError(false)
             fetchDataAuth()
-            setInputValuePartnerId('')
-            setInputValuePassword('')
         }
     }
 
@@ -297,7 +295,7 @@ function FormUserLogin(
                     <Input
                         type='text'
                         name='PartnerID'
-                        placeholder='Partner ID'
+                        placeholder='Partner ID or email'
                         valueInput={inputValuePartnerId}
                         error={errorInputPartnerId}
                         onChangeInput={inputChangePartnerId}

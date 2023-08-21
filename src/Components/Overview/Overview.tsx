@@ -4,6 +4,7 @@ import style from './Overview.module.scss'
 import { dataActionOverview } from '../../Redux/Actions/dataActionOverview';
 import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
 import { Preloader } from '../Preloader/Preloader';
+import { dataActionOverviewTab } from '../../Redux/Actions/dataActionOverviewTab';
 
 interface IDefaultPageProps {
     img: string;
@@ -11,10 +12,10 @@ interface IDefaultPageProps {
 
 export const Overview: React.FC<IDefaultPageProps> = ({ img }) => {
     const dispath = useAppDispath()
-    const { isloading } = useTypeSelector(state => state.data)
+    const { isloading, isloadingId } = useTypeSelector(state => state.data)
 
     useEffect(() => {
-        dispath(dataActionOverview())
+        dispath(dataActionOverviewTab())
     }, [])
 
     if (isloading === 'loading')

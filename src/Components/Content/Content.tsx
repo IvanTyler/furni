@@ -6,14 +6,7 @@ import { YourFurniActivity } from "../YourFurniActivity/YourFurniActivity"
 
 export const Content: React.FC = () => {
     const { isloadingId } = useTypeSelector(state => state.data)
-    
-    if (isloadingId === 'loading') {
-        return (
-            <>
-                <Preloader />
-            </>
-        )
-    }
+
     if (isloadingId === 'ok') {
         return (
             <>

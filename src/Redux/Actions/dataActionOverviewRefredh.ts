@@ -10,20 +10,21 @@ import {
 import $api from "../http/http";
 import { AppDispatch } from "../Store/Store";
 
-export const dataActionOverview = () => (dispath: AppDispatch) => {
-    dispath(getDataLoadingOverview())
+export const dataActionOverviewRefresh = () => (dispath: AppDispatch) => {
+    dispath(getDataLoadingLoadingLeadId())
 
     $api.get<any>(
         `api/user/overview`
     )
         .then(response => {
-            response.data.lead_id = 0
+            // response.data.lead_id = 0
             if (response.data.lead_id && response.data.lead_id !== 0) {
                 dispath(getReferalCode(response.data.lead_id))
                 dispath(getDataLoadingSuccessLeadId())
 
                 localStorage.setItem('lead_id', response.data.lead_id)
             } else {
+                console.log('error lead_id');
                 dispath(getDataLoadingErrorLeadId(response.data.lead_id))
             }
             dispath(getYouHaveEarned(response.data.earning_total))

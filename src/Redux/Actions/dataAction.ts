@@ -32,7 +32,7 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                 localStorage.setItem('refresh_token', response.data.refresh_token)
                 dispath(getDataFetchingSuccessToken())
 
-                dataActionOverview()
+                // dispath(dataActionOverview())
             })
             .catch(error => {
                 console.log(error);
