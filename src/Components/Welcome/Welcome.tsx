@@ -12,7 +12,7 @@ import { dataActionOverviewRefresh } from '../../Redux/Actions/dataActionOvervie
 
 export const Welcome: React.FC = () => {
     const dispath = useAppDispath()
-    const { isloadingId, isloading, referal_code } = useTypeSelector(state => state.data)
+    const { isloadingId } = useTypeSelector(state => state.data)
 
     const [attempt, setAttempt] = useState(0)
     useEffect(() => {
@@ -30,7 +30,6 @@ export const Welcome: React.FC = () => {
         }
 
     }, [isloadingId])
-
 
 
     return (

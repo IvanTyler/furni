@@ -15,7 +15,7 @@ export const Overview: React.FC<IDefaultPageProps> = ({ img }) => {
     const { isloading, isloadingId } = useTypeSelector(state => state.data)
 
     useEffect(() => {
-        dispath(dataActionOverviewTab())
+        dispath(dataActionOverview())
     }, [])
 
     if (isloading === 'loading')

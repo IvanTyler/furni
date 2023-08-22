@@ -17,7 +17,6 @@ export const dataActionOverview = () => (dispath: AppDispatch) => {
         `api/user/overview`
     )
         .then(response => {
-            response.data.lead_id = 0
             if (response.data.lead_id && response.data.lead_id !== 0) {
                 dispath(getReferalCode(response.data.lead_id))
                 dispath(getDataLoadingSuccessLeadId())
