@@ -59,8 +59,6 @@ function FormUserLogin(
             setErrorInputReferalCode(true)
         }
     }, [isLoadingAuth, responseMessageError, location])
-    console.log(responseMessageError);
-
 
     const [isShowRegistrationElements, setIsShowRegistrationElements] = useState(false)
     const [isShowReferalCode, setIsShowReferalCode] = useState(false)

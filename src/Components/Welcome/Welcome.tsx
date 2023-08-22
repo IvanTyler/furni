@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react'
 import style from './Welcome.module.scss'
-import cat from '../../assets/images/cat.png'
 import logo from '../../assets/icon/logo.svg'
 import cx from 'classnames'
 import { dataActionOverview } from '../../Redux/Actions/dataActionOverview'
 import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
 import { getDataLoadingLoadingLeadId, setAuth } from '../../Redux/Reducers/SliceReducers'
-import { useNavigate } from 'react-router-dom'
 import { Preloader } from '../Preloader/Preloader'
-import { dataActionOverviewRefresh } from '../../Redux/Actions/dataActionOverviewRefredh'
 
 export const Welcome: React.FC = () => {
     const dispath = useAppDispath()
@@ -46,7 +43,7 @@ export const Welcome: React.FC = () => {
                             <a href="mailto:partners@furni.ae" className={style.welcome__link}>partners@furni.ae</a>
                             &nbsp;to register your account
                         </h3>
-                        <img src={cat} alt="logo" className={style.welcome__icon_cat} />
+                        <div className={style.welcome__cat}></div>
                     </>
                     :
                     <>

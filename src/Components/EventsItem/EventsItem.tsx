@@ -12,8 +12,6 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
     const [openDetailList, setOpenDetailList] = useState(false)
     const date = new Date(item.created_at);
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Now', 'Dec']
-    console.log(monthNames[date.getMonth()]);
-    console.log(item.created_at, date.getHours());
     
     return (
         <>

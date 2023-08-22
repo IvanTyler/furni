@@ -38,8 +38,13 @@
         font-weight: 500;
     }
 
-    &__icon_cat {
+    &__cat {
         margin-top: 40px;
+        width: 263px;
+        height: 190px;
+        background-image: url('../../assets/images/cat.png');
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
 }
