@@ -9,6 +9,7 @@ import { dataAction } from '../../Redux/Actions/dataAction'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { dataActionUsers } from '../../Redux/Actions/dataActionRegistration'
 import { useAppDispatch } from '../../Redux/Store/Store'
+import { getResponseErrorMessage } from '../../Redux/Reducers/registrationReducer'
 
 interface IFormUserLoginProps {
     isShowElement: boolean;
@@ -39,7 +40,7 @@ function FormUserLogin(
     const Login = <Link className={style.formUserLogin__link} to='/logIn'>LogIn</Link>
 
     useEffect(() => {
-        
+
         if (isLoadingAuth) navigate("/content");
         if (error === 'Ошибка, данных нет') {
             setFormValidationErrorMessage('Partner ID or password error')
@@ -58,6 +59,7 @@ function FormUserLogin(
             setErrorInputReferalCode(true)
         }
     }, [isLoadingAuth, responseMessageError, location])
+    console.log(responseMessageError);
 
 
     const [isShowRegistrationElements, setIsShowRegistrationElements] = useState(false)
@@ -189,6 +191,7 @@ function FormUserLogin(
             setInputValueReferalCode('')
             fetchDataRegistration()
             setErrorInputReferalCode(false)
+            setErrorInputEmail(false)
         }
     }
 
@@ -223,6 +226,8 @@ function FormUserLogin(
             setIsShowRegistrationElements(true)
             setIsShowReferalCodeText(true)
             setIsFormValidationError(false)
+            setErrorInputReferalCode(false)
+
         }
     }
 
@@ -255,6 +260,8 @@ function FormUserLogin(
             setErrorInputPartnerId(false)
             setErrorInputPasswordValue(false)
             setIsFormValidationError(false)
+            setErrorInputEmail(false)
+            setErrorInputReferalCode(false)
             fetchDataAuth()
         }
     }
@@ -384,7 +391,7 @@ function FormUserLogin(
                         }}
                         className={style.formUserLogin__haveReferralCode}
                     >
-                        I have a referral code  
+                        I have a referral code
                     </span>}
                 <button className={style.formUserLogin__submit}>
                     {

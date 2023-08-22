@@ -7,6 +7,7 @@ import { SocialMedia } from '../SocialMedia/SocialMedia'
 import { useState } from 'react'
 import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
 import { setAuth } from '../../Redux/Reducers/SliceReducers'
+import { getResponseErrorMessage } from '../../Redux/Reducers/registrationReducer'
 
 export const Header: React.FC = () => {
     const { referal_code } = useTypeSelector(state => state.data)
@@ -60,7 +61,11 @@ export const Header: React.FC = () => {
                         referal_code}
                 />}
             </div>
-            <span className={style.header__logOut} onClick={() => logOut()}>
+            <span className={style.header__logOut} onClick={() => {
+                logOut()
+                dispath(getResponseErrorMessage(''))
+
+            }}>
                 Log out
             </span>
         </header>

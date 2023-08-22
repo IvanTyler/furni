@@ -11,7 +11,6 @@ import FormUserLogin from '../FormUserLogin/FormUserLogin'
 export const Body: React.FC = () => {
 
     const { isLoadingContent } = useTypeSelector(state => state.data)
-    console.log('render Body');
 
     if (isLoadingContent)
         return (

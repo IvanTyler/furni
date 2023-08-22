@@ -12,7 +12,7 @@ interface IDefaultPageProps {
 
 export const Overview: React.FC<IDefaultPageProps> = ({ img }) => {
     const dispath = useAppDispath()
-    const { isloading, isloadingId } = useTypeSelector(state => state.data)
+    const { isloading } = useTypeSelector(state => state.data)
 
     useEffect(() => {
         dispath(dataActionOverview())

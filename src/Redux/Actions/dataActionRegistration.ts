@@ -1,10 +1,3 @@
-import { useTypeSelector } from "../../Hooks/useTypeSelector";
-import { IgetDataContactsDto } from "../../Interfaces/getDataDto";
-import {
-    getDataFetchContacts,
-    getDataLoadingContacts,
-    getDataLoadingContactsError,
-} from "../Reducers/SliceReducers";
 import { getResponseErrorMessage } from "../Reducers/registrationReducer";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
@@ -17,13 +10,6 @@ export const dataActionUsers = (
     phone: string,
     referalCode?: number
 ) => (dispath: AppDispatch) => {
-
-    console.log(
-        email,
-        password,
-        fullName,
-        phone,
-        referalCode);
 
     $api.post<any>(
         `api/users`,
@@ -38,17 +24,10 @@ export const dataActionUsers = (
         }
     )
         .then(response => {
-            console.log(response);
             dispath(dataAction(email, password))
 
-            // if (!response.data) {
-            //     dispath(getDataLoadingContactsError())
-            //     return
-            // }
-            // dispath(getDataFetchContacts(response.data))
         })
         .catch(error => {
-            console.log(error);
             dispath(getResponseErrorMessage(error.response.data.message))
         })
 }
