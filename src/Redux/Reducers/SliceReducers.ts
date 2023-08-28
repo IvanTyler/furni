@@ -12,6 +12,12 @@ export const dataSlice = createSlice({
             state.referal_code = action.payload
             state.isloading = 'ok';
         },
+        backToRegistration(state) {
+            state.isBackToRegistration = true
+        },
+        backToRegistrationClear(state) {
+            state.isBackToRegistration = false
+        },
         getReferalCodeSuccess(state) {
             state.isloading = 'ok';
         },
@@ -53,6 +59,11 @@ export const dataSlice = createSlice({
         },
         getDataLoadingEventsError(state) {
             state.isloading = 'error';
+        },
+        getDataUser(state, action) {
+            state.inputEmail = action.payload.email
+            state.inputPassword = action.payload.password
+
         },
         getDataFetchError(state, action: PayloadAction<string>) {
             state.error = action.payload
@@ -118,5 +129,8 @@ export const {
     getDataLoadingOverview,
     getDataLoadingErrorLeadId,
     getDataLoadingSuccessLeadId,
-    getDataLoadingLoadingLeadId
+    getDataLoadingLoadingLeadId,
+    backToRegistration,
+    backToRegistrationClear,
+    getDataUser,
 } = dataSlice.actions

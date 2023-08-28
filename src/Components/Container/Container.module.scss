@@ -4,12 +4,7 @@
     margin: 0 auto;
     padding: 56px 20px 0;
 
-    &>div {
-        // overflow-x: auto;
-
-        // &::-webkit-scrollbar {
-        //     width: 0;
-        //     height: 0;
-        // }
+    @media (max-width: 600px) {
+        padding: 80px 20px 0;
     }
 }

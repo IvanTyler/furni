@@ -2,14 +2,14 @@ import arrowBackIcon from '../../assets/icon/common/arrow-back.svg'
 import style from './FormUserLogin.module.scss'
 import logoFurni from '../../assets/icon/logo.svg'
 import { Input } from '../Input/Input'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import cx from 'classnames'
 import { dataAction } from '../../Redux/Actions/dataAction'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { dataActionUsers } from '../../Redux/Actions/dataActionRegistration'
 import { useAppDispatch } from '../../Redux/Store/Store'
-import { getResponseErrorMessage } from '../../Redux/Reducers/registrationReducer'
+import { backToRegistration, backToRegistrationClear, getDataUser } from '../../Redux/Reducers/SliceReducers'
 
 interface IFormUserLoginProps {
     isShowElement: boolean;
@@ -18,6 +18,7 @@ interface IFormUserLoginProps {
     isShowInputPartnerID?: boolean;
     isShowInputPassword?: boolean;
     isShowInputEmail?: boolean;
+    url?: any
 }
 
 function FormUserLogin(
@@ -27,38 +28,18 @@ function FormUserLogin(
         isShowInputPassword,
         isShowInputEmail,
         alreadyHaveAnAccount,
+        url
     }: IFormUserLoginProps
 ) {
+
 
     const dispath = useAppDispatch()
     const location = useLocation();
     const navigate = useNavigate()
 
-    const { isLoadingAuth, isLoadingContent, error } = useTypeSelector(state => state.data)
+    const { isLoadingAuth, error, isBackToRegistration, inputEmail, inputPassword } = useTypeSelector(state => state.data)
     const { responseMessageError } = useTypeSelector(state => state.dataUsers)
 
-    const Login = <Link className={style.formUserLogin__link} to='/logIn'>LogIn</Link>
-
-    useEffect(() => {
-
-        if (isLoadingAuth) navigate("/content");
-        if (error === 'Ошибка, данных нет') {
-            setFormValidationErrorMessage('Partner ID or password error')
-            setErrorInputPasswordValue(true)
-            setErrorInputPartnerId(true)
-        }
-        if (responseMessageError === 'duplicate entry') {
-            setFormValidationErrorMessage(`This email is already connected to an account. Login to your account`)
-            setErrorInputEmail(true)
-            setIsShowRegistrationElements(false)
-            setIsShowReferalCode(false)
-            setIsShowReferalCodeText(false)
-        }
-        if (responseMessageError === 'couldn\'t find invited lead') {
-            setFormValidationErrorMessage('This referral code doesn’t exist. Check the code and try again')
-            setErrorInputReferalCode(true)
-        }
-    }, [isLoadingAuth, responseMessageError, location])
 
     const [isShowRegistrationElements, setIsShowRegistrationElements] = useState(false)
     const [isShowReferalCode, setIsShowReferalCode] = useState(false)
@@ -87,6 +68,30 @@ function FormUserLogin(
     const [inputValuePartnerId, setInputValuePartnerId] = useState('')
     const [inputValueReferalCode, setInputValueReferalCode] = useState('')
 
+    useEffect(() => {
+
+        if (isLoadingAuth) {
+            dispath(backToRegistrationClear())
+            navigate("/content");
+        }
+        if (error === 'Ошибка, данных нет') {
+            setFormValidationErrorMessage('Partner ID or password error')
+            setErrorInputPasswordValue(true)
+            setErrorInputPartnerId(true)
+        }
+        if (responseMessageError === 'duplicate entry') {
+            setFormValidationErrorMessage(`This email is already connected to an account. Login to your account`)
+            setErrorInputEmail(true)
+            setIsShowRegistrationElements(false)
+            setIsShowReferalCode(false)
+            setIsShowReferalCodeText(false)
+        }
+        if (responseMessageError === 'couldn\'t find invited lead') {
+            setFormValidationErrorMessage('This referral code doesn’t exist. Check the code and try again')
+            setErrorInputReferalCode(true)
+        }
+    }, [isLoadingAuth, responseMessageError, location, inputValueEmail, inputValuePassword])
+
 
     const fetchDataAuth = async () => {
         await dispath(dataAction(inputValuePartnerId, inputValuePassword))
@@ -95,12 +100,16 @@ function FormUserLogin(
     const fetchDataRegistration = () => {
         dispath(
             dataActionUsers(
-                inputValueEmail,
-                inputValuePassword,
+                inputEmail,
+                inputPassword,
                 inputValueFullName,
                 inputValuePhone,
                 +inputValueReferalCode
             ))
+    }
+
+    const fetchDataUser = () => {
+        dispath(getDataUser({ email: inputValueEmail, password: inputValuePassword }))
     }
 
     const toggleInputTypeFunc = () => {
@@ -190,6 +199,7 @@ function FormUserLogin(
             fetchDataRegistration()
             setErrorInputReferalCode(false)
             setErrorInputEmail(false)
+
         }
     }
 
@@ -225,9 +235,12 @@ function FormUserLogin(
             setIsShowReferalCodeText(true)
             setIsFormValidationError(false)
             setErrorInputReferalCode(false)
-
+            fetchDataUser()
+            localStorage.setItem('location', window.location.href)
+            dispath(backToRegistration())
         }
     }
+
 
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -270,28 +283,44 @@ function FormUserLogin(
         setErrorInputFullName(false)
         setErrorInputPartnerId(false)
         setErrorInputReferalCode(false)
+
+        localStorage.removeItem('location')
+        dispath(backToRegistrationClear())
+
     }
 
     return (
         <>
             {
-                isShowRegistrationElements &&
+                isBackToRegistration &&
                 <img onClick={() => {
                     backFirstForm()
                 }}
                     className={style.backIcon} src={arrowBackIcon} alt="back" />
             }
             <form onSubmit={
-                isShowRegistrationElements && window.location.pathname === '/registration' ? submitHandlerYourDetailsFormRegistrForm :
-                    !isShowRegistrationElements && window.location.pathname === '/registration' ? submitHandlerLetsGetStartedForm :
+                isBackToRegistration && window.location.pathname === '/registration' ? submitHandlerYourDetailsFormRegistrForm :
+                    !isBackToRegistration && window.location.pathname === '/registration' ? submitHandlerLetsGetStartedForm :
                         window.location.pathname === '/login' ? submitHandler :
                             submitHandler
             } action="" className={style.formUserLogin}>
+                {
+                    errorInputEmail ||
+                        errorInputPasswordValue ||
+                        errorInputPartnerId ||
+                        errorInputFullName ||
+                        errorInputPhone ||
+                        errorInputReferalCode ?
+                        <span className={style.formUserLogin__messageErrorEnterRequiredFields}>
+                            {formValidationErrorMessage}
+                        </span>
+                        : null
+                }
                 <img src={logoFurni} alt="logo furni" />
                 <h1 className={style.formUserLogin__title}>
                     {
-                        isShowRegistrationElements && window.location.pathname === '/registration' ? 'Your details' :
-                            !isShowRegistrationElements && window.location.pathname === '/registration' ? 'Let’s get started' :
+                        isBackToRegistration && window.location.pathname === '/registration' ? 'Your details' :
+                            !isBackToRegistration && window.location.pathname === '/registration' ? 'Let’s get started' :
                                 window.location.pathname === '/login' ? 'Login to your partner’s account' :
                                     null
                     }
@@ -306,7 +335,7 @@ function FormUserLogin(
                         onChangeInput={inputChangePartnerId}
                     />
                 </div>}
-                {isShowInputEmail && !isShowRegistrationElements && <div className={style.formUserLogin__inputWrapper}>
+                {isShowInputEmail && !isBackToRegistration && <div className={style.formUserLogin__inputWrapper}>
                     <Input
                         type='email'
                         name='email'
@@ -316,7 +345,7 @@ function FormUserLogin(
                         onChangeInput={inputChangeEmail}
                     />
                 </div>}
-                {isShowInputPassword && !isShowRegistrationElements && <div className={style.formUserLogin__inputWrapper}>
+                {isShowInputPassword && !isBackToRegistration && <div className={style.formUserLogin__inputWrapper}>
                     <Input
                         type={toggleTypeInput ? 'text' : 'password'}
                         name='password'
@@ -329,7 +358,7 @@ function FormUserLogin(
                         {toggleTypeInput ? 'Hide' : 'Show'}
                     </span>
                 </div>}
-                {isShowRegistrationElements && <div className={style.formUserLogin__inputWrapper}>
+                {isBackToRegistration && <div className={style.formUserLogin__inputWrapper}>
                     <Input
                         type='text'
                         name='fullName'
@@ -339,7 +368,7 @@ function FormUserLogin(
                         onChangeInput={inputChangeFullName}
                     />
                 </div>}
-                {isShowRegistrationElements && <div className={style.formUserLogin__inputWrapper}>
+                {isBackToRegistration && <div className={style.formUserLogin__inputWrapper}>
                     <Input
                         type='tel'
                         name='phoneNumber'
@@ -381,7 +410,7 @@ function FormUserLogin(
                     />
                 </div>}
 
-                {isShowReferalCodeText &&
+                {isBackToRegistration && !isShowReferalCode &&
                     <span
                         onClick={() => {
                             setIsShowReferalCode(true)
@@ -415,18 +444,7 @@ function FormUserLogin(
                     }
                 </div>
 
-                {
-                    errorInputEmail ||
-                        errorInputPasswordValue ||
-                        errorInputPartnerId ||
-                        errorInputFullName ||
-                        errorInputPhone ||
-                        errorInputReferalCode ?
-                        <span className={style.formUserLogin__messageErrorEnterRequiredFields}>
-                            {formValidationErrorMessage}
-                        </span>
-                        : null
-                }
+
             </form>
         </>
 
