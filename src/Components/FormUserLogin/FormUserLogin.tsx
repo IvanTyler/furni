@@ -128,6 +128,11 @@ function FormUserLogin(
     const inputChangePasswordValue = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value.length > 30) event.target.value = event.target.value.slice(0, 30);
         setInputValuePassword(event.target.value)
+        if (event.target.value.length === 0) {
+            dispath(getDataUser({ password: '' }))
+        } else {
+            
+        }
     }
 
     const inputChangeFullName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -155,6 +160,11 @@ function FormUserLogin(
     const inputChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         sliceInputText(event)
         setInputValueEmail(event.target.value)
+        if (event.target.value.length === 0) {
+            dispath(getDataUser({ email: '' }))
+        } else {
+            setInputValueEmail(event.target.value)
+        }
     }
 
     const inputChangePartnerId = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -201,6 +211,13 @@ function FormUserLogin(
             setErrorInputEmail(false)
 
         }
+    }
+
+    if (inputValueEmail.trim().length === 0 && inputEmail) {
+        setInputValueEmail(inputEmail)
+    }
+    if (inputValuePassword.trim().length === 0 && inputPassword) {
+        setInputValuePassword(inputPassword)
     }
 
     const submitHandlerLetsGetStartedForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -283,10 +300,8 @@ function FormUserLogin(
         setErrorInputFullName(false)
         setErrorInputPartnerId(false)
         setErrorInputReferalCode(false)
-
         localStorage.removeItem('location')
         dispath(backToRegistrationClear())
-
     }
 
     return (
