@@ -12,8 +12,6 @@ export interface IInitialState {
     isLoadingContacts: boolean;
     isLoadingAuth: boolean;
     filterBy: null | string;
-    inputEmail: string;
-    inputPassword: string;
     referal_code: number;
     you_have_earned: number;
     error: null | string;
@@ -26,8 +24,6 @@ export const initialState: IInitialState = {
     isLoadingContent: false,
     isLoadingContacts: false,
     isLoadingAuth: false,
-    inputEmail: '',
-    inputPassword: '',
     contacts: [],
     events: [],
     isBackToRegistration: false,

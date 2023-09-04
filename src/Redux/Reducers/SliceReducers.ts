@@ -60,11 +60,6 @@ export const dataSlice = createSlice({
         getDataLoadingEventsError(state) {
             state.isloading = 'error';
         },
-        getDataUser(state, action) {
-            state.inputEmail = action.payload.email
-            state.inputPassword = action.payload.password
-
-        },
         getDataFetchError(state, action: PayloadAction<string>) {
             state.error = action.payload
             state.isLoadingAuth = false
@@ -132,5 +127,4 @@ export const {
     getDataLoadingLoadingLeadId,
     backToRegistration,
     backToRegistrationClear,
-    getDataUser,
 } = dataSlice.actions
