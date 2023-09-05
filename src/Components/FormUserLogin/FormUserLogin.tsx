@@ -1,5 +1,7 @@
 import arrowBackIcon from '../../assets/icon/common/arrow-back.svg'
 import style from './FormUserLogin.module.scss'
+import styleInput from '../Input/Input.module.scss'
+
 import logoFurni from '../../assets/icon/logo.svg'
 import { Input } from '../Input/Input'
 import React, { useEffect, useRef, useState } from 'react'
@@ -10,6 +12,7 @@ import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { dataActionUsers } from '../../Redux/Actions/dataActionRegistration'
 import { useAppDispatch } from '../../Redux/Store/Store'
 import { backToRegistration, backToRegistrationClear } from '../../Redux/Reducers/SliceReducers'
+import { PatternFormat } from "react-number-format";
 
 interface IFormUserLoginProps {
     isShowElement: boolean;
@@ -40,6 +43,7 @@ function FormUserLogin(
     const dispath = useAppDispatch()
     const location = useLocation();
     const navigate = useNavigate()
+    const [value, setValue] = useState<any>()
 
     const { isLoadingAuth, error, isBackToRegistration } = useTypeSelector(state => state.data)
     const { responseMessageError } = useTypeSelector(state => state.dataUsers)
@@ -148,6 +152,8 @@ function FormUserLogin(
     }
 
     const inputChangePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event.target.value.split('').filter((el: any) => el !== '(' && el !== ')' && el !== '+' ? el : null).join(''));
+        console.log(event.target.value.length)
         if (event.target.value.length > 12) event.target.value = event.target.value.slice(0, 12);
         setInputValuePhone(event.target.value)
     }
@@ -340,11 +346,21 @@ function FormUserLogin(
                         type='tel'
                         name='phoneNumber'
                         placeholder='Phone number'
-                        valueInput={inputValuePhone}
+                        valueInput={''}
                         error={errorInputPhone}
                         onChangeInput={inputChangePhone}
                     />
                 </div>}
+                {isShowInputPhoneNumber && <div className={style.formUserLogin__inputWrapper}>
+                    <PatternFormat
+                        className={styleInput.input}
+                        onChange={inputChangePhone}
+                        format="+7 (###) ### ## ##" placeholder='Phone number'
+                        allowEmptyFormatting={false}
+                        mask="_"
+                    />
+                </div>}
+
                 {isShowElement && <div className={style.formUserLogin__inputWrapper}>
                     <Input
                         type='text'

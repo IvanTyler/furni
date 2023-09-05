@@ -8,7 +8,10 @@ interface IInputProps {
     valueInput: string;
     onChangeInput(inputChangeValue: React.ChangeEvent<HTMLInputElement>): void;
     error?: boolean;
-    pattern?: string
+    pattern?: string;
+    as?: any;
+    mask?: string;
+    maskChar?: string
 }
 
 export const Input: React.FC<IInputProps> = (
@@ -19,7 +22,7 @@ export const Input: React.FC<IInputProps> = (
         onChangeInput,
         valueInput,
         error,
-        pattern }
+        pattern, }
 ) => {
     return (
         <input
