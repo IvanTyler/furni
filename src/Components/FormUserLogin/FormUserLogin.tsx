@@ -87,6 +87,8 @@ function FormUserLogin(
             setErrorInputPasswordValue(true)
             setErrorInputPartnerId(true)
         }
+        console.log(responseMessageError);
+        
         if (responseMessageError === 'duplicate entry') {
             setFormValidationErrorMessage(`This email is already connected to an account. Login to your account`)
             setErrorInputEmail(true)
@@ -226,7 +228,6 @@ function FormUserLogin(
             setErrorInputFullName(false)
             setErrorInputPasswordValue(false)
 
-            setIsShowRegistrationElements(true)
             setIsShowReferalCodeText(true)
             setIsFormValidationError(false)
             setErrorInputReferalCode(false)
@@ -270,6 +271,7 @@ function FormUserLogin(
             fetchDataAuth()
         }
     }
+console.log(isShowRegistrationElements);
 
     return (
         <>
@@ -346,12 +348,12 @@ function FormUserLogin(
                         type='tel'
                         name='phoneNumber'
                         placeholder='Phone number'
-                        valueInput={''}
+                        valueInput={inputValuePhone}
                         error={errorInputPhone}
                         onChangeInput={inputChangePhone}
                     />
                 </div>}
-                {isShowInputPhoneNumber && <div className={style.formUserLogin__inputWrapper}>
+                {/* {isShowInputPhoneNumber && <div className={style.formUserLogin__inputWrapper}>
                     <PatternFormat
                         className={styleInput.input}
                         onChange={inputChangePhone}
@@ -359,7 +361,7 @@ function FormUserLogin(
                         allowEmptyFormatting={false}
                         mask="_"
                     />
-                </div>}
+                </div>} */}
 
                 {isShowElement && <div className={style.formUserLogin__inputWrapper}>
                     <Input
@@ -405,7 +407,7 @@ function FormUserLogin(
                     </span>}
                 <button className={style.formUserLogin__submit}>
                     {
-                        !isShowRegistrationElements ? 'Create account' :
+                        window.location.pathname === '/registration' ? 'Create account' :
                             'Login'
                     }
                 </button>
