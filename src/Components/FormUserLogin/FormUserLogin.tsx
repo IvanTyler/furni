@@ -87,7 +87,6 @@ function FormUserLogin(
             setErrorInputPasswordValue(true)
             setErrorInputPartnerId(true)
         }
-        console.log(responseMessageError);
         
         if (responseMessageError === 'duplicate entry') {
             setFormValidationErrorMessage(`This email is already connected to an account. Login to your account`)
@@ -154,8 +153,6 @@ function FormUserLogin(
     }
 
     const inputChangePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value.split('').filter((el: any) => el !== '(' && el !== ')' && el !== '+' ? el : null).join(''));
-        console.log(event.target.value.length)
         if (event.target.value.length > 12) event.target.value = event.target.value.slice(0, 12);
         setInputValuePhone(event.target.value)
     }
@@ -271,7 +268,6 @@ function FormUserLogin(
             fetchDataAuth()
         }
     }
-console.log(isShowRegistrationElements);
 
     return (
         <>

@@ -11,15 +11,6 @@ export const dataActionUsers = (
     referalCode?: number
 ) => (dispath: AppDispatch) => {
 
-    console.log(
-        email,
-        password,
-        fullName,
-        phone,
-        referalCode
-    );
-
-
     $api.post<any>(
         `api/users`,
         {
