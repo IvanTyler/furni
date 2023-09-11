@@ -74,7 +74,7 @@ export const MainPage: React.FC = () => {
                     </h3>
                     <ul className={style.listDescriptionProgram}>
                         <li className={style.listDescriptionProgram__item}>
-                            Text us to &nbsp;<a className={style.email} href="mailto:partners@furni.ae">partners@furni.ae</a>&nbsp;
+                            Text us to <a className={style.email} href="mailto:partners@furni.ae">partners@furni.ae</a>&nbsp;
                             or call&nbsp;
                             <a href="tel:+97143102096">+971-431-02096</a>
                         </li>

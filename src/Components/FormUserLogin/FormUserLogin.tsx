@@ -11,7 +11,6 @@ import { dataAction } from '../../Redux/Actions/dataAction'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { dataActionUsers } from '../../Redux/Actions/dataActionRegistration'
 import { useAppDispatch } from '../../Redux/Store/Store'
-import { backToRegistration, backToRegistrationClear } from '../../Redux/Reducers/SliceReducers'
 import { PatternFormat } from "react-number-format";
 
 interface IFormUserLoginProps {
@@ -79,7 +78,6 @@ function FormUserLogin(
     useEffect(() => {
 
         if (isLoadingAuth) {
-            dispath(backToRegistrationClear())
             navigate("/content");
         }
         if (error === 'Ошибка, данных нет') {
@@ -87,7 +85,7 @@ function FormUserLogin(
             setErrorInputPasswordValue(true)
             setErrorInputPartnerId(true)
         }
-        
+
         if (responseMessageError === 'duplicate entry') {
             setFormValidationErrorMessage(`This email is already connected to an account. Login to your account`)
             setErrorInputEmail(true)
@@ -99,7 +97,7 @@ function FormUserLogin(
             setFormValidationErrorMessage('This referral code doesn’t exist. Check the code and try again')
             setErrorInputReferalCode(true)
         }
-    }, [isLoadingAuth, responseMessageError, location, inputValueEmail, inputValuePassword])
+    }, [isLoadingAuth, responseMessageError, location])
 
 
     const fetchDataAuth = async () => {
@@ -416,10 +414,10 @@ function FormUserLogin(
                         alreadyHaveAnAccount ?
                             <span>
                                 Already have an account?&nbsp;
-                                <Link className={style.formUserLogin__link} to='/logIn'>LogIn</Link>
+                                <Link className={style.formUserLogin__link} to='/login'>LogIn</Link>
                             </span> :
                             <span> Forgot password? Call us <a href="tel:+97143102096">+971-431-02096</a>
-                                {/* &nbsp; Don’t have an account? <Link className={style.formUserLogin__link} to='/registration'>Register</Link> */}
+                                &nbsp; Don’t have an account? <Link className={style.formUserLogin__link} to='/registration'>Register</Link>
                             </span>
                     }
                 </div>

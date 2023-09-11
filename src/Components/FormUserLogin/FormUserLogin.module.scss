@@ -103,11 +103,14 @@
         max-width: 271px;
         margin: 0 auto;
         margin-top: 124px;
-        font-family: 'FuturaPT';
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 17px;
-        color: #8B8B9E;
+
+        span {
+            font-family: 'FuturaPT';
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 23px;
+            color: #8B8B9E;
+        }
 
         @media (max-width: 600px) {
             margin-top: 50px;
@@ -120,6 +123,9 @@
 
     &__link {
         border-bottom: solid 1px;
+        font-family: 'FuturaPT';
+        font-weight: 400;
+        font-size: 14px;
     }
 
     .alreadyAccount {
