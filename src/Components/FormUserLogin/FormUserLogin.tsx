@@ -271,7 +271,7 @@ function FormUserLogin(
         <>
             <form onSubmit={
                 !isShowRegistrationElements && window.location.pathname === '/registration' ? submitHandlerLetsGetStartedForm :
-                    window.location.pathname === '/login' ? submitHandler :
+                    window.location.pathname === '/login' || window.location.pathname === '/logIn' ? submitHandler :
                         submitHandler
             } action="" className={style.formUserLogin}>
                 {
@@ -290,7 +290,7 @@ function FormUserLogin(
                 <h1 className={style.formUserLogin__title}>
                     {
                         window.location.pathname === '/registration' ? 'Let’s get started' :
-                            window.location.pathname === '/login' ? 'Login to your partner’s account' :
+                            window.location.pathname === '/login' || window.location.pathname === '/logIn' ? 'Login to your partner’s account' :
                                 null
                     }
                 </h1>

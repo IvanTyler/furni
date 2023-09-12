@@ -36,6 +36,9 @@
         margin: 40px auto 0;
         padding: 18px 32px;
         height: 56px;
+        font-family: FuturaPT;
+        font-size: 14px;
+        font-weight: 500;
         background-color: #CE1A30;
         color: #fff;
         border-radius: 88px;
@@ -81,7 +84,7 @@
 
     &__messageErrorEnterRequiredFields {
         position: absolute;
-        bottom: 50px;
+        bottom: 60px;
         display: inline-block;
         max-width: 221px;
         padding: 9px 20px;
