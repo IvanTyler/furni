@@ -60,6 +60,7 @@ export const DefaultPage: React.FC<IDefaultPageProps> = ({ img }) => {
                         icon={iconArrowRight}
                         borderForCode={style.borderForCode}
                         bgColorArrow={style.bgColorArrow}
+                        sizeCode={style.code}
                         code={
                             getReferalCodeLocalStorage !== null ?
                                 getReferalCodeLocalStorage :

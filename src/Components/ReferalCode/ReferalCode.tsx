@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import style from './ReferalCode.module.scss'
 import cx from 'classnames'
 

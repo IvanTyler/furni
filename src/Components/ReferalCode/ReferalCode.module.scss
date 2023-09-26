@@ -21,6 +21,11 @@
         height: 100%;
     }
 
+    &__code {
+        font-family: FuturaPT;
+        font-weight: 450;
+    }
+
     &__codeWrapper {
         display: flex;
         flex-direction: column;

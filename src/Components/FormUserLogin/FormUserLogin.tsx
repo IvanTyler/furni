@@ -12,6 +12,8 @@ import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { dataActionUsers } from '../../Redux/Actions/dataActionRegistration'
 import { useAppDispatch } from '../../Redux/Store/Store'
 import { PatternFormat } from "react-number-format";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 interface IFormUserLoginProps {
     isShowElement: boolean;
@@ -93,10 +95,10 @@ function FormUserLogin(
             setIsShowReferalCode(false)
             setIsShowReferalCodeText(false)
         }
-        if (responseMessageError === 'couldn\'t find invited lead') {
-            setFormValidationErrorMessage('This referral code doesn’t exist. Check the code and try again')
-            setErrorInputReferalCode(true)
-        }
+        // if (responseMessageError === 'couldn\'t find invited lead') {
+        //     setFormValidationErrorMessage('This referral code doesn’t exist. Check the code and try again')
+        //     setErrorInputReferalCode(true)
+        // }
     }, [isLoadingAuth, responseMessageError, location])
 
 
@@ -150,11 +152,6 @@ function FormUserLogin(
         setInputValueLastName(event.target.value)
     }
 
-    const inputChangePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value.length > 12) event.target.value = event.target.value.slice(0, 12);
-        setInputValuePhone(event.target.value)
-    }
-
     const inputChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         sliceInputText(event)
         setInputValueEmail(event.target.value)
@@ -196,7 +193,7 @@ function FormUserLogin(
 
         if (inputValuePassword.trim().length < 8) {
             setErrorInputPasswordValue(true)
-            setFormValidationErrorMessage('The password is too short')
+            setFormValidationErrorMessage('The password should contain at least 8 symbols')
         } else {
             setErrorInputPasswordValue(false)
         }
@@ -337,7 +334,7 @@ function FormUserLogin(
                         onChangeInput={inputChangeFullName}
                     />
                 </div>}
-                {isShowInputPhoneNumber && <div className={style.formUserLogin__inputWrapper}>
+                {/* {isShowInputPhoneNumber && <div className={style.formUserLogin__inputWrapper}>
                     <Input
                         type='tel'
                         name='phoneNumber'
@@ -346,16 +343,24 @@ function FormUserLogin(
                         error={errorInputPhone}
                         onChangeInput={inputChangePhone}
                     />
-                </div>}
-                {/* {isShowInputPhoneNumber && <div className={style.formUserLogin__inputWrapper}>
-                    <PatternFormat
-                        className={styleInput.input}
-                        onChange={inputChangePhone}
-                        format="+7 (###) ### ## ##" placeholder='Phone number'
-                        allowEmptyFormatting={false}
-                        mask="_"
-                    />
                 </div>} */}
+
+                {isShowInputPhoneNumber && <div className={style.formUserLogin__inputWrapper}>
+                    <PhoneInput
+                        containerClass={
+                            errorInputPhone ?
+                                cx(styleInput.input, styleInput.error) :
+                                styleInput.input
+                        }
+                        inputClass={style.customReactTelInput}
+                        buttonClass={style.flagDropdown}
+                        country="ae"
+                        value={inputValuePhone.split('').slice(0, 12).join('')}
+                        onChange={setInputValuePhone}
+                        countryCodeEditable={false}
+
+                    />
+                </div>}
 
                 {isShowElement && <div className={style.formUserLogin__inputWrapper}>
                     <Input
