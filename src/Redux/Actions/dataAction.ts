@@ -2,17 +2,10 @@ import {
     getDataFetchError,
     getDataFetchingSuccessToken,
     getDataFetchingToken,
-    getDataLoadingErrorLeadId,
-    getDataLoadingLoadingLeadId,
-    getDataLoadingSuccessLeadId,
-    getReferalCode,
-    getYouHaveEarned,
-    setAuth
 } from "../Reducers/SliceReducers";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
 import { IGetDataTokens } from "../../Interfaces/IGetDataTokens";
-import { dataActionOverview } from "./dataActionOverview";
 
 export const dataAction = (email: string, password: string) => async (dispath: AppDispatch) => {
     try {
@@ -31,8 +24,6 @@ export const dataAction = (email: string, password: string) => async (dispath: A
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('refresh_token', response.data.refresh_token)
                 dispath(getDataFetchingSuccessToken())
-
-                // dispath(dataActionOverview())
             })
             .catch(error => {
                 console.log(error);

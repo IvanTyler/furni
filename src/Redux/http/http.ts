@@ -13,7 +13,7 @@ $api.interceptors.response.use(
     (config) => config,
     async (error) => {
         const originalRequest = error.config;
-        
+
         if (error.response.status === 401 && originalRequest && !originalRequest._isRetry) {
             originalRequest._isRetry = true;
             try {
@@ -26,6 +26,10 @@ $api.interceptors.response.use(
                 return $api.request(originalRequest);
             } catch (err) {
                 console.log(err);
+                localStorage.removeItem('token')
+                localStorage.removeItem('refresh_token')
+                localStorage.removeItem('lead_id')
+                localStorage.removeItem('youHaveEarned')
             }
         }
 

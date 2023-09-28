@@ -11,7 +11,6 @@ import { dataAction } from '../../Redux/Actions/dataAction'
 import { useTypeSelector } from '../../Hooks/useTypeSelector'
 import { dataActionUsers } from '../../Redux/Actions/dataActionRegistration'
 import { useAppDispatch } from '../../Redux/Store/Store'
-import { PatternFormat } from "react-number-format";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
@@ -83,7 +82,7 @@ function FormUserLogin(
             navigate("/content");
         }
         if (error === 'Ошибка, данных нет') {
-            setFormValidationErrorMessage('Partner ID or password error')
+            setFormValidationErrorMessage('Incorrect Partner ID / email or password')
             setErrorInputPasswordValue(true)
             setErrorInputPartnerId(true)
         }
@@ -334,16 +333,6 @@ function FormUserLogin(
                         onChangeInput={inputChangeFullName}
                     />
                 </div>}
-                {/* {isShowInputPhoneNumber && <div className={style.formUserLogin__inputWrapper}>
-                    <Input
-                        type='tel'
-                        name='phoneNumber'
-                        placeholder='Phone number'
-                        valueInput={inputValuePhone}
-                        error={errorInputPhone}
-                        onChangeInput={inputChangePhone}
-                    />
-                </div>} */}
 
                 {isShowInputPhoneNumber && <div className={style.formUserLogin__inputWrapper}>
                     <PhoneInput
@@ -355,10 +344,10 @@ function FormUserLogin(
                         inputClass={style.customReactTelInput}
                         buttonClass={style.flagDropdown}
                         country="ae"
-                        value={inputValuePhone.split('').slice(0, 12).join('')}
+                        value={inputValuePhone}
                         onChange={setInputValuePhone}
                         countryCodeEditable={false}
-
+                        enableSearch={true}
                     />
                 </div>}
 

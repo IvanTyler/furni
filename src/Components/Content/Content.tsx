@@ -1,6 +1,5 @@
 import { useTypeSelector } from "../../Hooks/useTypeSelector"
 import { Header } from "../Header/Header"
-import { Preloader } from "../Preloader/Preloader"
 import { Welcome } from "../Welcome/Welcome"
 import { YourFurniActivity } from "../YourFurniActivity/YourFurniActivity"
 
