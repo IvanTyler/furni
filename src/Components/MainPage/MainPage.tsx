@@ -32,7 +32,7 @@ export const MainPage: React.FC = () => {
                     </ul>
                     <nav className={style.sectionMainPageNavigation}>
                         <Link className={style.sectionMainPageNavigation__link} to='/registration'>Register</Link>
-                        <Link className={style.sectionMainPageNavigation__link} to='/login'>LogIn</Link>
+                        <Link className={style.sectionMainPageNavigation__link} to='/login'>Login</Link>
                     </nav>
                 </li>
                 <li className={style.listDescriptionWorksFurni__item}>
@@ -45,13 +45,7 @@ export const MainPage: React.FC = () => {
                     </h3>
                     <ul className={style.listDescriptionProgram}>
                         <li className={style.listDescriptionProgram__item}>
-                            5% of the deal with the customer you referred
-                        </li>
-                        <li className={style.listDescriptionProgram__item}>
-                            1% of the deal with the agent customer you referred
-                        </li>
-                        <li className={style.listDescriptionProgram__item}>
-                            0.25% of any purchases made by customers of your sub-partners
+                            Earn 30% of our commission on furnishings of your customers
                         </li>
                     </ul>
 
@@ -81,7 +75,7 @@ export const MainPage: React.FC = () => {
                     </ul>
                 </li>
             </ul>
-            
+
         </section>
     )
 }
