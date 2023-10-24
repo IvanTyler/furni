@@ -41,7 +41,7 @@ export const ContactsItem: React.FC<IClientsProps> = (
                 openDetailList ?
                     <ul>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                            <div className={style.tabsYourFurniActivityItem__name}>
+                            <div className={(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                 Direct sales
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
@@ -49,7 +49,7 @@ export const ContactsItem: React.FC<IClientsProps> = (
                             </div>
                         </li>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                            <div className={style.tabsYourFurniActivityItem__name}>
+                            <div className={(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                 Via partners
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
@@ -57,7 +57,7 @@ export const ContactsItem: React.FC<IClientsProps> = (
                             </div>
                         </li>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                            <div className={style.tabsYourFurniActivityItem__name}>
+                            <div className={(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                 Via subpartners
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>
@@ -65,7 +65,7 @@ export const ContactsItem: React.FC<IClientsProps> = (
                             </div>
                         </li>
                         <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                            <div className={style.tabsYourFurniActivityItem__name}>
+                            <div className={(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                 Total earnings
                             </div>
                             <div className={style.tabsYourFurniActivityItem__item}>

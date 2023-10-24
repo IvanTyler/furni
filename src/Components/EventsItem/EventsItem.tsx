@@ -13,8 +13,6 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
     const date = new Date(item.created_at);
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Now', 'Dec']
 
-    console.log(item.event_type);
-
     return (
         <>
             <li className={openDetailList ?
@@ -29,7 +27,9 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                 style.tabsYourFurniActivityItem__showDetailsContact}
                     >
                     </div>
-                    {item.name}
+                    <span className={style.tabsYourFurniActivityItem__text}>
+                        {item.name}
+                    </span>
                 </div>
                 <div className={cx(style.tabsYourFurniActivityItem__item, style[item.event_type])}>
                     {
@@ -77,7 +77,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                             <ul>
 
                                 <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                                    <div className={style.tabsYourFurniActivityItem__name}>
+                                    <div className={cx(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                         Sale type
                                     </div>
                                     <div className={style.tabsYourFurniActivityItem__item}>
@@ -85,7 +85,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                     </div>
                                 </li>
                                 <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                                    <div className={style.tabsYourFurniActivityItem__name}>
+                                    <div className={cx(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                         Deal amount
                                     </div>
                                     <div className={style.tabsYourFurniActivityItem__item}>
@@ -93,7 +93,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                     </div>
                                 </li>
                                 <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                                    <div className={style.tabsYourFurniActivityItem__name}>
+                                    <div className={cx(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                         Deal commission
                                     </div>
                                     <div className={style.tabsYourFurniActivityItem__item}>
@@ -101,7 +101,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                     </div>
                                 </li>
                                 <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                                    <div className={style.tabsYourFurniActivityItem__name}>
+                                    <div className={cx(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                         Your reward
                                     </div>
                                     <div className={style.tabsYourFurniActivityItem__item}>
@@ -109,7 +109,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                     </div>
                                 </li>
                                 <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                                    <div className={style.tabsYourFurniActivityItem__name}>
+                                    <div className={cx(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                         Reference code
                                     </div>
                                     <div className={style.tabsYourFurniActivityItem__item}>
@@ -117,7 +117,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                     </div>
                                 </li>
                                 <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                                    <div className={style.tabsYourFurniActivityItem__name}>
+                                    <div className={cx(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                         Created at
                                     </div>
                                     <div className={style.tabsYourFurniActivityItem__item}>
