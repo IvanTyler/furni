@@ -19,7 +19,7 @@
         align-items: center;
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 450px) {
         padding: 6px 10px;
         font-size: 14px;
     }
@@ -64,7 +64,6 @@
 
     &__item {
         text-align: right;
-        white-space: nowrap;
 
         &:not(:last-child) {
             margin-right: 33px;
@@ -136,11 +135,21 @@
     background-color: #323540;
     padding-left: 56px;
 
+
+    @media (max-width: 450px) {
+        padding-left: 46px;
+    }
+
     &:first-of-type,
     &:last-of-type {
         border-radius: 0;
         font-size: 16px;
         line-height: 20px;
+
+        @media (max-width: 450px) {
+            font-size: 14px;
+            line-height: 17px;
+        }
     }
 }
 

@@ -45,7 +45,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                         {item.event_type === "new_lead" || item.event_type === "new_partner" ?
                             <ul>
                                 <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                                    <div className={style.tabsYourFurniActivityItem__name}>
+                                    <div className={(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                         Reference code
                                     </div>
                                     <div className={style.tabsYourFurniActivityItem__item}>
@@ -53,7 +53,7 @@ export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
                                     </div>
                                 </li>
                                 <li className={cx(style.tabsYourFurniActivityItem, style.detalContent)}>
-                                    <div className={style.tabsYourFurniActivityItem__name}>
+                                    <div className={(style.tabsYourFurniActivityItem__name, style.detalContent)}>
                                         Created at
                                     </div>
                                     <div className={style.tabsYourFurniActivityItem__item}>
