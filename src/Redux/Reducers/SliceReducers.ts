@@ -3,11 +3,13 @@ import { RootState } from "../Store/Store";
 import { IGetDataContacts } from "../../Interfaces/contacts";
 import { initialState } from '../initialState'
 
-
 export const dataSlice = createSlice({
     name: 'getData',
     initialState,
     reducers: {
+        getDataFetching(state) {
+            state.isloading_2 = true;
+        },
         getReferalCode(state, action: PayloadAction<any>) {
             state.referal_code = action.payload
             state.isloading = 'ok';
@@ -41,6 +43,7 @@ export const dataSlice = createSlice({
         },
         getDataLoadingContactsError(state) {
             state.isloading = 'error';
+            state.isloading_2 = false;
         },
         getDataLoadingEvents(state) {
             state.isloading = 'loading';
@@ -59,6 +62,7 @@ export const dataSlice = createSlice({
         },
         getDataLoadingEventsError(state) {
             state.isloading = 'error';
+            state.isloading_2 = false;
         },
         getDataFetchError(state, action: PayloadAction<string>) {
             state.error = action.payload
@@ -68,6 +72,7 @@ export const dataSlice = createSlice({
         getDataFetchContacts(state, action: PayloadAction<any>) {
             state.contacts = action.payload
             state.isloading = 'ok';
+            state.isloading_2 = false;
         },
         getDataFetchEvents(state, action: PayloadAction<any>) {
             state.events = action.payload
@@ -127,4 +132,5 @@ export const {
     getDataLoadingLoadingLeadId,
     backToRegistration,
     backToRegistrationClear,
+    getDataFetching,
 } = dataSlice.actions
