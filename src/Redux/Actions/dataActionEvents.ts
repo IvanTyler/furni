@@ -1,6 +1,7 @@
 import { IGetDataEvents } from "../../Interfaces/Events";
 import {
     getDataFetchEvents,
+    getDataFetching,
     getDataLoadingEvents,
     getDataLoadingEventsError,
 } from "../Reducers/SliceReducers";
@@ -10,6 +11,7 @@ import $api from "../http/http";
 export const dataActionEvents = () => async (dispath: AppDispatch) => {
 
     dispath(getDataLoadingEvents())
+
     await $api.get<IGetDataEvents[]>(
         `api/user/events`
     )

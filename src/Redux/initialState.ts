@@ -7,6 +7,7 @@ export interface IInitialState {
     events: IGetDataEvents[];
     isBackToRegistration: boolean;
     isloading: string;
+    isloading_2: boolean;
     isloadingId: string;
     isLoadingContent: boolean;
     isLoadingContacts: boolean;
@@ -20,6 +21,7 @@ export interface IInitialState {
 export const initialState: IInitialState = {
     codeCopied: false,
     isloading: '',
+    isloading_2: false,
     isloadingId: '',
     isLoadingContent: false,
     isLoadingContacts: false,
