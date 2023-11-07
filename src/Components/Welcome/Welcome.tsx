@@ -28,6 +28,17 @@ export const Welcome: React.FC = () => {
 
     }, [isloadingId])
 
+    // console.log(attempt);
+
+
+    if (attempt >= 5) {
+        localStorage.removeItem('token')
+        localStorage.removeItem('refresh_token')
+        localStorage.removeItem('lead_id')
+        localStorage.removeItem('youHaveEarned')
+        dispath(setAuth(false))
+    }
+
 
     return (
         <div className={style.welcome}>
