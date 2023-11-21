@@ -1,10 +1,6 @@
 import { IGetDataEvents } from "../../Interfaces/Events";
-import {
-    getDataFetchEvents,
-    getDataFetching,
-    getDataLoadingEvents,
-    getDataLoadingEventsError,
-} from "../Reducers/SliceReducers";
+import { getDataFetchEvents, getDataLoadingEvents, getDataLoadingEventsError } from "../Reducers/getDataEventsReducer";
+
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
 

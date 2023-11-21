@@ -19,7 +19,7 @@ interface IPartnersProps {
 
 export const Events: React.FC<IPartnersProps> = ({ img }) => {
 
-    const { events, isloading } = useTypeSelector(state => state.data)
+    const { events, isloading } = useTypeSelector(state => state.dataEvents)
 
     const dispath = useAppDispath()
 
@@ -27,12 +27,12 @@ export const Events: React.FC<IPartnersProps> = ({ img }) => {
         dispath(dataActionEvents())
     }, [])
 
-    if (isloading === 'loading')
+    if (isloading === 'pending')
         return (
             <Preloader />
         )
 
-    else if (isloading === 'ok' && events.length) {
+    else if (isloading === 'success' && events.length) {
         return (
             <>
                 <div className={cx(styleClientsItem.tabsYourFurniActivityItem, styleClientsItem.header)}>

@@ -5,7 +5,7 @@ import { YourFurniActivity } from "../YourFurniActivity/YourFurniActivity"
 
 export const Content: React.FC = () => {
     const { isloadingId } = useTypeSelector(state => state.data)
-
+    
     if (isloadingId === 'ok') {
         return (
             <>

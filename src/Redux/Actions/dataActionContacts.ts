@@ -1,14 +1,12 @@
 import { IgetDataContactsDto } from "../../Interfaces/getDataDto";
 import {
-    getDataFetchContacts,
-    getDataLoadingContacts,
-    getDataLoadingContactsError,
 } from "../Reducers/SliceReducers";
+import { getDataFetchContacts, getDataFetchingContacts, getDataFetchingContactsError } from "../Reducers/getDataContactsReducer";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
 
 export const dataActionContacts = () => (dispath: AppDispatch) => {
-    dispath(getDataLoadingContacts())
+    dispath(getDataFetchingContacts())
 
     $api.get<IgetDataContactsDto[]>(
         `api/user/contacts`,
@@ -16,13 +14,13 @@ export const dataActionContacts = () => (dispath: AppDispatch) => {
         .then(response => {
             
             if (!response.data) {
-                dispath(getDataLoadingContactsError())
+                dispath(getDataFetchingContactsError())
                 return
             }
             dispath(getDataFetchContacts(response.data))
 
         })
         .catch(error => {
-            dispath(getDataLoadingContactsError())
+            dispath(getDataFetchingContactsError())
         })
 }

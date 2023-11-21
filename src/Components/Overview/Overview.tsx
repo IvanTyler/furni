@@ -16,7 +16,7 @@ export const Overview: React.FC<IDefaultPageProps> = ({ img }) => {
         dispath(dataActionOverview())
     }, [])
 
-    if (isloading === 'loading')
+    if (isloading === 'pending')
         return (
             <Preloader />
         )

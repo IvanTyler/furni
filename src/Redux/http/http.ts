@@ -32,8 +32,7 @@ $api.interceptors.response.use(
                 localStorage.removeItem('refresh_token')
                 localStorage.removeItem('lead_id')
                 localStorage.removeItem('youHaveEarned')
-
-                store.dispatch(setAuth(false))
+                // store.dispatch(setAuth(false))
             }
         }
 
