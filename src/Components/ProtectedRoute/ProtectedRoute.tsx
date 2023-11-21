@@ -14,7 +14,6 @@ export function ProtectedRoute({ children }: IProtectedRouteProps) {
     const getTokenSessionStorage = localStorage.getItem('token')
     
     if (!getTokenSessionStorage) dispath(setAuth(false))
-    
 
     if (!isLoadingAuth) {
         return <Navigate to="/login" />;

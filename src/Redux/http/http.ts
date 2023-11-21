@@ -1,6 +1,4 @@
 import axios from "axios";
-import { store } from "../Store/Store";
-import { setAuth } from "../Reducers/SliceReducers";
 
 const $api = axios.create({
     withCredentials: true,
@@ -32,7 +30,6 @@ $api.interceptors.response.use(
                 localStorage.removeItem('refresh_token')
                 localStorage.removeItem('lead_id')
                 localStorage.removeItem('youHaveEarned')
-                // store.dispatch(setAuth(false))
             }
         }
 

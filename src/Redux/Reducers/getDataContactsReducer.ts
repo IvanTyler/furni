@@ -2,6 +2,7 @@ import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit";
 import { initialState } from '../initialState'
 import { RootState } from "../Store/Store";
 import { IGetDataContacts } from "../../Interfaces/contacts";
+import { log } from "console";
 
 export const dataSlice = createSlice({
     name: 'getData',
@@ -17,6 +18,9 @@ export const dataSlice = createSlice({
             state.contacts = action.payload
             state.isloading = 'success';
         },
+        setfilterBy(state, action: PayloadAction<null | string>) {
+            state.filterBy = action.payload
+        }
     }
 })
 
@@ -45,11 +49,10 @@ export const grandTotalSelector = createSelector([contactsSelector], (contactsSe
     return contactsSelector.reduce((acc: any, el) => acc + el.titleTotal, 0)
 })
 
-
-
 export default dataSlice.reducer
 export const {
     getDataFetchContacts,
     getDataFetchingContacts,
     getDataFetchingContactsError,
+    setfilterBy,
 } = dataSlice.actions

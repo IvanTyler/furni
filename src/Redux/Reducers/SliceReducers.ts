@@ -43,9 +43,7 @@ export const dataSlice = createSlice({
             state.isLoadingAuth = false
             state.isLoadingContent = false
         },
-        setfilterBy(state, action: PayloadAction<null | string>) {
-            state.filterBy = action.payload
-        }
+        
     }
 })
 
@@ -55,7 +53,6 @@ export const {
     getDataFetchingToken,
     getDataFetchingSuccessToken,
     getDataFetchError,
-    setfilterBy,
     setAuth,
     getDataFetchingReferalCode,
     getDataFetchingYouEarned,

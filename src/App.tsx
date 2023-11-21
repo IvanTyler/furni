@@ -13,7 +13,6 @@ function App() {
 
   useEffect(() => {
     const getTokenSessionStorage = localStorage.getItem('token')
-    console.log(isLoadingAuth, getTokenSessionStorage)
 
     if (getTokenSessionStorage !== null) dispath(setAuth(true))
   }, [])

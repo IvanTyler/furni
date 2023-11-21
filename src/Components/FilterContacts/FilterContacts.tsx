@@ -5,7 +5,7 @@ import { List } from '../List/List'
 import { FilterContactsItem } from '../FilterContactsItem/FilterContactsItem'
 import cx from 'classnames'
 import { useAppDispath } from '../../Hooks/useTypeSelector'
-import { setfilterBy } from '../../Redux/Reducers/SliceReducers'
+import { setfilterBy } from '../../Redux/Reducers/getDataContactsReducer'
 
 interface IFilterContactsProps {
     isFilterContactsActive: boolean
@@ -55,6 +55,7 @@ export const FilterContacts: React.FC<IFilterContactsProps> = (
     const itemFilterContactsEditHandler = (id: number, filter: any, name: string) => {
         setIsFilterContactsActive(false)
         setTitleContacts(name)
+        
         dispath(setfilterBy(filter))
 
         setFilterContactsItem((prev: any) => {
