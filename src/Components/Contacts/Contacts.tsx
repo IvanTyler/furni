@@ -10,10 +10,10 @@ import { DefaultPage } from '../DefaultPage/DefaultPage'
 import { OpenFilterContacts } from '../OpenFilterContacts/OpenFilterContacts'
 import { FilterContacts } from '../FilterContacts/FilterContacts'
 import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
-import { contactsSelector, grandTotalSelector } from '../../Redux/Reducers/SliceReducers'
 import { Preloader } from '../Preloader/Preloader'
 import React from 'react'
 import { dataActionContacts } from '../../Redux/Actions/dataActionContacts'
+import { contactsSelector, grandTotalSelector } from '../../Redux/Reducers/getDataContactsReducer'
 
 interface IContactsProps {
     img: string;
@@ -21,11 +21,11 @@ interface IContactsProps {
 
 function Contacts({ img }: IContactsProps) {
 
-    const { isloading } = useTypeSelector(state => state.data)
+    const { isloading } = useTypeSelector(state => state.dataContacts)
 
     const contacts = useTypeSelector(contactsSelector)
     const grandTotal = useTypeSelector(grandTotalSelector)
-
+    
     const dispath = useAppDispath()
 
     useEffect(() => {
@@ -35,12 +35,12 @@ function Contacts({ img }: IContactsProps) {
     const [isFilterContactsActive, setIsFilterContactsActive] = useState(false)
     const [titleContacts, setTitleContacts] = useState('All contacts')
 
-    if (isloading === 'loading')
+    if (isloading === 'pending')
         return (
             <Preloader />
         )
 
-    else if (isloading === 'ok' && contacts.length) {
+    else if (isloading === 'success' && contacts.length) {
         return (
             <>
                 <div className={cx(styleClientsItem.tabsYourFurniActivityItem, styleClientsItem.header)}>
@@ -87,7 +87,7 @@ function Contacts({ img }: IContactsProps) {
         )
     }
 
-    else if (isloading === 'ok' && !contacts.length) {
+    else if (isloading === 'success' && !contacts.length) {
         return (
             <>
                 <div className={cx(styleClientsItem.tabsYourFurniActivityItem, styleClientsItem.header)}>

@@ -9,14 +9,13 @@ import { setAuth } from './Redux/Reducers/SliceReducers';
 
 function App() {
   const dispath = useAppDispath()
-  const { isloadingId, referal_code } = useTypeSelector(state => state.data)
+  const { isLoadingAuth } = useTypeSelector(state => state.data)
 
   useEffect(() => {
     const getTokenSessionStorage = localStorage.getItem('token')
+    console.log(isLoadingAuth, getTokenSessionStorage)
 
-    if (getTokenSessionStorage !== null) {
-      dispath(setAuth(true))
-    }
+    if (getTokenSessionStorage !== null) dispath(setAuth(true))
   }, [])
 
   return (
@@ -28,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App);

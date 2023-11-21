@@ -10,15 +10,7 @@ import FormUserLogin from '../FormUserLogin/FormUserLogin'
 
 export const Body: React.FC = () => {
 
-    const { isLoadingContent, isBackToRegistration } = useTypeSelector(state => state.data)
-
-    if (isBackToRegistration) {
-        return (
-            <div className={style.containerBody}>
-                <Registration />
-            </div>
-        )
-    }
+    const { isLoadingContent } = useTypeSelector(state => state.data)
 
     if (isLoadingContent)
         return (

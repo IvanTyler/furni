@@ -2,6 +2,9 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import getData from '../Reducers/SliceReducers'
 import getCopyCopied from '../Reducers/codeCopiedReducer'
 import getDataUsers from '../Reducers/registrationReducer'
+import getDataContacts from '../Reducers/getDataContactsReducer'
+import getDataEvents from '../Reducers/getDataEventsReducer'
+import getDataOverview from '../Reducers/getDataEventsReducer'
 
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
@@ -16,6 +19,9 @@ export const store = configureStore({
         data: getData,
         copyCopied: getCopyCopied,
         dataUsers: getDataUsers,
+        dataContacts: getDataContacts,
+        dataEvents: getDataEvents,
+        dataOverview: getDataOverview,
     },
 })
 

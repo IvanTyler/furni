@@ -12,18 +12,16 @@ import imgEvents from '../../assets/images/events.png'
 
 import imgMoney from '../../assets/images/money.png'
 
-import { useGetData } from '../../Hooks/useGetData'
 import { useTypeSelector } from '../../Hooks/useTypeSelector';
 import Contacts from '../Contacts/Contacts'
-import { log } from 'console'
 
 export const YourFurniActivity: React.FC = () => {
-    const { you_have_earned } = useTypeSelector(state => state.data)
+    const { you_earned } = useTypeSelector(state => state.data)
     const { codeCopied } = useTypeSelector(state => state.copyCopied)
 
     const [tabElement, setTabElement] = useState('Overview')
 
-    const getYouHaveEarnedLocalStorage = localStorage.getItem('youHaveEarned')
+    const getYouEarnedLocalStorage = localStorage.getItem('youHaveEarned')
 
     return (
         <>
@@ -36,9 +34,9 @@ export const YourFurniActivity: React.FC = () => {
                     </h2>
                     <h2 className={style.sectionYourFurniActivity__title}>
                         {
-                            getYouHaveEarnedLocalStorage !== null ?
-                                getYouHaveEarnedLocalStorage :
-                                you_have_earned
+                            getYouEarnedLocalStorage !== null ?
+                                getYouEarnedLocalStorage :
+                                you_earned
                         } AED
                     </h2>
                     <img className={style.sectionYourFurniActivity__imgMoney} src={imgMoney} alt="" />

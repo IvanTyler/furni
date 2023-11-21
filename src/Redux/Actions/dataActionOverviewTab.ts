@@ -1,14 +1,13 @@
 import {
     getDataFetchingSuccessToken,
     getDataLoadingErrorLeadId,
-    getDataLoadingLoadingLeadId,
-    getDataLoadingOverview,
     getDataLoadingSuccessLeadId,
-    getReferalCode,
-    getYouHaveEarned
+    getDataFetchingReferalCode,
+    getDataFetchingYouEarned
 } from "../Reducers/SliceReducers";
 import $api from "../http/http";
 import { AppDispatch } from "../Store/Store";
+import { getDataLoadingOverview } from "../Reducers/getDataOverviewReducer";
 
 export const dataActionOverviewTab = () => (dispath: AppDispatch) => {
     dispath(getDataLoadingOverview())
@@ -18,7 +17,7 @@ export const dataActionOverviewTab = () => (dispath: AppDispatch) => {
     )
         .then(response => {
             if (response.data.lead_id && response.data.lead_id !== 0) {
-                dispath(getReferalCode(response.data.lead_id))
+                dispath(getDataFetchingReferalCode(response.data.lead_id))
                 dispath(getDataLoadingSuccessLeadId())
 
                 localStorage.setItem('lead_id', response.data.lead_id)
@@ -26,7 +25,7 @@ export const dataActionOverviewTab = () => (dispath: AppDispatch) => {
                 console.log('error lead_id');
                 dispath(getDataLoadingErrorLeadId(response.data.lead_id))
             }
-            dispath(getYouHaveEarned(response.data.earning_total))
+            dispath(getDataFetchingYouEarned(response.data.earning_total))
             localStorage.setItem('youHaveEarned', response.data.earning_total)
 
         })

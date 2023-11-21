@@ -45,7 +45,7 @@ function FormUserLogin(
     const navigate = useNavigate()
     const [value, setValue] = useState<any>()
 
-    const { isLoadingAuth, error, isBackToRegistration } = useTypeSelector(state => state.data)
+    const { isLoadingAuth, error } = useTypeSelector(state => state.data)
     const { responseMessageError } = useTypeSelector(state => state.dataUsers)
 
 

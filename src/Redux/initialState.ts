@@ -5,32 +5,28 @@ export interface IInitialState {
     codeCopied: boolean;
     contacts: IGetDataContacts[];
     events: IGetDataEvents[];
-    isBackToRegistration: boolean;
     isloading: string;
-    isloading_2: boolean;
     isloadingId: string;
     isLoadingContent: boolean;
     isLoadingContacts: boolean;
     isLoadingAuth: boolean;
     filterBy: null | string;
     referal_code: number;
-    you_have_earned: number;
+    you_earned: number;
     error: null | string;
 }
 
 export const initialState: IInitialState = {
     codeCopied: false,
     isloading: '',
-    isloading_2: false,
     isloadingId: '',
     isLoadingContent: false,
     isLoadingContacts: false,
     isLoadingAuth: false,
     contacts: [],
     events: [],
-    isBackToRegistration: false,
     filterBy: null,
     referal_code: 0,
-    you_have_earned: 0,
+    you_earned: 0,
     error: '',
 }
