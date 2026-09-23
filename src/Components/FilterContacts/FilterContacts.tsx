@@ -1,6 +1,6 @@
 import style from '../../assets/styles/filterList.module.scss'
 import { useState } from 'react'
-import { IFilterContacts } from '../../Interfaces/FilterContacts'
+import { IFilterContacts, FilterByType } from '../../Interfaces/FilterContacts'
 import { List } from '../List/List'
 import { FilterContactsItem } from '../FilterContactsItem/FilterContactsItem'
 import cx from 'classnames'
@@ -52,14 +52,14 @@ export const FilterContacts: React.FC<IFilterContactsProps> = (
 
     const [filterContactsItem, setFilterContactsItem] = useState<IFilterContacts[]>(filterContactsItems)
 
-    const itemFilterContactsEditHandler = (id: number, filter: any, name: string) => {
+    const itemFilterContactsEditHandler = (id: number, filter: FilterByType | null, name: string) => {
         setIsFilterContactsActive(false)
         setTitleContacts(name)
-        
+
         dispath(setfilterBy(filter))
 
-        setFilterContactsItem((prev: any) => {
-            return prev.map((el: any) => {
+        setFilterContactsItem((prev) => {
+            return prev.map((el) => {
                 if (el.id === id) {
                     return {
                         ...el,

@@ -3,15 +3,12 @@ import { ITabs } from '../../Interfaces/Tabs'
 import { List } from '../List/List'
 import { TabsListItem } from '../TabsItem/TabsListItem'
 import style from './TabsList.module.scss'
-import { useDispatch } from 'react-redux'
 
 interface ITabsListProps {
-    setTabElement(item: any): void
+    setTabElement(item: string): void
 }
 
 export const TabsList: React.FC<ITabsListProps> = ({ setTabElement }) => {
-
-    const dispath = useDispatch<any>()
 
     const tabsList: ITabs[] = [
         {
@@ -40,7 +37,7 @@ export const TabsList: React.FC<ITabsListProps> = ({ setTabElement }) => {
         //     dispath(dataActionContacts())
         // }
         
-        setTabElement((prev: string) => prev = name)
+        setTabElement(name)
         setTabsYourFurniActivityListList(prev => {
             return prev.map(el => {
                 if (el.id === id) {

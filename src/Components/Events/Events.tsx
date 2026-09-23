@@ -13,7 +13,6 @@ import { Preloader } from '../Preloader/Preloader'
 import { dataActionEvents } from '../../Redux/Actions/dataActionEvents'
 
 interface IPartnersProps {
-    statsEvents?: any;
     img: string;
 }
 

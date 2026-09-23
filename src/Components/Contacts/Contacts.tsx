@@ -14,6 +14,7 @@ import { Preloader } from '../Preloader/Preloader'
 import React from 'react'
 import { dataActionContacts } from '../../Redux/Actions/dataActionContacts'
 import { contactsSelector, grandTotalSelector } from '../../Redux/Reducers/getDataContactsReducer'
+import { IGetDataContacts } from '../../Interfaces/contacts'
 
 interface IContactsProps {
     img: string;
@@ -25,7 +26,7 @@ function Contacts({ img }: IContactsProps) {
 
     const contacts = useTypeSelector(contactsSelector)
     const grandTotal = useTypeSelector(grandTotalSelector)
-    
+
     const dispath = useAppDispath()
 
     useEffect(() => {
@@ -66,7 +67,7 @@ function Contacts({ img }: IContactsProps) {
 
                             <List
                                 items={contacts}
-                                renderItem={(item: any, index: number) => <ContactsItem
+                                renderItem={(item: IGetDataContacts, index: number) => <ContactsItem
                                     item={item}
                                     key={index.toString()}
                                 />}

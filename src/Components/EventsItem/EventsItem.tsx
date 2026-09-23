@@ -10,7 +10,9 @@ interface IEventsProps {
 export const EventsItem: React.FC<IEventsProps> = ({ item }) => {
 
     const [openDetailList, setOpenDetailList] = useState(false)
+    
     const date = new Date(item.created_at);
+    console.log(date);
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Now', 'Dec']
 
     return (

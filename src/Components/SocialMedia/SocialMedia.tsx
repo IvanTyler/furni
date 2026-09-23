@@ -5,17 +5,17 @@ import iconFacebook from '../../assets/icon/social-media/facebook.svg'
 import iconWhatsApp from '../../assets/icon/social-media/whatsApp.svg'
 import iconTelergam from '../../assets/icon/social-media/telegram.svg'
 import iconLinkedin from '../../assets/icon/social-media/Linkedin.svg'
-import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { copyReferalCodeMobile } from '../../assets/Functions/copyReferalCodeMobile'
 import { codeCopiedAction } from '../../Redux/Actions/ActionCodeCopied'
+import { useAppDispath } from '../../Hooks/useTypeSelector'
 
 interface ISocialMediaProps {
-    code?: any;
+    code?: string | number;
 }
 
 export const SocialMedia: React.FC<ISocialMediaProps> = ({ code }) => {
-    const dispath = useDispatch<any>()
+    const dispath = useAppDispath()
 
     const [dimensionWindowbrowser, setdimensionWindowbrowser] = useState<number>(window.innerWidth)
 
@@ -27,11 +27,13 @@ export const SocialMedia: React.FC<ISocialMediaProps> = ({ code }) => {
     const handleResize = () => setdimensionWindowbrowser((prev: number) => prev = window.innerWidth)
 
     const copyReferalCode = async () => {
+        const codeToCopy = String(code ?? '')
+
         if (dimensionWindowbrowser > 450) {
-            navigator.clipboard.writeText(code)
+            navigator.clipboard.writeText(codeToCopy)
             dispath(codeCopiedAction())
         } else {
-            copyReferalCodeMobile(code)
+            copyReferalCodeMobile(codeToCopy)
         }
     }
 

@@ -1,7 +1,6 @@
-import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialState } from '../initialState'
-import { RootState } from "../Store/Store";
-import { IGetDataContacts } from "../../Interfaces/contacts";
+import { IGetDataEvents } from "../../Interfaces/Events";
 
 export const dataSlice = createSlice({
     name: 'getData',
@@ -13,7 +12,7 @@ export const dataSlice = createSlice({
         getDataLoadingEventsError(state) {
             state.isloading = 'error';
         },
-        getDataFetchEvents(state, action: PayloadAction<any>) {
+        getDataFetchEvents(state, action: PayloadAction<IGetDataEvents[]>) {
             state.events = action.payload
             state.isloading = 'success';
         },

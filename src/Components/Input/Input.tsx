@@ -9,7 +9,6 @@ interface IInputProps {
     onChangeInput(inputChangeValue: React.ChangeEvent<HTMLInputElement>): void;
     error?: boolean;
     pattern?: string;
-    as?: any;
     mask?: string;
     maskChar?: string
 }

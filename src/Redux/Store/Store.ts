@@ -1,18 +1,12 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import getData from '../Reducers/SliceReducers'
 import getCopyCopied from '../Reducers/codeCopiedReducer'
 import getDataUsers from '../Reducers/registrationReducer'
 import getDataContacts from '../Reducers/getDataContactsReducer'
 import getDataEvents from '../Reducers/getDataEventsReducer'
-import getDataOverview from '../Reducers/getDataEventsReducer'
-
+import getDataOverview from '../Reducers/getDataOverviewReducer'
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-
-const rootReducer = combineReducers({
-    data: getData,
-    copyCopied: getCopyCopied,
-})
 
 export const store = configureStore({
     reducer: {

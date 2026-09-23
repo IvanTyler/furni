@@ -1,46 +1,53 @@
-# Getting Started with Create React App
+# Furni — личный кабинет партнёра
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Личный кабинет для партнёрской программы **Furni** — внутреннего проекта компании ПИК Маркет. Партнёры (агенты, приводящие клиентов) заходят сюда, чтобы отслеживать заработок, своих рефералов и ленту событий по сделкам.
 
-## Available Scripts
+Проект целиком написан на React + TypeScript, состояние — на Redux Toolkit.
 
-In the project directory, you can run:
+## Что внутри
 
-### `npm start`
+- **Авторизация и регистрация** — вход по email/паролю или по Partner ID, регистрация с реферальным кодом (кто пригласил партнёра). Один переиспользуемый компонент формы (`FormUserLogin`) обслуживает оба сценария через пропсы.
+- **Обзор (Overview)** — сводка по партнёру: сколько всего заработано, реферальный код с копированием в буфер (с анимацией "скопировано").
+- **Контакты** — список приведённых клиентов/партнёров с фильтрацией и детализацией (прямые продажи, через партнёров, через субпартнёров).
+- **Лента событий** — активность по сделкам: новый лид, сделка закрыта успешно/неуспешно, оплата и т.д.
+- **Защищённые маршруты** — страницы личного кабинета недоступны без токена авторизации (`ProtectedRoute`).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Стек
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+React 18, TypeScript, Redux Toolkit, React Router, React Hook Form, Axios, SCSS. Формы телефона — react-phone-input-2 / react-phone-number-input.
 
-### `npm test`
+## Структура проекта
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+src/
+├── Components/     — компоненты интерфейса (Header, Overview, Contacts, Events, формы и т.д.)
+├── Redux/
+│   ├── Actions/    — thunk-действия, которые ходят в API (логин, регистрация, контакты, события, обзор)
+│   ├── Reducers/   — слайсы состояния
+│   ├── Store/      — конфигурация стора
+│   └── http/       — общий axios-инстанс с обработкой токена и его обновлением по 401
+├── Interfaces/     — типы TypeScript для данных с бэкенда
+├── MockData/       — заготовка тестовых данных (см. ниже)
+├── Hooks/          — кастомные хуки (типизированные dispatch/selector)
+└── assets/         — стили, шрифты, иконки
+```
 
-### `npm run build`
+## ⚠️ Важно: бэкенд сейчас недоступен
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Проект изначально ходил за данными на `lab.furni.ae` (см. поле `proxy` в package.json) — это был стенд для разработки, сейчас он не отвечает. Поэтому в текущем виде:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Регистрация и вход не срабатывают (запросы на `api/auth` и `api/users` ни на что не отвечают)
+- Данные обзора, контактов и событий не загружаются (`api/user/overview`, `api/user/contacts`, `api/user/events`)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Все запросы идут через один общий файл `src/Redux/http/http.ts` — это единственная точка, где нужно всё подменить, если понадобится оживить интерфейс на моковых данных (в `src/MockData/MockData.ts` уже лежит частично готовый набор примеров для этого).
 
-### `npm run eject`
+## Запуск локально
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+npm install
+npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Откроется на [http://localhost:3000](http://localhost:3000). Без рабочего бэкенда (или моков вместо него) экраны логина/регистрации и загрузки данных работать не будут — см. пункт выше.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Production-сборка: `npm run build`.

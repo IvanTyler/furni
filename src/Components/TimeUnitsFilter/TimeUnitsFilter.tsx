@@ -42,8 +42,8 @@ export const TimeUnitsFilter: React.FC<IsetCurrentTimeUnitProps> = (
     function setTimeUnitTitle(id: number, name: string) {
 
         setCurrentTimeUnit(name)
-        setFilterTimeUnits((prev: any) => {
-            return prev.map((el: any) => {
+        setFilterTimeUnits((prev) => {
+            return prev.map((el) => {
                 if (el.id === id) {
                     return {
                         ...el,

@@ -1,16 +1,17 @@
 import { IGetDataEvents } from "../Interfaces/Events";
-import { IGetDataContacts } from "../Interfaces/contacts";
+import { IgetDataContactsDto } from "../Interfaces/getDataDto";
+import { FilterByType } from "../Interfaces/FilterContacts";
 
 export interface IInitialState {
     codeCopied: boolean;
-    contacts: IGetDataContacts[];
+    contacts: IgetDataContactsDto[];
     events: IGetDataEvents[];
     isloading: string;
     isloadingId: string;
     isLoadingContent: boolean;
     isLoadingContacts: boolean;
     isLoadingAuth: boolean;
-    filterBy: null | string;
+    filterBy: FilterByType | null;
     referal_code: number;
     you_earned: number;
     error: null | string;

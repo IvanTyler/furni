@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import style from './OpenFilterContacts.module.scss'
 
 import filterIcon from '../../assets/icon/common/filter.svg'
@@ -6,7 +7,7 @@ import cx from 'classnames'
 
 interface IFilterContactsProps {
     active: boolean
-    setIsFilterContactsActive: (item: any) => void
+    setIsFilterContactsActive: (item: boolean | ((prev: boolean) => boolean)) => void
 }
 
 
@@ -17,13 +18,16 @@ export const OpenFilterContacts: React.FC<IFilterContactsProps> = (
     }
 ) => {
 
-    const documentBody = document
-    documentBody.addEventListener('click', (e) => setIsFilterContactsActive((prev: any) => prev = false))
+    useEffect(() => {
+        const closeFilter = () => setIsFilterContactsActive(false)
+        document.addEventListener('click', closeFilter)
+        return () => document.removeEventListener('click', closeFilter)
+    }, [setIsFilterContactsActive])
 
     return (
         <div
             onClick={(e) => {
-                setIsFilterContactsActive((prev: boolean) => prev = !prev)
+                setIsFilterContactsActive((prev) => !prev)
                 e.stopPropagation()
             }}
             className={

@@ -3,7 +3,7 @@ import style from './TimeUnits.module.scss'
 import calendarIcon from '../../assets/icon/common/calendar.svg'
 import openTimeUnitsIcon from '../../assets/icon/overview/openTimeunits.svg'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TimeUnitsFilter } from '../TimeUnitsFilter/TimeUnitsFilter'
 
 export const TimeUnits: React.FC = () => {
@@ -11,8 +11,11 @@ export const TimeUnits: React.FC = () => {
     const [currentTimeUnit, setCurrentTimeUnit] = useState('This week')
     const [isFilterTimeUnitsActive, setIsFilterTimeUnitsActive] = useState(false)
 
-    const documentBody = document
-    documentBody.addEventListener('click', (e) => setIsFilterTimeUnitsActive((prev: any) => prev = false))
+    useEffect(() => {
+        const closeFilter = () => setIsFilterTimeUnitsActive(false)
+        document.addEventListener('click', closeFilter)
+        return () => document.removeEventListener('click', closeFilter)
+    }, [])
 
     return (
         <>

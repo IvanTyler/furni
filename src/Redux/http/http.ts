@@ -1,4 +1,5 @@
 import axios from "axios";
+import { IGetDataTokens } from "../../Interfaces/IGetDataTokens";
 
 const $api = axios.create({
     withCredentials: true,
@@ -17,7 +18,7 @@ $api.interceptors.response.use(
         if (error.response.status === 401 && originalRequest && !originalRequest._isRetry) {
             originalRequest._isRetry = true;
             try {
-                const response = await axios.post<any>(`api/refresh`, {
+                const response = await axios.post<IGetDataTokens>(`api/refresh`, {
                     token: localStorage.getItem('token'),
                     refresh_token: localStorage.getItem('refresh_token'),
                 });

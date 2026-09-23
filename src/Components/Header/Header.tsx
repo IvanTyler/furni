@@ -4,7 +4,7 @@ import { ReferalCode } from '../ReferalCode/ReferalCode'
 
 import iconArrowRight from '../../assets/icon/common/arrow-right-gray.svg'
 import { SocialMedia } from '../SocialMedia/SocialMedia'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppDispath, useTypeSelector } from '../../Hooks/useTypeSelector'
 import { setAuth } from '../../Redux/Reducers/SliceReducers'
 import { getResponseErrorMessage } from '../../Redux/Reducers/registrationReducer'
@@ -26,8 +26,11 @@ export const Header: React.FC = () => {
 
     const [isShowSocialMedia, setIsSocialMedia] = useState(false)
 
-    const documentBody = document
-    documentBody.addEventListener('click', (e) => setIsSocialMedia((prev: any) => prev = false))
+    useEffect(() => {
+        const closeSocialMedia = () => setIsSocialMedia(false)
+        document.addEventListener('click', closeSocialMedia)
+        return () => document.removeEventListener('click', closeSocialMedia)
+    }, [])
 
     return (
         <header className={style.header}>
@@ -37,7 +40,7 @@ export const Header: React.FC = () => {
             <div className={style.contentReferalCode}>
                 <div className={style.wrapperReferalCode}
                     onClick={(e) => {
-                        setIsSocialMedia((prev: any) => prev = !prev)
+                        setIsSocialMedia((prev) => !prev)
                         e.stopPropagation()
                     }}
                 >

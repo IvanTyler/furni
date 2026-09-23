@@ -14,7 +14,7 @@ export const dataSlice = createSlice({
     name: 'getDataUsers',
     initialState,
     reducers: {
-        getResponseErrorMessage(state, action: PayloadAction<any>) {
+        getResponseErrorMessage(state, action: PayloadAction<string>) {
             state.responseMessageError = action.payload
         },
         

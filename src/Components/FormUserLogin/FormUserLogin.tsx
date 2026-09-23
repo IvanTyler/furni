@@ -43,7 +43,6 @@ function FormUserLogin(
     const dispath = useAppDispatch()
     const location = useLocation();
     const navigate = useNavigate()
-    const [value, setValue] = useState<any>()
 
     const { isLoadingAuth, error } = useTypeSelector(state => state.data)
     const { responseMessageError } = useTypeSelector(state => state.dataUsers)

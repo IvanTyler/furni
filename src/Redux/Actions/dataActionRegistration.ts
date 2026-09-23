@@ -1,7 +1,12 @@
+import { AxiosError } from "axios";
 import { getResponseErrorMessage } from "../Reducers/registrationReducer";
 import { AppDispatch } from "../Store/Store";
 import $api from "../http/http";
 import { dataAction } from "./dataAction";
+
+interface IRegistrationErrorResponse {
+    message: string;
+}
 
 export const dataActionUsers = (
     email: string,
@@ -11,7 +16,7 @@ export const dataActionUsers = (
     referalCode?: number
 ) => (dispath: AppDispatch) => {
 
-    $api.post<any>(
+    $api.post<unknown>(
         `api/users`,
         {
             conditions: 'v1',
@@ -23,11 +28,11 @@ export const dataActionUsers = (
             repeat_password: password
         }
     )
-        .then(response => {
+        .then(() => {
             dispath(dataAction(email, password))
 
         })
-        .catch(error => {
-            dispath(getResponseErrorMessage(error.response.data.message))
+        .catch((error: AxiosError<IRegistrationErrorResponse>) => {
+            dispath(getResponseErrorMessage(error.response?.data.message ?? 'Registration error'))
         })
 }

@@ -8,11 +8,12 @@ import {
 import $api from "../http/http";
 import { AppDispatch } from "../Store/Store";
 import { getDataLoadingOverview } from "../Reducers/getDataOverviewReducer";
+import { IOverviewResponse } from "../../Interfaces/Overview";
 
 export const dataActionOverview = () => (dispath: AppDispatch) => {
     dispath(getDataLoadingOverview())
 
-    $api.get<any>(
+    $api.get<IOverviewResponse>(
         `api/user/overview`
     )
         .then(response => {
@@ -20,12 +21,12 @@ export const dataActionOverview = () => (dispath: AppDispatch) => {
                 dispath(getDataFetchingReferalCode(response.data.lead_id))
                 dispath(getDataLoadingSuccessLeadId())
 
-                localStorage.setItem('lead_id', response.data.lead_id)
+                localStorage.setItem('lead_id', String(response.data.lead_id))
             } else {
-                dispath(getDataLoadingErrorLeadId(response.data.lead_id))
+                dispath(getDataLoadingErrorLeadId())
             }
             dispath(getDataFetchingYouEarned(response.data.earning_total))
-            localStorage.setItem('youHaveEarned', response.data.earning_total)
+            localStorage.setItem('youHaveEarned', String(response.data.earning_total))
 
         })
         .catch(error => dispath(getDataFetchingSuccessToken()))
